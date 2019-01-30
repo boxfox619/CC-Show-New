@@ -14,12 +14,15 @@ export default function asyncComponent(getComponent: () => Promise<any>): any {
             }
         }
 
-        async componentDidMount(){
-            const result: any = await getComponent();
-            const component = result.default;
-            this.setState({
-                ImportedComponent: component
-            });
+        componentDidMount(){
+            getComponent().then(result => {
+                const component = result.default;
+                this.setState({
+                    ImportedComponent: component
+                });
+            }).catch(error => {
+                alert(error);
+            })
         }
 
         render() {
