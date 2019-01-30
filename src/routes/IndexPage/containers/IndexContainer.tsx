@@ -21,7 +21,7 @@ class IndexContainer extends React.Component<Props> {
         return (
             <div>
                 {progress && 'Getting location...'}
-                {position && `latitude ${position.latitude}, longitude: ${position.longitude}`}
+                {!progress && position && `latitude ${position.latitude}, longitude: ${position.longitude}`}
                 <button onClick={this.props.getCurrentLocation}>get location</button>
             </div>
         )
