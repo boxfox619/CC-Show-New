@@ -1,11 +1,13 @@
 import { Action } from 'redux';
-import { ofType, StateObservable } from 'redux-observable';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, throttleTime, delay } from 'rxjs/operators';
+import { ofType } from 'redux-observable';
+import { Observable, of, concat } from 'rxjs';
+import { catchError, map, switchMap, throttleTime } from 'rxjs/operators';
 import { GET_LOCATION, GET_LOCATION_FAILED, GET_LOCATION_STARTED, GET_LOCATION_SUCCESSED } from '../location';
 
+interface PositionType {latitude: number, longitude: number};
+
 function getLocation() {
-    return new Observable(obs => {
+    return new Observable<PositionType>(obs => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 obs.next({
@@ -24,20 +26,20 @@ function getLocation() {
 }
 
 const getLocationEpic = (
-    action$: Observable<Action>,
-    state$: StateObservable<any>
+    action: Observable<Action>
 ): Observable<Action> => {
-    return action$.pipe(
+    return action.pipe(
         ofType(GET_LOCATION),
-        map(() => ({ type: GET_LOCATION_STARTED })),
-        switchMap(() =>
+        switchMap(() => new Observable<Action>(obs => {
+            obs.next({ type: GET_LOCATION_STARTED }),
             getLocation().pipe(
-                delay(2000),
-                map((position) => ({ type: GET_LOCATION_SUCCESSED, position })),
+                map(position => ({ type: GET_LOCATION_SUCCESSED, position })),
                 catchError(error => of({ type: GET_LOCATION_FAILED, error }))
-            )),
+            )
+        })
+        ),
         throttleTime(1000)
-    )
+    );
 };
 
 export default [getLocationEpic];
