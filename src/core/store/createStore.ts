@@ -1,5 +1,5 @@
 import { Action, applyMiddleware, compose, createStore, Store } from 'redux';
-import { ActionsObservable, combineEpics, createEpicMiddleware, StateObservable } from "redux-observable";
+import { ActionsObservable, combineEpics, createEpicMiddleware, StateObservable, Epic } from "redux-observable";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import makeRootReducer from './reducers';
@@ -37,7 +37,7 @@ const createReduxStore = (initialState = {}) => {
 
     const epic$ = new BehaviorSubject<any>(combineEpics());
     const rootEpic = (action$: ActionsObservable<Action>, state$: StateObservable<any>, dependencies: any): Observable<Action> => {
-        return epic$.pipe(mergeMap(epic => epic(action$, state$)));
+        return epic$.pipe(mergeMap((epic: Epic) => epic(action$, state$, dependencies)));
     }
     epicMiddleware.run(rootEpic);
     store.epic$ = epic$;

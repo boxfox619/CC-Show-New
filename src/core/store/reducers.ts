@@ -1,4 +1,5 @@
-import { combineReducers } from "redux";
+import { combineReducers, Reducer } from 'redux';
+import { Epic } from 'redux-observable';
 
 export const makeRootReducer = (asyncReducers: any) => {
     return combineReducers({
@@ -6,7 +7,7 @@ export const makeRootReducer = (asyncReducers: any) => {
     })
 };
 
-export const injectReducer = (store: any, key: string, reducer: any, epics?: any) => {
+export const injectReducer = (store: any, key: string, reducer: Reducer, epics?: Epic[]) => {
     if (Object.hasOwnProperty.call(store.asyncReducers, key)) {
         return;
     }
