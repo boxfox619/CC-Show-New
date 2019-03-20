@@ -15,7 +15,8 @@
     "react-scripts-ts": "^4.0.8",
     "redux": "^4.0.1",
     "redux-observable": "^1.0.0",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.4.0",
+    "styled-components": "^4.1.3"
   },
   "scripts": {
     "start": "react-scripts-ts start",

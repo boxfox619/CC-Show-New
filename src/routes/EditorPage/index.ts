@@ -9,6 +9,6 @@ export default (store: Store) => (
         const reducer = modules.default.reducer;
         const epics = modules.default.epics;
         injectReducer(store, REDUCER_KEY, reducer, epics)
-        return await import("./containers/IndexContainer");
+        return await import("./containers/EditorContainer");
     }
 )

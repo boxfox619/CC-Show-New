@@ -1,4 +1,4 @@
-import { AssetModel } from 'src/core/model/AssetModel';
+import AssetModel from 'src/core/models/AssetModel';
 
 export default class EditorStoreModel {
     constructor(
