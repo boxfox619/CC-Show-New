@@ -6,8 +6,11 @@ import StoreModel from '../models/store/StoreModel';
 import AccountStoreModel from 'src/core/models/store/AccountStoreModel';
 import EditorStoreModel from '../models/store/EditorStoreModel';
 import styled from 'styled-components';
+import ShowControllerContainer from './ShowControllerContainer';
 
 const Container = styled.div`
+    width: 100vw;
+    height: 100vh;
 `
 
 interface Props {
@@ -22,7 +25,7 @@ class EditorContainer extends React.Component<Props> {
     public render() {
         return (
             <Container>
-                aaa
+                <ShowControllerContainer style={{width: '30vw'}}/>
             </Container>
         )
     }
