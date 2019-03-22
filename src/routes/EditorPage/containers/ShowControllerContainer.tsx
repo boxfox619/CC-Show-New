@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import GradientButtonItem from '../components/GradientButtonItem';
 
 const Container = styled.div`
     background-color: white;
@@ -16,7 +17,7 @@ export default class ShowControllerContainer extends React.Component<Props>{
         const divProps = this.props as React.HTMLAttributes<HTMLDivElement>;
         return (
             <Container {...divProps}>
-                aa
+                <GradientButtonItem label="" activated={false}/>
             </Container>
         )
     }
