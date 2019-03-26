@@ -2,6 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import GradientButtonItem from '../components/GradientButtonItem';
 import Profile from '../components/Profile';
+import { addAsset } from '../modules/asset';
+import { connect } from 'react-redux';
+import StoreModel from '../models/store/StoreModel';
 
 const Container = styled.div`
     background-color: white;
@@ -27,33 +30,40 @@ const SplitBar = styled.div`
     width: 40px;
     margin-left: 20px;
 `
+const mapDispatchToProps = {
+    addAsset
+};
 
-interface OwnProps {
-    test?: boolean
-}
-
-type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
-
-export default class ShowControllerContainer extends React.Component<Props>{
-    public render() {
-        const divProps = this.props as React.HTMLAttributes<HTMLDivElement>;
-        return (
-            <Container {...divProps}>
-                <Profile thumbnail={"https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"} name={"홍길동"} subName={"치킨비어"}/>
-                <SplitBar/>
-                <ButtonGroup>
-                    <GradientButtonItem label="텍스트" />
-                    <GradientButtonItem label="비디오" />
-                    <GradientButtonItem label="이미지" />
-                    <GradientButtonItem label="도형" />
-                    <GradientButtonItem label="기타" />
-                </ButtonGroup>
-                <SplitBar/>
-                <ButtonGroup>
-                    <GradientButtonItem label="슬라이드 리스트" />
-                    <GradientButtonItem label="슬라이드 쇼" />
-                </ButtonGroup>
-            </Container>
-        )
+const mapStateToProps = (state: StoreModel) => {
+    return {
+        auth: state.auth,
+        editor: state.editor
     }
+};
+
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & React.HTMLAttributes<HTMLDivElement>;
+
+const ShowControllerContainer: React.FC<Props> = (props: Props) => {
+    const divProps = props as React.HTMLAttributes<HTMLDivElement>;
+    const createAssetByType = (assetType: string) => () => props.addAsset({assetType, point: {x: 0, y: 0}});
+    return (
+        <Container {...divProps}>
+            <Profile thumbnail={"https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"} name={"홍길동"} subName={"치킨비어"} />
+            <SplitBar />
+            <ButtonGroup>
+                <GradientButtonItem label="텍스트" onClick={createAssetByType('text')}/>
+                <GradientButtonItem label="비디오" onClick={createAssetByType('video')}/>
+                <GradientButtonItem label="이미지" onClick={createAssetByType('image')}/>
+                <GradientButtonItem label="도형" onClick={createAssetByType('shape')}/>
+                <GradientButtonItem label="기타"/>
+            </ButtonGroup>
+            <SplitBar />
+            <ButtonGroup>
+                <GradientButtonItem label="슬라이드 리스트" />
+                <GradientButtonItem label="슬라이드 쇼" />
+            </ButtonGroup>
+        </Container>
+    )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowControllerContainer)
