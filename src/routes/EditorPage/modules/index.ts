@@ -1,14 +1,14 @@
 import update from 'immutability-helper';
-import StoreModel from '../models/store/StoreModel';
+import EditorStoreModel from '../models/store/EditorStoreModel';
 import epics from './epics';
-import { ACTION_HANDLERS as LOCATION_ACTION_HANDLER } from './location';
+import { ACTION_HANDLERS as ASSET_ACTION_HANDLER } from './asset';
 
 const ACTION_HANDLERS = {
-    ...LOCATION_ACTION_HANDLER
+    ...ASSET_ACTION_HANDLER
 };
 
 export default {
-    reducer: (state = new StoreModel(), action: any) => {
+    reducer: (state = new EditorStoreModel(), action: any) => {
         const handler = ACTION_HANDLERS[action.type];
         return handler ? update(state, handler(state, action)) : state
     },
