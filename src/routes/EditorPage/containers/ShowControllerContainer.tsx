@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import GradientButtonItem from '../components/GradientButtonItem';
+import Profile from '../components/Profile';
 
 const Container = styled.div`
     background-color: white;
@@ -38,6 +39,8 @@ export default class ShowControllerContainer extends React.Component<Props>{
         const divProps = this.props as React.HTMLAttributes<HTMLDivElement>;
         return (
             <Container {...divProps}>
+                <Profile name={"홍길동"} subName={"치킨비어"}/>
+                <SplitBar/>
                 <ButtonGroup>
                     <GradientButtonItem label="텍스트" />
                     <GradientButtonItem label="비디오" />
