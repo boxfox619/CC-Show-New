@@ -37,13 +37,14 @@ const SubName = styled.div`
 
 interface Props {
     name: string,
-    subName: string
+    subName: string,
+    thumbnail: string
 }
 
 const Profile: React.FC<Props> = (props: Props) => {
     return (
         <ProfileContainer>
-            <Thumbnail><img src="https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"/></Thumbnail>
+            <Thumbnail><img src={props.thumbnail}/></Thumbnail>
             <div>
                 <Name>{props.name}</Name>
                 <SubName>{props.subName}</SubName>

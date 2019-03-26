@@ -39,7 +39,7 @@ export default class ShowControllerContainer extends React.Component<Props>{
         const divProps = this.props as React.HTMLAttributes<HTMLDivElement>;
         return (
             <Container {...divProps}>
-                <Profile name={"홍길동"} subName={"치킨비어"}/>
+                <Profile thumbnail={"https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"} name={"홍길동"} subName={"치킨비어"}/>
                 <SplitBar/>
                 <ButtonGroup>
                     <GradientButtonItem label="텍스트" />
