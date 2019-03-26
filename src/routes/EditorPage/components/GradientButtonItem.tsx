@@ -5,7 +5,6 @@ import ButtonCircleImg from '../assets/ic_ellipse_white.png';
 
 const GradientButton = styled.div`
     display: table;
-    width: 100%;
     font-size: 0.7em;
     font-weight: bold;
     color : #5D87B5;
@@ -14,6 +13,7 @@ const GradientButton = styled.div`
     user-select: none;
     &:hover {
         background: url('${GradientBackgroundImg}');
+        background-repeat: no-repeat;
         color: white;
     }
     &:hover:after {
@@ -26,8 +26,7 @@ const GradientButton = styled.div`
 `
 
 interface OwnProps {
-    label: string,
-    activated: boolean
+    label: string
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;

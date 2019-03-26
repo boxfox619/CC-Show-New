@@ -25,7 +25,7 @@ class EditorContainer extends React.Component<Props> {
     public render() {
         return (
             <Container>
-                <ShowControllerContainer style={{width: '30vw'}}/>
+                <ShowControllerContainer/>
             </Container>
         )
     }
