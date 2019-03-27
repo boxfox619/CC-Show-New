@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Profile /> should render one <div> & div label 1`] = `
+exports[`<GradientButtonItem /> should render one <div> & div label 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Profile
     name="홍길동"
-    subName="치킨맥주"
+    subName="치킨비어"
+    thumbnail=""
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -24,7 +25,7 @@ ShallowWrapper {
       "children": Array [
         <ForwardRef>
           <img
-            src="https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"
+            src=""
           />
         </ForwardRef>,
         <div>
@@ -32,7 +33,7 @@ ShallowWrapper {
             홍길동
           </ForwardRef>
           <ForwardRef>
-            치킨맥주
+            치킨비어
           </ForwardRef>
         </div>,
       ],
@@ -45,7 +46,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": <img
-            src="https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"
+            src=""
           />,
         },
         "ref": null,
@@ -54,7 +55,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "src": "https://avatars1.githubusercontent.com/u/14067209?s=460&v=4",
+            "src": "",
           },
           "ref": null,
           "rendered": null,
@@ -105,7 +106,7 @@ ShallowWrapper {
               홍길동
             </ForwardRef>,
             <ForwardRef>
-              치킨맥주
+              치킨비어
             </ForwardRef>,
           ],
         },
@@ -151,10 +152,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "치킨맥주",
+              "children": "치킨비어",
             },
             "ref": null,
-            "rendered": "치킨맥주",
+            "rendered": "치킨비어",
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "attrs": Array [],
@@ -216,7 +217,7 @@ ShallowWrapper {
         "children": Array [
           <ForwardRef>
             <img
-              src="https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"
+              src=""
             />
           </ForwardRef>,
           <div>
@@ -224,7 +225,7 @@ ShallowWrapper {
               홍길동
             </ForwardRef>
             <ForwardRef>
-              치킨맥주
+              치킨비어
             </ForwardRef>
           </div>,
         ],
@@ -237,7 +238,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": <img
-              src="https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"
+              src=""
             />,
           },
           "ref": null,
@@ -246,7 +247,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "src": "https://avatars1.githubusercontent.com/u/14067209?s=460&v=4",
+              "src": "",
             },
             "ref": null,
             "rendered": null,
@@ -297,7 +298,7 @@ ShallowWrapper {
                 홍길동
               </ForwardRef>,
               <ForwardRef>
-                치킨맥주
+                치킨비어
               </ForwardRef>,
             ],
           },
@@ -343,10 +344,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "치킨맥주",
+                "children": "치킨비어",
               },
               "ref": null,
-              "rendered": "치킨맥주",
+              "rendered": "치킨비어",
               "type": Object {
                 "$$typeof": Symbol(react.forward_ref),
                 "attrs": Array [],

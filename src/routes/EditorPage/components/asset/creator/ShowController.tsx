@@ -1,10 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import GradientButtonItem from '../components/GradientButtonItem';
-import Profile from '../components/Profile';
-import { addAsset } from '../modules/asset';
-import { connect } from 'react-redux';
-import StoreModel from '../models/store/StoreModel';
+import GradientButtonItem from './GradientButtonItem';
+import Profile from './Profile';
+import PointModel from 'src/core/models/PointModel';
 
 const Container = styled.div`
     background-color: white;
@@ -30,22 +28,15 @@ const SplitBar = styled.div`
     width: 40px;
     margin-left: 20px;
 `
-const mapDispatchToProps = {
-    addAsset
-};
+interface OwnProps {
+    addAsset: (type: string, point: PointModel) => void
+}
 
-const mapStateToProps = (state: StoreModel) => {
-    return {
-        auth: state.auth,
-        editor: state.editor
-    }
-};
+type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & React.HTMLAttributes<HTMLDivElement>;
-
-const ShowControllerContainer: React.FC<Props> = (props: Props) => {
+const ShowController: React.FC<Props> = (props: Props) => {
     const divProps = props as React.HTMLAttributes<HTMLDivElement>;
-    const createAssetByType = (assetType: string) => () => props.addAsset({assetType, point: {x: 0, y: 0}});
+    const createAssetByType = (assetType: string) => () => props.addAsset(assetType, {x: 0, y: 0});
     return (
         <Container {...divProps}>
             <Profile thumbnail={"https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"} name={"홍길동"} subName={"치킨비어"} />
@@ -66,4 +57,4 @@ const ShowControllerContainer: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowControllerContainer)
+export default ShowController;
