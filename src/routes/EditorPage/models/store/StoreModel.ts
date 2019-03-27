@@ -1,7 +1,7 @@
-import EditorStoreModel from './EditorStoreModel';
+import EditorStoreModel from "./EditorStoreModel";
+import AccountStoreModel from 'src/core/models/store/AccountStoreModel';
 
-export default class StoreModel {
-    constructor(
-        public editor = new EditorStoreModel(),
-    ) {}
+export default interface StoreModel {
+    auth: AccountStoreModel,
+    editor: EditorStoreModel
 }
