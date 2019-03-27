@@ -29,29 +29,38 @@ const SplitBar = styled.div`
     margin-left: 20px;
 `
 interface OwnProps {
-    addAsset: (type: string, point: PointModel) => void
+    name: string,
+    email: string,
+    thumbnail: string,
+    addAsset: (type: string, point: PointModel) => void,
+    toggleAssetManager: () => void,
+    toggleSlideManager: () => void,
+    toggleSlideShow: () => void
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 const ShowController: React.FC<Props> = (props: Props) => {
     const divProps = props as React.HTMLAttributes<HTMLDivElement>;
-    const createAssetByType = (assetType: string) => () => props.addAsset(assetType, {x: 0, y: 0});
+    const createAssetByType = (assetType: string) => () => props.addAsset(assetType, { x: 0, y: 0 });
     return (
         <Container {...divProps}>
-            <Profile thumbnail={"https://avatars1.githubusercontent.com/u/14067209?s=460&v=4"} name={"홍길동"} subName={"치킨비어"} />
+            <Profile
+                thumbnail={props.thumbnail}
+                name={props.name}
+                subName={props.email} />
             <SplitBar />
             <ButtonGroup>
                 <GradientButtonItem label="텍스트" onClick={createAssetByType('text')}/>
                 <GradientButtonItem label="비디오" onClick={createAssetByType('video')}/>
                 <GradientButtonItem label="이미지" onClick={createAssetByType('image')}/>
                 <GradientButtonItem label="도형" onClick={createAssetByType('shape')}/>
-                <GradientButtonItem label="기타"/>
+                <GradientButtonItem label="기타" onClick={props.toggleAssetManager}/>
             </ButtonGroup>
             <SplitBar />
             <ButtonGroup>
-                <GradientButtonItem label="슬라이드 리스트" />
-                <GradientButtonItem label="슬라이드 쇼" />
+                <GradientButtonItem label="슬라이드 리스트" onClick={props.toggleSlideManager}/>
+                <GradientButtonItem label="슬라이드 쇼" onClick={props.toggleSlideShow}/>
             </ButtonGroup>
         </Container>
     )

@@ -3,6 +3,7 @@ export default class AccountStoreModel {
         public isLogined: boolean = false,
         public isLoding: boolean = false,
         public name: string = '',
-        public email: string = ''
+        public email: string = '',
+        public thumbnail: string = ''
     ) {}
 }

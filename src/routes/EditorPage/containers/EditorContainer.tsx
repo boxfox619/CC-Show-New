@@ -1,5 +1,6 @@
 import { History, Location } from 'history';
 import * as React from 'react';
+import {useState} from 'react';
 import { connect } from 'react-redux';
 import { match } from 'react-router-dom';
 import StoreModel from '../models/store/StoreModel';
@@ -34,10 +35,22 @@ type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & Ow
 
 const EditorContainer: React.FC<Props> = (props: Props) => {
     const createAsset = (assetType: string, point: PointModel) => props.addAsset({assetType, point});
+    const [visibleAssetManager, setVisibleAssetManager] = useState(false);
+    const [visibleSlideManager, setVisibleSlideManager] = useState(false);
+    const [visibleSlideShow, setVisibleSlideShow] = useState(false);
+    const toggleAssetManager = () => setVisibleAssetManager(!visibleAssetManager);
+    const toggleSlideManager = () => setVisibleSlideManager(!visibleSlideManager);
+    const toggleSlideShow = () => setVisibleSlideShow(!visibleSlideShow);
     return (
         <Container>
             <ShowControllerContainer
+                name={props.auth.name}
+                email={props.auth.email}
+                thumbnail={props.auth.thumbnail}
                 addAsset={createAsset}
+                toggleAssetManager={toggleAssetManager}
+                toggleSlideManager={toggleSlideManager}
+                toggleSlideShow={toggleSlideShow}
             />
         </Container>
     )
