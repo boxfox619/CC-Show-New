@@ -11,7 +11,7 @@ describe('<IconButton />', () => {
       <DraggableSlideList
         selectedSlideId={0}
         slides={[new SlideModel(0, '테스트 슬라이드', url), new SlideModel(1, '테스트 슬라이드2', url)]}
-        exchangeSlide={mockFn} 
+        moveSlide={mockFn} 
         selectSlide={mockFn}
         copySlide={mockFn}
         createSlide={mockFn}

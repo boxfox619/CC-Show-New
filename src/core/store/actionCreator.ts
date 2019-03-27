@@ -1,8 +1,6 @@
 export class Action<T> {
-    constructor(
-        public type: string,
-        public payload: T
-    ) { }
+  constructor(public type: string, public payload: T) {}
 }
 
-export const createActionCreator = <T>(type: string) => (payload: T) => ({ ...new Action<T>(type, payload) });
+export const createActionCreator = <T>(type: string) => (payload: T) => ({type, payload});
+export const createEmptyActionCreator = (type: string) => () => ({ type });

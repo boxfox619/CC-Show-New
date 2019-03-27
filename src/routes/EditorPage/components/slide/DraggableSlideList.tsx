@@ -4,9 +4,9 @@ import SlidePreview from './SlidePreview';
 import SlideCreateCard from './SlideCreateCard';
 
 interface Props {
-    exchangeSlide: (from: number, to: number) => void,
     slides: SlideModel[],
     selectedSlideId: number,
+    moveSlide: (from: number, to: number) => void,
     shareSlide: (id: number) => void,
     copySlide: (id: number) => void,
     deleteSlide: (id: number) => void,
@@ -108,7 +108,7 @@ export default class DraggableSlideList extends React.Component<Props> {
         if (this.nodePlacement === "after") {
             to++
         };
-        this.props.exchangeSlide(to, from);
+        this.props.moveSlide(from, to);
     }
 
     dragStart = (e: React.DragEvent<HTMLElement>) => {
