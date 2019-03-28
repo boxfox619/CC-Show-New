@@ -67,7 +67,7 @@ export const ACTION_HANDLERS = {
         return {
             slides: {
                 [idx]: {
-                    assets: { $push: newAsset },
+                    assets: { $push: [newAsset] },
                     lastAssetId: { $set: lastAssetId + 1 }
                 }
             }
