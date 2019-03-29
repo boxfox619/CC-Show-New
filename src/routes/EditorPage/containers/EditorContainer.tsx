@@ -43,7 +43,6 @@ type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & Ow
 
 const EditorContainer: React.FC<Props> = (props: Props) => {
     const createAsset = (assetType: string, point: PointModel) => props.addAsset({ assetType, point });
-    const moveSlide = (from: number, to: number) => props.moveSlide({ from, to });
     const [visibleAssetManager, setVisibleAssetManager] = useState(false);
     const [visibleSlideManager, setVisibleSlideManager] = useState(false);
     const [visibleSlideShow, setVisibleSlideShow] = useState(false);
@@ -66,7 +65,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           toggleSlideManager={toggleSlideManager}
           selectedSlideId={props.editor.selectedSlideId}
           slides={props.editor.slides}
-          moveSlide={moveSlide}
+          moveSlide={props.moveSlide}
           selectSlide={props.selectSlide}
           copySlide={props.copySlide}
           createSlide={props.createSlide}

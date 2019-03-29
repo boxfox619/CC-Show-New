@@ -62,7 +62,7 @@ interface OwnProps {
     toggleSlideManager: () => void,
     selectedSlideId: number,
     slides: SlideModel[],
-    moveSlide: (from: number, to: number) => void,
+    moveSlide: (payload: {from: number, to: number}) => void,
     selectSlide: (id: number) => void,
     copySlide: (id: number) => void,
     createSlide: () => void,
