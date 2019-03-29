@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import ShowControllerContainer from '../components/asset/creator/ShowController';
 import { addAsset } from '../modules/asset';
 import PointModel from 'src/core/models/PointModel';
+import SlideListManager from '../components/slide/SlideListManager';
+import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../modules/slide';
 
 const Container = styled.div`
     width: 100vw;
@@ -21,7 +23,13 @@ interface OwnProps {
 }
 
 const mapDispatchToProps = {
-    addAsset
+    addAsset,
+    moveSlide,
+    selectSlide,
+    copySlide,
+    createSlide,
+    shareSlide,
+    deleteSlide
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -34,7 +42,7 @@ const mapStateToProps = (state: StoreModel) => {
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & OwnProps;
 
 const EditorContainer: React.FC<Props> = (props: Props) => {
-    const createAsset = (assetType: string, point: PointModel) => props.addAsset({assetType, point});
+    const createAsset = (assetType: string, point: PointModel) => props.addAsset({ assetType, point });
     const [visibleAssetManager, setVisibleAssetManager] = useState(false);
     const [visibleSlideManager, setVisibleSlideManager] = useState(false);
     const [visibleSlideShow, setVisibleSlideShow] = useState(false);
@@ -42,18 +50,30 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
     const toggleSlideManager = () => setVisibleSlideManager(!visibleSlideManager);
     const toggleSlideShow = () => setVisibleSlideShow(!visibleSlideShow);
     return (
-        <Container>
-            <ShowControllerContainer
-                name={props.auth.name}
-                email={props.auth.email}
-                thumbnail={props.auth.thumbnail}
-                addAsset={createAsset}
-                toggleAssetManager={toggleAssetManager}
-                toggleSlideManager={toggleSlideManager}
-                toggleSlideShow={toggleSlideShow}
-            />
-        </Container>
-    )
+      <Container>
+        <ShowControllerContainer
+          name={props.auth.name}
+          email={props.auth.email}
+          thumbnail={props.auth.thumbnail}
+          addAsset={createAsset}
+          toggleAssetManager={toggleAssetManager}
+          toggleSlideManager={toggleSlideManager}
+          toggleSlideShow={toggleSlideShow}
+        />
+        <SlideListManager
+          visible={visibleSlideManager}
+          toggleSlideManager={toggleSlideManager}
+          selectedSlideId={props.editor.selectedSlideId}
+          slides={props.editor.slides}
+          moveSlide={props.moveSlide}
+          selectSlide={props.selectSlide}
+          copySlide={props.copySlide}
+          createSlide={props.createSlide}
+          shareSlide={props.shareSlide}
+          deleteSlide={props.deleteSlide}
+        />
+      </Container>
+    );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorContainer)

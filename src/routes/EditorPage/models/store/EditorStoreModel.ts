@@ -10,6 +10,7 @@ export default class EditorStoreModel {
         public isSaving: boolean = false,
         public isSaved: boolean = false,
         public selectedSlideId: number = 0,
+        public lastSlideId: number = 0,
         public copiedSlide?: SlideModel,
         public copiedAsset?: AssetModel
     ){}
