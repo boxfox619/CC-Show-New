@@ -4,6 +4,8 @@ export default class AssetModel {
     constructor(
         public id: number,
         public type: string,
-        public position: PointModel
+        public width: number,
+        public height: number,
+        public position: PointModel,
     ) {}
 }
