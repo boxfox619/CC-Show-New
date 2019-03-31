@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DATASET_TYPE_ASSET, DATASET_TYPE_SELECTOR_LINE, DATASET_TYPE_SELECTOR_DOT, RESIZE_TYPE_TOP, RESIZE_TYPE_LEFT_TOP, RESIZE_TYPE_RIGHT_TOP, RESIZE_TYPE_LEFT_BOTTOM, RESIZE_TYPE_RIGHT_BOTTOM, RESIZE_TYPE_RIGHT, RESIZE_TYPE_LEFT, RESIZE_TYPE_BOTTOM } from '../../modules/services/asset.service';
 import AssetModel from 'src/core/models/AssetModel';
+import { AssetContext } from './context/AssetContext';
 
 const AssetContainer = styled.div`
     position: absolute !important;
@@ -43,7 +44,8 @@ interface OwnProps {
     isSelected: boolean,
     controllable: boolean,
     onMouseHover: (hover: boolean) => void,
-    doubleClicked: boolean
+    doubleClicked: boolean,
+    onValueChange: (value: any) => void
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
@@ -95,18 +97,19 @@ export const Asset: React.FC<Props> = (props: Props) => {
     return (
         <AssetContainer {...divProps} data-type={DATASET_TYPE_ASSET} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
             <div style={{
-                'width': props.data.width,
-                'height': props.data.height,
+                'width': props.data.width + 'px',
+                'height': props.data.height + 'px',
                 'padding': '6px',
                 'position': 'absolute'
             }}>
                 {props.isSelected && renderSelectorLine(props.data.width, props.data.height)}
-                {/* <AssetContext
-                    attrs={attrs}
-                    handleChange={this.handleInputChange}
-                    styles={this.getClearStyle()}
-                    value={this.props.attribute.value}
-                /> */}
+                <AssetContext
+                    type={props.data.type}
+                    attr={props.data.attr}
+                    onValueChange={props.onValueChange}
+                    style={props.data.style}
+                    value={props.data.value}
+                />
                 {props.isSelected && renderSelectorDot(props.data.width, props.data.height)}
             </div>
         </AssetContainer>

@@ -1,4 +1,5 @@
 import PointModel from './PointModel';
+import { CSSProperties } from 'react';
 
 export default class AssetModel {
     constructor(
@@ -7,5 +8,8 @@ export default class AssetModel {
         public width: number,
         public height: number,
         public position: PointModel,
+        public value: any,
+        public attr: object,
+        public style: CSSProperties
     ) {}
 }
