@@ -1,14 +1,9 @@
 import * as React from 'react';
+import AssetProps from './AssetProps';
 
-interface Props {
-    type: string,
-    value: any,
-    attr: object,
-    style: React.CSSProperties,
-    onValueChange: (value: any) => void
-}
 
-export const AssetContext: React.FC<Props> = (props: Props) => {
+
+export const AssetContext: React.FC<AssetProps> = (props: AssetProps) => {
     return (
         <>
         </>
