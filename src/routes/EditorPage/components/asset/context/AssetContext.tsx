@@ -5,7 +5,8 @@ import AssetProps from './AssetProps';
 
 export const AssetContext: React.FC<AssetProps> = (props: AssetProps) => {
     return (
-        <>
-        </>
+        <div>
+            {props.data.value}
+        </div>
     )
 }
