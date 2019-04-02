@@ -6,10 +6,11 @@ import { match } from 'react-router-dom';
 import StoreModel from '../models/store/StoreModel';
 import styled from 'styled-components';
 import ShowControllerContainer from '../components/asset/creator/ShowController';
-import { addAsset } from '../modules/asset';
+import { addAsset, selectAsset, resizeAsset } from '../modules/asset';
 import PointModel from 'src/core/models/PointModel';
 import SlideListManager from '../components/slide/SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../modules/slide';
+import { AssetCanvas } from '../components/asset/canvas/AssetCanvas';
 
 const Container = styled.div`
     width: 100vw;
@@ -24,6 +25,8 @@ interface OwnProps {
 
 const mapDispatchToProps = {
     addAsset,
+    selectAsset,
+    resizeAsset,
     moveSlide,
     selectSlide,
     copySlide,
@@ -49,6 +52,9 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
     const toggleAssetManager = () => setVisibleAssetManager(!visibleAssetManager);
     const toggleSlideManager = () => setVisibleSlideManager(!visibleSlideManager);
     const toggleSlideShow = () => setVisibleSlideShow(!visibleSlideShow);
+    const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
+    const assets = currentSlide ? currentSlide.assets : [];
+    const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({id, position: {x, y}, width, height});
     return (
       <Container>
         <ShowControllerContainer
@@ -71,6 +77,12 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           createSlide={props.createSlide}
           shareSlide={props.shareSlide}
           deleteSlide={props.deleteSlide}
+        />
+        <AssetCanvas
+          assets={assets}
+          selectedAssetId={currentSlide && currentSlide.selectedAssetId}
+          onSelectAsset={props.selectAsset}
+          modifyAsset={modifyAsset}
         />
       </Container>
     );

@@ -8,8 +8,8 @@ export default class AssetModel {
         public width: number,
         public height: number,
         public position: PointModel,
-        public value: any,
-        public attr: object,
-        public style: CSSProperties
+        public value: any = '',
+        public attr: object = {},
+        public style: CSSProperties = {}
     ) {}
 }
