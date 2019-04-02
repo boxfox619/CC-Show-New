@@ -9,7 +9,7 @@ export default class AssetModel {
         public height: number,
         public position: PointModel,
         public value: any = '',
-        public attr: object = {},
+        public attr: any = {},
         public style: CSSProperties = {}
     ) {}
 }

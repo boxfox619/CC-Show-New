@@ -11,8 +11,10 @@ const ACTION_NONE = 'none';
 interface Props {
     assets: AssetModel[],
     selectedAssetId?: number,
-    onSelectAsset: (id?: number) => void
-    modifyAsset: (id: number, x: number, y: number, width: number, height: number) => void
+    editable: boolean,
+    onSelectAsset: (id?: number) => void,
+    onChangeValue: (id: number, value: any) => void,
+    modifyAsset: (id: number, x: number, y: number, width: number, height: number) => void,
 }
 
 export const AssetCanvas: React.FC<Props> = (props: Props) => {
@@ -25,7 +27,7 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
     const handleMouseMove = (e: React.MouseEvent) => {
         const currentAsset = props.assets.find(a => a.id === props.selectedAssetId);
         if (!!currentAsset && !!mouseAction) {
-            if (currentAsset.type === 'ASSET_TYPE_VIDEO' && currentAsset.preview) {
+            if (currentAsset.type === 'ASSET_TYPE_VIDEO' && currentAsset.attr.preview) {
                 setMouseAction(ACTION_NONE);
                 return;
             }
@@ -145,7 +147,7 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
         } else {
             setDoubleClicked(false);
             props.onSelectAsset(undefined);
-            clearSelection();
+            // @TODO implement clearSelection();
         }
         e.preventDefault();
     };
@@ -161,6 +163,9 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
             onMouseLeave={handleMouseRelease}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseRelease}
-            assets={props.assets}/>
+            doubleClicked={doubleClicked}
+            onChangeValue={props.onChangeValue}
+            assets={props.assets}
+            editable={props.editable}/>
     )
 }

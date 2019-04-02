@@ -10,6 +10,7 @@ export const COPY_ASSET = 'ASSET.COPY_ASSET';
 export const PASTE_ASSET = 'ASSET.PASTE_ASSET';
 export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
+export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 
 interface CreateAssetOptions {
     assetType: string,
@@ -35,6 +36,7 @@ export const copyAsset = createActionCreator<number>(COPY_ASSET);
 export const pasteAsset = createActionCreator<number>(PASTE_ASSET);
 export const selectAsset = createActionCreator<number>(SELECT_ASSET);
 export const resizeAsset = createActionCreator<ResizeAssetOptions>(RESIZE_ASSET);
+export const updateAssetValue = createActionCreator<any>(UPDATE_ASSET_VALUE);
 
 const getCurrentSlideIdx = (state: EditorStoreModel) => state.slides.findIndex(s => s.id === state.selectedSlideId);
 
@@ -83,6 +85,33 @@ export const ACTION_HANDLERS = {
                 }
             }
         };
+    },
+    [SELECT_ASSET]: (state: EditorStoreModel, action: Action<number>) => {
+        const idx = getCurrentSlideIdx(state);
+        return {
+            slides: {
+                [idx]: {
+                    selectedAssetId: {
+                        $set: action.payload
+                    }
+                }
+            }
+        }
+    },
+    [UPDATE_ASSET_VALUE]: (state: EditorStoreModel, action: Action<ResizeAssetOptions>) => {
+        const idx = getCurrentSlideIdx(state);
+        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === action.payload.id);
+        return {
+            slides: {
+                [idx]: {
+                    assets : {
+                        [assetIdx] : {
+                            value: {$set: action.payload}
+                        }
+                    }
+                }
+            }
+        }
     },
     [RESIZE_ASSET]: (state: EditorStoreModel, action: Action<ResizeAssetOptions>) => {
         const idx = getCurrentSlideIdx(state);

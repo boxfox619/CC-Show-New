@@ -3,17 +3,20 @@ import { useState } from 'react';
 import AssetModel from 'src/core/models/AssetModel';
 import { Guideline } from './Guideline';
 import { calGuideLine } from 'src/routes/EditorPage/modules/services/asset.service';
+import { Asset } from '../Asset';
 
 interface OwnProps {
     assets: AssetModel[],
-    selectedAssetId?: number
+    selectedAssetId?: number,
+    editable: boolean,
+    doubleClicked: boolean,
+    onChangeValue: (id: number, value: any) => void
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 export const AssetRenderer: React.FC<Props> = (props: Props) => {
     const [hoveredAsset, setHoveredAsset] = useState(-1);
-    const [doubleClicked, setDoubleClicked] = useState(false);
     const selectedAssetIndex = props.assets.findIndex(a => a.id === props.selectedAssetId);
     const renderAssets = (assets: AssetModel[]) => {
         return assets.map((asset, idx) => {
@@ -22,14 +25,16 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
                 isSelected = true;
             }
             const handleMouseHover = (hover: boolean) => setHoveredAsset(hover ? idx : -1);
+            const onChangeValue = (value: any) => props.onChangeValue(asset.id, value);
             return (
                 <Asset
                     key={asset.id}
-                    attribute={asset}
+                    data={asset}
                     isSelected={isSelected}
+                    controllable={props.editable}
                     onMouseHover={handleMouseHover}
-                    doubleClicked={doubleClicked}
-                    onChangeAttributes={this.props.onChangeAttributes}
+                    doubleClicked={props.doubleClicked}
+                    onValueChange={onChangeValue}
                 />
             )
         })

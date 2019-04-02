@@ -1,7 +1,7 @@
 import { Store } from "redux";
 import { injectReducer } from 'src/core/store/reducers';
 
-const REDUCER_KEY = 'index';
+const REDUCER_KEY = 'editor';
 
 export default (store: Store) => (
     async () => {
