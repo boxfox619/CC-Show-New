@@ -7,5 +7,6 @@ export default class SlideModel {
         public thumbnail?: string,
         public assets: AssetModel[] = [],
         public lastAssetId: number = 0,
+        public selectedAssetId?: number
     ){}
 }
