@@ -1,59 +1,78 @@
 import update from 'immutability-helper';
-import * as Action from './action';
-import { AccountStoreModel } from 'src/core/models/store/AccountStoreModel';
+import * as ActionType from './action';
+import { LoginSuccessOption } from './action';
+import { Action } from 'src/core/store/actionCreator';
+import AccountStoreModel from 'src/core/models/store/AccountStoreModel';
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [Action.LOGIN_STARTED]: (state: AccountStoreModel, action: any) => ({ auth: { isLoading: { $set: true } } }),
-    [Action.LOGOUT_STARTED]: (state: AccountStoreModel, action: any) => ({ auth: { isLoading: { $set: true } } }),
-    [Action.REGISTER_STARTED]: (state: AccountStoreModel, action: any) => ({ auth: { isLoading: { $set: true } } }),
-    [Action.CHECK_LOGINED_STARTED]: (state: AccountStoreModel, action: any) => ({ auth: { isLoading: { $set: true } } }),
-    [Action.LOGIN_SUCCESSED]: (state: AccountStoreModel, action: any) => ({
+    [ActionType.LOGIN_STARTED]: (state: AccountStoreModel, action: Action<undefined>) => ({ auth: { isSigningIn: { $set: true } } }),
+    [ActionType.LOGOUT_STARTED]: (state: AccountStoreModel, action: Action<undefined>) => ({ auth: { isSigningOut: { $set: true } } }),
+    [ActionType.REGISTER_STARTED]: (state: AccountStoreModel, action: Action<undefined>) => ({ auth: { isSigningUp: { $set: true } } }),
+    [ActionType.CHECK_LOGINED_STARTED]: (state: AccountStoreModel, action: Action<undefined>) => ({ auth: { isLoginChecking: { $set: true } } }),
+    [ActionType.LOGIN_SUCCESSED]: (state: AccountStoreModel, action: Action<LoginSuccessOption>) => ({
         auth: {
-            isLoading: { $set: false },
+            isSigningIn: { $set: false },
             isLogined: { $set: true },
-            userName: { $set: action.name },
-            userEmail: { $set: action.email }
+            userName: { $set: action.payload.nickname },
+            userEmail: { $set: action.payload.email }
         }
     }),
-    [Action.LOGIN_FAILED]: (state: AccountStoreModel, action: any) => ({
+    [ActionType.LOGIN_FAILED]: (state: AccountStoreModel, action: Action<Error>) => ({
         auth: {
-            isLoading: { $set: false },
+            isSigningIn: { $set: false },
             isLogined: { $set: false },
-            error: { $set: action.error }
+            error: { $set: action.payload }
         }
     }),
-    [Action.LOGOUT_SUCCESSED]: (state: AccountStoreModel, action: any) => ({
+    [ActionType.LOGOUT_SUCCESSED]: (state: AccountStoreModel, action: Action<undefined>) => ({
         auth: {
-            isLoading: { $set: false },
+            isSigningOut: { $set: false },
             isLogined: { $set: false },
             userName: { $set: '' },
             userEmail: { $set: '' }
         }
     }),
-    [Action.LOGOUT_FAILED]: (state: AccountStoreModel, action: any) => ({
+    [ActionType.LOGOUT_FAILED]: (state: AccountStoreModel, action: Action<Error>) => ({
         auth: {
-            isLoading: { $set: false },
-            error: { $set: action.error }
+            isSigningOut: { $set: false },
+            error: { $set: action.payload }
         }
     }),
-    [Action.REGISTER_SUCCESSED]: (state: AccountStoreModel, action: any) => ({
+    [ActionType.REGISTER_SUCCESSED]: (state: AccountStoreModel, action: Action<undefined>) => ({
         auth: {
-            isLoading: { $set: false },
-            registerMode: { $set: false }
+            isSigningUp: { $set: false },
+            isRegistred: { $set: true }
         }
     }),
-    [Action.REGISTER_FAILED]: (state: AccountStoreModel, action: any) => ({
+    [ActionType.REGISTER_FAILED]: (state: AccountStoreModel, action: Action<Error>) => ({
         auth: {
-            isLoading: { $set: false },
+            isSigningUp: { $set: false },
+            isRegistred: { $set: false},
+            error: { $set: action.payload }
+        }
+    }),
+    [ActionType.CHECK_LOGINED_SUCCESSED]: (state: AccountStoreModel, action: any) => ({
+        auth: {
+            isLoginChecking: { $set: false },
+            isLoginChecked: { $set: true },
+            isLogined: { $set: action.status },
+            userName: { $set: action.name || '' },
+            userEmail: { $set: action.email || '' }
+        }
+    }),
+    [ActionType.CHECK_LOGINED_FAILED]: (state: AccountStoreModel, action: any) => ({
+        auth: {
+            isLoginChecking: { $set: false },
+            isLoginChecked: { $set: false },
             error: { $set: action.error }
         }
     }),
 };
 
-const reducer = (state = new AccountStoreModel(), action: any) => {
+const reducer = (state = new AccountStoreModel(), action: Action<any>) => {
     const handler = ACTION_HANDLERS[action.type];
     return handler ? update(state, handler(state, action)) : state
 }
