@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import GradientButtonItem from './GradientButtonItem';
-import Profile from './Profile';
+import GradientButtonItem from '../components/asset/creator/GradientButtonItem';
+import Profile from '../components/asset/creator/Profile';
 import PointModel from 'src/core/models/PointModel';
 
 const Container = styled.div`
@@ -41,7 +41,7 @@ interface OwnProps {
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 const ShowController: React.FC<Props> = (props: Props) => {
-    const divProps = props as React.HTMLAttributes<HTMLDivElement>;
+    const {name, email, thumbnail, addAsset, toggleAssetManager, toggleSlideManager, toggleSlideShow, ...divProps} = props;
     const createAssetByType = (assetType: string) => () => props.addAsset(assetType, { x: 0, y: 0 });
     return (
         <Container {...divProps}>

@@ -4,5 +4,5 @@ import authEpics from './auth/epic';
 import { Store } from 'redux';
 
 export default function initReducers(store: Store) {
-    injectReducer(store, 'auth', authReducer, undefined, authEpics);
+    injectReducer(store, 'auth', authReducer, authEpics);
 }

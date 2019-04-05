@@ -1,22 +1,22 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import EllipseIcon from '../../assets/ic_ellipse_gray.png';
-import HideIcon from '../../assets/ic_arrow_left.png';
-import DraggableSlideList from './DraggableSlideList';
-import SlideModel from '../../models/store/SlideModel';
+import EllipseIcon from '../assets/ic_ellipse_gray.png';
+import HideIcon from '../assets/ic_arrow_left.png';
+import DraggableSlideList from '../components/slide/DraggableSlideList';
+import SlideModel from '../models/store/SlideModel';
 
 const Container = styled.div`
-    position: fixed;
-    z-index: 2;
+    position: absolute;
+    z-index: -1;
     top:0;
-    left: -10%;
+    left: 0;
     background: #F5F5F6;
     min-width: 14em;
     height: 100vh;
     overflow-y: scroll;
     transition: all 0.5s ease-in-out;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    & > ul {
+    & ul {
         height: 100%;
         list-style: none;
         padding: 0;
@@ -26,8 +26,7 @@ const Container = styled.div`
         height: 8px;
     }
     ${(props: { visible: boolean }) => props.visible && `
-        left: -2em;
-        transform: translate(100%,0);
+        transform: translate(240px,0);
     `}
 `
 const Inner = styled.div`
