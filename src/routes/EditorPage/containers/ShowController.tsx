@@ -41,7 +41,7 @@ interface OwnProps {
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 const ShowController: React.FC<Props> = (props: Props) => {
-    const {name, email, thumbnail, addAsset, toggleAssetManager, toggleSlideManager, toggleSlideShow, ...divProps} = props;
+    const divProps = props as React.HTMLAttributes<HTMLDivElement>;
     const createAssetByType = (assetType: string) => () => props.addAsset(assetType, { x: 0, y: 0 });
     return (
         <Container {...divProps}>

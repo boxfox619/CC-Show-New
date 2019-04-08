@@ -51,9 +51,9 @@ interface OwnProps {
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 export const Asset: React.FC<Props> = (props: Props) => {
-    const divProps = props as React.HTMLAttributes<HTMLDivElement>;
-    const onMouseOver = () => props.onMouseHover(true);
-    const onMouseOut = () => props.onMouseHover(false);
+    const {data, isSelected, controllable, onMouseHover, doubleClicked, onValueChange, ...divProps} = props;
+    const onMouseOver = () => onMouseHover(true);
+    const onMouseOut = () => onMouseHover(false);
 
     const renderSelectorLine = (width: number, height: number) => {
         return (
@@ -97,18 +97,18 @@ export const Asset: React.FC<Props> = (props: Props) => {
     return (
         <AssetContainer {...divProps} data-type={DATASET_TYPE_ASSET} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
             <div style={{
-                'width': props.data.width + 'px',
-                'height': props.data.height + 'px',
+                'width': data.width + 'px',
+                'height': data.height + 'px',
                 'padding': '6px',
                 'position': 'absolute'
             }}>
-                {props.isSelected && renderSelectorLine(props.data.width, props.data.height)}
+                {isSelected && renderSelectorLine(data.width, data.height)}
                 <AssetContext
-                    data={props.data}
-                    controllable={props.controllable}
-                    onValueChange={props.onValueChange}
+                    data={data}
+                    controllable={controllable}
+                    onValueChange={onValueChange}
                 />
-                {props.isSelected && renderSelectorDot(props.data.width, props.data.height)}
+                {isSelected && renderSelectorDot(data.width, data.height)}
             </div>
         </AssetContainer>
     )
