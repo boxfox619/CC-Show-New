@@ -8,10 +8,9 @@ const AssetContainer = styled.div`
     position: absolute !important;
     overflow: hidden;
     display: inline-block;
-    margin: 0;
-    padding: 0;
     border: 0;
     margin: 3px;
+    padding: 6px;
 `
 
 const SelectorLine = styled.div`
@@ -95,10 +94,10 @@ export const Asset: React.FC<Props> = (props: Props) => {
     return (
         <AssetContainer data-type={DATASET_TYPE_ASSET} data-id={data.id} onMouseOver={onMouseOver} onMouseOut={onMouseOut}
             style={{
-                'width': data.width + 'px',
-                'height': data.height + 'px',
-                'padding': '6px',
-                'position': 'absolute'
+                'width': `${data.width}px`,
+                'height': `${data.height}px`,
+                'left': `${data.position.x}px`,
+                'top': `${data.position.y}px`
             }}>
                 {isSelected && renderSelectorLine(data.width, data.height)}
                 <AssetContext

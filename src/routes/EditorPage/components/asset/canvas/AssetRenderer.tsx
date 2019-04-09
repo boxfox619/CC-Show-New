@@ -4,6 +4,11 @@ import AssetModel from 'src/core/models/AssetModel';
 import { Guideline } from './Guideline';
 import { calGuideLine } from 'src/routes/EditorPage/modules/services/asset.service';
 import { Asset } from '../Asset';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    position: relative;
+`
 
 interface OwnProps {
     assets: AssetModel[],
@@ -49,9 +54,9 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
         })
     }
     return (
-        <div {...divProps}>
+        <Container {...divProps}>
             {renderAssets(assets)}
             {hoveredAsset >= 0 && renderGuideLine(assets)}
-        </div>
+        </Container>
     );
 }
