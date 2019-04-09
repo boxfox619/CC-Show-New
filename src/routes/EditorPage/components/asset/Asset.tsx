@@ -39,7 +39,7 @@ const SelectorDot = styled.div`
     background-color: #038AFD;
 `
 
-interface OwnProps {
+interface Props {
     data: AssetModel,
     isSelected: boolean,
     controllable: boolean,
@@ -48,10 +48,8 @@ interface OwnProps {
     onValueChange: (value: any) => void
 }
 
-type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
-
 export const Asset: React.FC<Props> = (props: Props) => {
-    const {data, isSelected, controllable, onMouseHover, doubleClicked, onValueChange, ...divProps} = props;
+    const {data, isSelected, controllable, onMouseHover, onValueChange} = props;
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -65,13 +63,13 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
                             data-resize={RESIZE_TYPE_BOTTOM}
                             horizontal={true}
-                            style={{ 'top': 'calc(' + height + ' + 7px)' }} />
+                            style={{ 'top': `calc( ${height}px + 7px)` }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
                             data-resize={RESIZE_TYPE_LEFT}
                             style={{ 'left': '3px' }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
                             data-resize={RESIZE_TYPE_RIGHT}
-                            style={{ 'left': 'calc(' + width + ' + 7px)' }} />
+                            style={{ 'left': `calc( ${width}px + 7px)` }} />
             </>
         );
     };
@@ -83,20 +81,20 @@ export const Asset: React.FC<Props> = (props: Props) => {
                             style={{ 'cursor': 'nw-resize', 'top': '0px', 'left': '0px' }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
                             data-resize={RESIZE_TYPE_RIGHT_TOP}
-                            style={{ 'cursor': 'ne-resize', 'top': '0px', 'left': 'calc(' + width + ' + 3.5px)' }} />
+                            style={{ 'cursor': 'ne-resize', 'top': '0px', 'left': `calc(${width}px + 3.5px)` }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
                             data-resize={RESIZE_TYPE_LEFT_BOTTOM}
-                            style={{ 'cursor': 'ne-resize', 'top': 'calc(' + height + ' + 3.5px)', 'left': '0px' }} />
+                            style={{ 'cursor': 'ne-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': '0px' }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
                             data-resize={RESIZE_TYPE_RIGHT_BOTTOM}
-                            style={{ 'cursor': 'nw-resize', 'top': 'calc(' + height + ' + 3.5px)', 'left': 'calc(' + width + ' + 3.5px)' }} />
+                            style={{ 'cursor': 'nw-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': `calc(${width}px + 3.5px)` }} />
             </>
         );
     };
 
     return (
-        <AssetContainer {...divProps} data-type={DATASET_TYPE_ASSET} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-            <div style={{
+        <AssetContainer data-type={DATASET_TYPE_ASSET} data-id={data.id} onMouseOver={onMouseOver} onMouseOut={onMouseOut}
+            style={{
                 'width': data.width + 'px',
                 'height': data.height + 'px',
                 'padding': '6px',
@@ -109,7 +107,6 @@ export const Asset: React.FC<Props> = (props: Props) => {
                     onValueChange={onValueChange}
                 />
                 {isSelected && renderSelectorDot(data.width, data.height)}
-            </div>
         </AssetContainer>
     )
 }

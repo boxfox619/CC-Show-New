@@ -25,7 +25,7 @@ export const calMagneticSizeY = (position: number, size: number, assets: AssetMo
 
 export function findNodeByType(type: string, child: HTMLElement): undefined | HTMLElement {
     let node = child.parentNode as HTMLElement;
-    while (node != null) {
+    while (node != null && !!node.dataset) {
         if (node.dataset.type === type) {
             return node;
         }

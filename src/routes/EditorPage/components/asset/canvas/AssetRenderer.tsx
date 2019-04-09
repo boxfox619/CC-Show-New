@@ -18,11 +18,10 @@ type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 export const AssetRenderer: React.FC<Props> = (props: Props) => {
     const {assets, selectedAssetId, editable, doubleClicked, onChangeValue, ...divProps} = props; 
     const [hoveredAsset, setHoveredAsset] = useState(-1);
-    const selectedAssetIndex = assets.findIndex(a => a.id === selectedAssetId);
     const renderAssets = (assetList: AssetModel[]) => {
         return assetList.map((asset, idx) => {
             let isSelected = false;
-            if (selectedAssetIndex === idx) {
+            if (asset.id === selectedAssetId) {
                 isSelected = true;
             }
             const handleMouseHover = (hover: boolean) => setHoveredAsset(hover ? idx : -1);

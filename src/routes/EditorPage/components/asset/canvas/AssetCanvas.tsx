@@ -8,7 +8,7 @@ const ACTION_MOVE = 'move';
 const ACTION_RESIZE = 'resize';
 const ACTION_NONE = 'none';
 
-interface Props {
+interface OwnProps {
     assets: AssetModel[],
     selectedAssetId?: number,
     editable: boolean,
@@ -17,7 +17,10 @@ interface Props {
     modifyAsset: (id: number, x: number, y: number, width: number, height: number) => void,
 }
 
+type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
+
 export const AssetCanvas: React.FC<Props> = (props: Props) => {
+    const {assets, selectedAssetId, editable, onSelectAsset, onChangeValue, modifyAsset, ...divProps} = props;
     const [doubleClicked, setDoubleClicked] = useState(false);
     const [mouseAction, setMouseAction] = useState(ACTION_NONE);
     const [xInElement, setXInElement] = useState(0);
@@ -25,7 +28,7 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
     const [resizeTarget, setResizeTarget] = useState('');
 
     const handleMouseMove = (e: React.MouseEvent) => {
-        const currentAsset = props.assets.find(a => a.id === props.selectedAssetId);
+        const currentAsset = assets.find(a => a.id === selectedAssetId);
         if (!!currentAsset && !!mouseAction) {
             if (currentAsset.type === 'ASSET_TYPE_VIDEO' && currentAsset.attr.preview) {
                 setMouseAction(ACTION_NONE);
@@ -40,9 +43,9 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
     };
 
     const move = (e: React.MouseEvent) => {
-        const selectedAsset = props.assets.find(a => a.id === props.selectedAssetId);
-        const otherAssets = props.assets.filter(a => a.id !== props.selectedAssetId);
-        if (!props.selectedAssetId || !selectedAsset || !otherAssets) {
+        const selectedAsset = assets.find(a => a.id === selectedAssetId);
+        const otherAssets = assets.filter(a => a.id !== selectedAssetId);
+        if (!selectedAssetId || !selectedAsset || !otherAssets) {
             return;
         }
         const x = e.pageX;
@@ -53,13 +56,13 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
         afterY = calMagneticPositionY(afterY, selectedAsset.height, otherAssets);
         setXInElement(x);
         setYInElement(y);
-        props.modifyAsset(props.selectedAssetId, afterX, afterY, selectedAsset.width, selectedAsset.height);
+        modifyAsset(selectedAssetId, afterX, afterY, selectedAsset.width, selectedAsset.height);
     }
 
     const resize = (e: React.MouseEvent) => {
-        const selectedAsset = props.assets.find(a => a.id === props.selectedAssetId);
-        const otherAssets = props.assets.filter(a => a.id !== props.selectedAssetId);
-        if (!props.selectedAssetId || !selectedAsset || !otherAssets) {
+        const selectedAsset = assets.find(a => a.id === selectedAssetId);
+        const otherAssets = assets.filter(a => a.id !== selectedAssetId);
+        if (!selectedAssetId || !selectedAsset || !otherAssets) {
             return;
         }
         const devX = (resizeTarget.includes('left')) ? xInElement - e.pageX : e.pageX - xInElement;
@@ -87,31 +90,31 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
         if (afterWidth < 5 || afterHeight < 5) {
             return;
         }
-        const currentId = props.selectedAssetId;
+        const currentId = selectedAssetId;
         switch (resizeTarget) {
             case 'topleft':
-                props.modifyAsset(currentId, afterX, afterY, afterWidth, afterHeight);
+                modifyAsset(currentId, afterX, afterY, afterWidth, afterHeight);
                 break;
             case 'topright':
-                props.modifyAsset(currentId, currentX, afterY, afterWidth, afterHeight);
+                modifyAsset(currentId, currentX, afterY, afterWidth, afterHeight);
                 break;
             case 'bottomleft':
-                props.modifyAsset(currentId, afterX, currentY, afterWidth, afterHeight);
+                modifyAsset(currentId, afterX, currentY, afterWidth, afterHeight);
                 break;
             case 'bottomright':
-                props.modifyAsset(currentId, currentX, currentY, afterWidth, afterHeight);
+                modifyAsset(currentId, currentX, currentY, afterWidth, afterHeight);
                 break;
             case 'top':
-                props.modifyAsset(currentId, currentX, afterY, currentWidth, afterHeight);
+                modifyAsset(currentId, currentX, afterY, currentWidth, afterHeight);
                 break;
             case 'left':
-                props.modifyAsset(currentId, afterX, currentY, afterWidth, currentHeight);
+                modifyAsset(currentId, afterX, currentY, afterWidth, currentHeight);
                 break;
             case 'bottom':
-                props.modifyAsset(currentId, currentX, currentY, currentWidth, afterHeight);
+                modifyAsset(currentId, currentX, currentY, currentWidth, afterHeight);
                 break;
             case 'right':
-                props.modifyAsset(currentId, currentX, currentY, afterWidth, currentHeight);
+                modifyAsset(currentId, currentX, currentY, afterWidth, currentHeight);
                 break;
         }
         setXInElement(e.pageX);
@@ -127,15 +130,15 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
         const target = e.target as HTMLElement;
         const assetNode = findAsset(target);
         if (assetNode) {
-            const currentAssetId = Number(assetNode.id);
-            if (props.selectedAssetId === currentAssetId && doubleClicked) {
+            const currentAssetId = Number(assetNode.dataset.id);
+            if (selectedAssetId === currentAssetId && doubleClicked) {
                 return;
             }
             if (isResizer(target)) {
                 return;
             }
             setDoubleClicked(false);
-            props.onSelectAsset(currentAssetId);
+            onSelectAsset(currentAssetId);
             if (isSelector(target)) {
                 setMouseAction(ACTION_RESIZE);
                 setResizeTarget(getResizeTarget(target));
@@ -146,7 +149,7 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
             setYInElement(e.pageY);
         } else {
             setDoubleClicked(false);
-            props.onSelectAsset(undefined);
+            onSelectAsset(undefined);
             // @TODO implement clearSelection();
         }
         e.preventDefault();
@@ -158,14 +161,16 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
 
     return (
         <AssetRenderer
+            {...divProps}
             onDoubleClick={handleDoubleClickItem}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseRelease}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseRelease}
             doubleClicked={doubleClicked}
-            onChangeValue={props.onChangeValue}
-            assets={props.assets}
-            editable={props.editable}/>
+            onChangeValue={onChangeValue}
+            selectedAssetId={selectedAssetId}
+            assets={assets}
+            editable={editable}/>
     )
 }

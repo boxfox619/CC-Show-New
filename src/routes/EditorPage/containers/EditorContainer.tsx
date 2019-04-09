@@ -13,12 +13,16 @@ import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide
 import { AssetCanvas } from '../components/asset/canvas/AssetCanvas';
 
 const Container = styled.div`
-  display: flex;
-  flex-flow: row;
   width: 100vw;
   height: 100vh;
   position: absolute;
   z-index: 2;
+`
+const MainContainer = styled.div`
+  display: flex;
+  flex-flow: row;
+  width: 100vw;
+  height: 100vh;
 `
 
 interface OwnProps {
@@ -62,15 +66,6 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
   const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
   return (
     <Container>
-      <ShowController
-        name={props.auth.name}
-        email={props.auth.email}
-        thumbnail={props.auth.thumbnail}
-        addAsset={createAsset}
-        toggleAssetManager={toggleAssetManager}
-        toggleSlideManager={toggleSlideManager}
-        toggleSlideShow={toggleSlideShow}
-      />
       <SlideListManager
         visible={visibleSlideManager}
         toggleSlideManager={toggleSlideManager}
@@ -83,14 +78,27 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
         shareSlide={props.shareSlide}
         deleteSlide={props.deleteSlide}
       />
-      <AssetCanvas
-        assets={assets}
-        selectedAssetId={currentSlide && currentSlide.selectedAssetId}
-        onSelectAsset={props.selectAsset}
-        modifyAsset={modifyAsset}
-        onChangeValue={props.updateAssetValue}
-        editable={true}
-      />
+      <MainContainer>
+        <ShowController
+          style={{ flex: 0 }}
+          name={props.auth.name}
+          email={props.auth.email}
+          thumbnail={props.auth.thumbnail}
+          addAsset={createAsset}
+          toggleAssetManager={toggleAssetManager}
+          toggleSlideManager={toggleSlideManager}
+          toggleSlideShow={toggleSlideShow}
+        />
+        <AssetCanvas
+          style={{ flex: 1 }}
+          assets={assets}
+          selectedAssetId={currentSlide && currentSlide.selectedAssetId}
+          onSelectAsset={props.selectAsset}
+          modifyAsset={modifyAsset}
+          onChangeValue={props.updateAssetValue}
+          editable={true}
+        />
+      </MainContainer>
     </Container>
   );
 }
