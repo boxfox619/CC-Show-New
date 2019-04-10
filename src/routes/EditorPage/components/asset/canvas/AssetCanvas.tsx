@@ -46,7 +46,7 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
     const handleMove = (e: React.MouseEvent) => {
         const selectedAsset = assets.find(a => a.id === selectedAssetId);
         const otherAssets = assets.filter(a => a.id !== selectedAssetId);
-        if (!selectedAssetId || !selectedAsset || !otherAssets) {
+        if (selectedAssetId === undefined || !selectedAsset || !otherAssets) {
             return;
         }
         const x = e.pageX;
