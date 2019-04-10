@@ -3,6 +3,7 @@ import { ActionsObservable, combineEpics, createEpicMiddleware, StateObservable,
 import { BehaviorSubject, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import makeRootReducer from './reducers';
+import initReducers from '../modules/reducers';
 
 interface AsyncStore extends Store {
     epic$: any;
@@ -41,7 +42,8 @@ const createReduxStore = (initialState = {}) => {
     }
     epicMiddleware.run(rootEpic);
     store.epic$ = epic$;
-
+    initReducers(store);
+    
     return store
 };
 

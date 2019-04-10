@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import GradientButtonItem from './GradientButtonItem';
-import Profile from './Profile';
+import GradientButtonItem from '../components/asset/creator/GradientButtonItem';
+import Profile from '../components/asset/creator/Profile';
 import PointModel from 'src/core/models/PointModel';
 
 const Container = styled.div`

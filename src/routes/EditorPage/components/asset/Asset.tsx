@@ -8,10 +8,9 @@ const AssetContainer = styled.div`
     position: absolute !important;
     overflow: hidden;
     display: inline-block;
-    margin: 0;
-    padding: 0;
     border: 0;
     margin: 3px;
+    padding: 6px;
 `
 
 const SelectorLine = styled.div`
@@ -39,7 +38,7 @@ const SelectorDot = styled.div`
     background-color: #038AFD;
 `
 
-interface OwnProps {
+interface Props {
     data: AssetModel,
     isSelected: boolean,
     controllable: boolean,
@@ -48,12 +47,10 @@ interface OwnProps {
     onValueChange: (value: any) => void
 }
 
-type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
-
 export const Asset: React.FC<Props> = (props: Props) => {
-    const divProps = props as React.HTMLAttributes<HTMLDivElement>;
-    const onMouseOver = () => props.onMouseHover(true);
-    const onMouseOut = () => props.onMouseHover(false);
+    const {data, isSelected, controllable, onMouseHover, onValueChange} = props;
+    const onMouseOver = () => onMouseHover(true);
+    const onMouseOut = () => onMouseHover(false);
 
     const renderSelectorLine = (width: number, height: number) => {
         return (
@@ -65,13 +62,13 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
                             data-resize={RESIZE_TYPE_BOTTOM}
                             horizontal={true}
-                            style={{ 'top': 'calc(' + height + ' + 7px)' }} />
+                            style={{ 'top': `calc( ${height}px + 7px)` }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
                             data-resize={RESIZE_TYPE_LEFT}
                             style={{ 'left': '3px' }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
                             data-resize={RESIZE_TYPE_RIGHT}
-                            style={{ 'left': 'calc(' + width + ' + 7px)' }} />
+                            style={{ 'left': `calc( ${width}px + 7px)` }} />
             </>
         );
     };
@@ -83,33 +80,32 @@ export const Asset: React.FC<Props> = (props: Props) => {
                             style={{ 'cursor': 'nw-resize', 'top': '0px', 'left': '0px' }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
                             data-resize={RESIZE_TYPE_RIGHT_TOP}
-                            style={{ 'cursor': 'ne-resize', 'top': '0px', 'left': 'calc(' + width + ' + 3.5px)' }} />
+                            style={{ 'cursor': 'ne-resize', 'top': '0px', 'left': `calc(${width}px + 3.5px)` }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
                             data-resize={RESIZE_TYPE_LEFT_BOTTOM}
-                            style={{ 'cursor': 'ne-resize', 'top': 'calc(' + height + ' + 3.5px)', 'left': '0px' }} />
+                            style={{ 'cursor': 'ne-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': '0px' }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
                             data-resize={RESIZE_TYPE_RIGHT_BOTTOM}
-                            style={{ 'cursor': 'nw-resize', 'top': 'calc(' + height + ' + 3.5px)', 'left': 'calc(' + width + ' + 3.5px)' }} />
+                            style={{ 'cursor': 'nw-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': `calc(${width}px + 3.5px)` }} />
             </>
         );
     };
 
     return (
-        <AssetContainer {...divProps} data-type={DATASET_TYPE_ASSET} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-            <div style={{
-                'width': props.data.width + 'px',
-                'height': props.data.height + 'px',
-                'padding': '6px',
-                'position': 'absolute'
+        <AssetContainer data-type={DATASET_TYPE_ASSET} data-id={data.id} onMouseOver={onMouseOver} onMouseOut={onMouseOut}
+            style={{
+                'width': `${data.width}px`,
+                'height': `${data.height}px`,
+                'left': `${data.position.x}px`,
+                'top': `${data.position.y}px`
             }}>
-                {props.isSelected && renderSelectorLine(props.data.width, props.data.height)}
+                {isSelected && renderSelectorLine(data.width, data.height)}
                 <AssetContext
-                    data={props.data}
-                    controllable={props.controllable}
-                    onValueChange={props.onValueChange}
+                    data={data}
+                    controllable={controllable}
+                    onValueChange={onValueChange}
                 />
-                {props.isSelected && renderSelectorDot(props.data.width, props.data.height)}
-            </div>
+                {isSelected && renderSelectorDot(data.width, data.height)}
         </AssetContainer>
     )
 }
