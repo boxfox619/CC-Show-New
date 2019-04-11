@@ -102,6 +102,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 {isSelected && renderSelectorLine(data.width, data.height)}
                 <AssetContext
                     data={data}
+                    isSelected={isSelected}
                     controllable={controllable}
                     onValueChange={onValueChange}
                 />

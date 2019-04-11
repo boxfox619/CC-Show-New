@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AssetModel from 'src/core/models/AssetModel';
 import { AssetRenderer } from './AssetRenderer';
 import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from './../../../modules/services/asset.service';
+import { clearSelection } from 'src/routes/EditorPage/modules/services/dom.service';
 
 const ACTION_MOVE = 'move';
 const ACTION_RESIZE = 'resize';
@@ -72,14 +73,13 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
     };
 
     const handleMouseDown = (e: React.MouseEvent) => {
-        e.preventDefault();
         (document.activeElement as HTMLElement).blur();
         const target = e.target as HTMLElement;
         const assetNode = findAsset(target);
         if (!assetNode) {
             setDoubleClicked(false);
             onSelectAsset(undefined);
-            // @TODO implement clearSelection();
+            clearSelection();
             return
         }
         const currentAssetId = Number(assetNode.dataset.id);

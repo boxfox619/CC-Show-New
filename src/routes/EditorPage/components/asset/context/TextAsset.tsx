@@ -6,7 +6,7 @@ interface OwnProps {
     assetId: any,
     controllable: boolean,
     value: string,
-    edit: boolean,
+    isSelected: boolean,
     handleChange: (value: string) => void
 }
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
@@ -27,33 +27,16 @@ export default class TextAsset extends React.Component<Props>{
     }
 
     public render() {
-        const { assetId, controllable, edit, value, handleChange, ...divProps } = this.props;
+        const { assetId, controllable, isSelected, value, handleChange, ...divProps } = this.props;
         return (
             <div ref={this.editorRef}
                 {...divProps}
+                style={{...divProps, outline: 'none'}}
                 contentEditable={controllable}
                 dangerouslySetInnerHTML={{ __html: value }}
                 id={this.id}
             />
         )
-    }
-
-    get id() {
-        return `text-asset-${this.props.assetId}`
-    }
-    
-
-    componentDidUpdate(nextProps: Props) {
-        const element = this.editorRef.current;
-        if(!element){
-            return;
-        }
-        if (nextProps.edit) {
-            element.focus();
-        } else {
-            element.blur();
-        }
-        return nextProps.value !== element.innerHTML || nextProps.edit !== this.props.edit;
     }
 
     componentDidMount() {
@@ -70,5 +53,22 @@ export default class TextAsset extends React.Component<Props>{
             });
             CKEDITOR.disableAutoInline = true;
         }
+    }
+
+    componentDidUpdate(nextProps: Props) {
+        const element = this.editorRef.current;
+        if(!element){
+            return;
+        }
+        if (nextProps.isSelected) {
+            element.focus();
+        } else {
+            element.blur();
+        }
+        return nextProps.value !== element.innerHTML || nextProps.isSelected !== this.props.isSelected;
+    }
+
+    get id() {
+        return `text-asset-${this.props.assetId}`
     }
 }

@@ -15,7 +15,7 @@ export const AssetContext: React.FC<AssetProps> = (props: AssetProps) => {
                 assetId={props.data.id}
                 controllable={props.controllable}
                 value={props.data.value}
-                edit={true}
+                isSelected={props.isSelected}
                 handleChange={props.onValueChange}
             />
         </Container>
