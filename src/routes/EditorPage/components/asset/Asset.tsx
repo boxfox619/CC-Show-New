@@ -48,7 +48,7 @@ interface Props {
 }
 
 export const Asset: React.FC<Props> = (props: Props) => {
-    const {data, isSelected, controllable, onMouseHover, onValueChange} = props;
+    const {data, isSelected, controllable, onMouseHover, onValueChange, doubleClicked} = props;
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -103,6 +103,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 <AssetContext
                     data={data}
                     isSelected={isSelected}
+                    isDoubleClicked={doubleClicked}
                     controllable={controllable}
                     onValueChange={onValueChange}
                 />

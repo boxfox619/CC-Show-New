@@ -64,6 +64,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
   const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
   const assets = currentSlide ? currentSlide.assets : [];
   const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
+  const handleValueChange = (id: number, value: any) => props.updateAssetValue({id, value});
   return (
     <Container>
       <SlideListManager
@@ -95,7 +96,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           selectedAssetId={currentSlide && currentSlide.selectedAssetId}
           onSelectAsset={props.selectAsset}
           modifyAsset={modifyAsset}
-          onChangeValue={props.updateAssetValue}
+          onChangeValue={handleValueChange}
           editable={true}
         />
       </MainContainer>
