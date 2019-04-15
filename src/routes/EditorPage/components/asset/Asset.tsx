@@ -43,12 +43,12 @@ interface Props {
     isSelected: boolean,
     controllable: boolean,
     onMouseHover: (hover: boolean) => void,
-    doubleClicked: boolean,
+    isDoubleClicked: boolean,
     onValueChange: (value: any) => void
 }
 
 export const Asset: React.FC<Props> = (props: Props) => {
-    const {data, isSelected, controllable, onMouseHover, onValueChange, doubleClicked} = props;
+    const {data, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked} = props;
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -103,7 +103,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 <AssetContext
                     data={data}
                     isSelected={isSelected}
-                    isDoubleClicked={doubleClicked}
+                    isDoubleClicked={isDoubleClicked}
                     controllable={controllable}
                     onValueChange={onValueChange}
                 />

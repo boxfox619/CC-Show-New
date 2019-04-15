@@ -6,11 +6,14 @@ import TextAsset from './TextAsset';
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    ${(props: {isSelected: boolean}) => props.isSelected && `
+        cursor: move !important;
+    `}
 `
 
 export const AssetContext: React.FC<AssetProps> = (props: AssetProps) => {
     return (
-        <Container>
+        <Container isSelected={props.isSelected}>
             <TextAsset
                 assetId={props.data.id}
                 controllable={props.controllable}

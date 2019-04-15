@@ -1,4 +1,11 @@
 import * as React from 'react';
+import styled from 'styled-components';
+
+const EditorContainer = styled.div`
+    height: 100%;
+    overflow: hidden;
+    outline: none;
+`
 
 declare let CKEDITOR: any;
 
@@ -21,6 +28,7 @@ const config = {
 };
 export default class TextAsset extends React.Component<Props>{
     editorRef: React.RefObject<HTMLDivElement>;
+
     constructor(props: Props){
         super(props);
         this.editorRef = React.createRef();
@@ -29,9 +37,8 @@ export default class TextAsset extends React.Component<Props>{
     public render() {
         const { assetId, controllable, isSelected, value, handleChange, ...divProps } = this.props;
         return (
-            <div ref={this.editorRef}
+            <EditorContainer ref={this.editorRef}
                 {...divProps}
-                style={{...divProps, outline: 'none'}}
                 contentEditable={controllable}
                 dangerouslySetInnerHTML={{ __html: value }}
                 id={this.id}
@@ -65,7 +72,7 @@ export default class TextAsset extends React.Component<Props>{
         } else {
             element.blur();
         }
-        return nextProps.value !== element.innerHTML || nextProps.isSelected !== this.props.isSelected;
+        // nextProps.value !== element.innerHTML || nextProps.isSelected !== this.props.isSelected;
     }
 
     get id() {
