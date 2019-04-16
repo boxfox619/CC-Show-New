@@ -40,6 +40,7 @@ const SelectorDot = styled.div`
 
 interface Props {
     data: AssetModel,
+    isHovered: boolean,
     isSelected: boolean,
     controllable: boolean,
     onMouseHover: (hover: boolean) => void,
@@ -48,7 +49,7 @@ interface Props {
 }
 
 export const Asset: React.FC<Props> = (props: Props) => {
-    const {data, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked} = props;
+    const { data, isHovered, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked } = props;
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -56,19 +57,19 @@ export const Asset: React.FC<Props> = (props: Props) => {
         return (
             <>
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
-                            data-resize={RESIZE_TYPE_TOP}
-                            horizontal={true}
-                            style={{ 'top': '3px' }} />
+                    data-resize={RESIZE_TYPE_TOP}
+                    horizontal={true}
+                    style={{ 'top': '3px' }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
-                            data-resize={RESIZE_TYPE_BOTTOM}
-                            horizontal={true}
-                            style={{ 'top': `calc( ${height}px + 7px)` }} />
+                    data-resize={RESIZE_TYPE_BOTTOM}
+                    horizontal={true}
+                    style={{ 'top': `calc( ${height}px + 7px)` }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
-                            data-resize={RESIZE_TYPE_LEFT}
-                            style={{ 'left': '3px' }} />
+                    data-resize={RESIZE_TYPE_LEFT}
+                    style={{ 'left': '3px' }} />
                 <SelectorLine data-type={DATASET_TYPE_SELECTOR_LINE}
-                            data-resize={RESIZE_TYPE_RIGHT}
-                            style={{ 'left': `calc( ${width}px + 7px)` }} />
+                    data-resize={RESIZE_TYPE_RIGHT}
+                    style={{ 'left': `calc( ${width}px + 7px)` }} />
             </>
         );
     };
@@ -76,17 +77,17 @@ export const Asset: React.FC<Props> = (props: Props) => {
         return (
             <>
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
-                            data-resize={RESIZE_TYPE_LEFT_TOP}
-                            style={{ 'cursor': 'nw-resize', 'top': '0px', 'left': '0px' }} />
+                    data-resize={RESIZE_TYPE_LEFT_TOP}
+                    style={{ 'cursor': 'nw-resize', 'top': '0px', 'left': '0px' }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
-                            data-resize={RESIZE_TYPE_RIGHT_TOP}
-                            style={{ 'cursor': 'ne-resize', 'top': '0px', 'left': `calc(${width}px + 3.5px)` }} />
+                    data-resize={RESIZE_TYPE_RIGHT_TOP}
+                    style={{ 'cursor': 'ne-resize', 'top': '0px', 'left': `calc(${width}px + 3.5px)` }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
-                            data-resize={RESIZE_TYPE_LEFT_BOTTOM}
-                            style={{ 'cursor': 'ne-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': '0px' }} />
+                    data-resize={RESIZE_TYPE_LEFT_BOTTOM}
+                    style={{ 'cursor': 'ne-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': '0px' }} />
                 <SelectorDot data-type={DATASET_TYPE_SELECTOR_DOT}
-                            data-resize={RESIZE_TYPE_RIGHT_BOTTOM}
-                            style={{ 'cursor': 'nw-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': `calc(${width}px + 3.5px)` }} />
+                    data-resize={RESIZE_TYPE_RIGHT_BOTTOM}
+                    style={{ 'cursor': 'nw-resize', 'top': `calc( ${height}px + 3.5px)`, 'left': `calc(${width}px + 3.5px)` }} />
             </>
         );
     };
@@ -99,15 +100,15 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 'left': `${data.position.x}px`,
                 'top': `${data.position.y}px`
             }}>
-                {isSelected && renderSelectorLine(data.width, data.height)}
-                <AssetContext
-                    data={data}
-                    isSelected={isSelected}
-                    isDoubleClicked={isDoubleClicked}
-                    controllable={controllable}
-                    onValueChange={onValueChange}
-                />
-                {isSelected && renderSelectorDot(data.width, data.height)}
+            {(isSelected || isHovered) && renderSelectorLine(data.width, data.height)}
+            <AssetContext
+                data={data}
+                isSelected={isSelected}
+                isDoubleClicked={isDoubleClicked}
+                controllable={controllable}
+                onValueChange={onValueChange}
+            />
+            {(isSelected || isHovered) && renderSelectorDot(data.width, data.height)}
         </AssetContainer>
     )
 }

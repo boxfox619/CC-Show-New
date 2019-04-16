@@ -74,7 +74,9 @@ export const AssetCanvas: React.FC<Props> = (props: Props) => {
 
     const handleMouseDown = (e: React.MouseEvent) => {
         e.preventDefault();
-        (document.activeElement as HTMLElement).blur();
+        if(document.activeElement){
+            (document.activeElement as HTMLElement).blur();
+        }
         const target = e.target as HTMLElement;
         const assetNode = findAsset(target);
         if (!assetNode) {

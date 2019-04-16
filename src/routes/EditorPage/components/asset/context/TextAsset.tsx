@@ -13,7 +13,7 @@ interface OwnProps {
     assetId: any,
     controllable: boolean,
     value: string,
-    isSelected: boolean,
+    editing: boolean,
     handleChange: (value: string) => void
 }
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
@@ -35,7 +35,7 @@ export default class TextAsset extends React.Component<Props>{
     }
 
     public render() {
-        const { assetId, controllable, isSelected, value, handleChange, ...divProps } = this.props;
+        const { assetId, controllable, editing, value, handleChange, ...divProps } = this.props;
         return (
             <EditorContainer ref={this.editorRef}
                 {...divProps}
@@ -67,7 +67,7 @@ export default class TextAsset extends React.Component<Props>{
         if(!element){
             return;
         }
-        if (nextProps.isSelected) {
+        if (nextProps.editing) {
             element.focus();
         } else {
             element.blur();
