@@ -62,18 +62,18 @@ export default class TextAsset extends React.Component<Props>{
         }
     }
 
-    componentDidUpdate(nextProps: Props) {
+    shouldComponentUpdate(nextProps: Props) {
         const element = this.editorRef.current;
         if(!element){
-            return;
+            return false;
         }
         if (nextProps.editing) {
             element.focus();
         } else {
             element.blur();
         }
-        // nextProps.value !== element.innerHTML || nextProps.isSelected !== this.props.isSelected;
-    }
+        return nextProps.value !== element.innerHTML || nextProps.editing !== this.props.editing;
+      }
 
     get id() {
         return `text-asset-${this.props.assetId}`
