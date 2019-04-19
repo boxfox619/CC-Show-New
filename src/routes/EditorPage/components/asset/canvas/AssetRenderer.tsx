@@ -22,13 +22,11 @@ type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 export const AssetRenderer: React.FC<Props> = (props: Props) => {
     const {assets, selectedAssetId, editable, doubleClicked, onChangeValue, ...divProps} = props; 
-    const [hoveredAsset, setHoveredAsset] = useState(-1);
+    const [hoveredAssetIdx, setHoveredAsset] = useState(-1);
     const renderAssets = (assetList: AssetModel[]) => {
         return assetList.map((asset, idx) => {
-            let isSelected = false;
-            if (asset.id === selectedAssetId) {
-                isSelected = true;
-            }
+            const isSelected = asset.id === selectedAssetId;
+            const isHovered = idx === hoveredAssetIdx;
             const handleMouseHover = (hover: boolean) => setHoveredAsset(hover ? idx : -1);
             const onValueChange = (value: any) => onChangeValue(asset.id, value);
             return (
@@ -36,19 +34,20 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
                     key={asset.id}
                     data={asset}
                     isSelected={isSelected}
+                    isHovered={isHovered}
                     controllable={props.editable}
                     onMouseHover={handleMouseHover}
-                    doubleClicked={props.doubleClicked}
+                    isDoubleClicked={props.doubleClicked}
                     onValueChange={onValueChange}
                 />
             )
         })
     };
     const renderGuideLine = (assetList: AssetModel[]) => {
-        if (hoveredAsset < 0) {
+        if (hoveredAssetIdx < 0) {
             return;
         }
-        const guidelines = calGuideLine(assetList, hoveredAsset);
+        const guidelines = calGuideLine(assetList, hoveredAssetIdx);
         return guidelines.map((guideline, idx) => {
             return (<Guideline key={idx} attr={guideline} />)
         })
@@ -56,7 +55,7 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
     return (
         <Container {...divProps}>
             {renderAssets(assets)}
-            {hoveredAsset >= 0 && renderGuideLine(assets)}
+            {hoveredAssetIdx >= 0 && renderGuideLine(assets)}
         </Container>
     );
 }
