@@ -14,7 +14,7 @@ const Cover = styled.div`
     height: 100%;
     cursor: move !important;
     position: absolute;
-    z-index: 
+    z-index: 3;
 `
 
 export const AssetContext: React.FC<AssetProps> = (props: AssetProps) => {
