@@ -72,7 +72,9 @@ export default class TextAsset extends React.Component<Props>{
         } else {
             element.blur();
         }
-        return nextProps.value !== element.innerHTML || nextProps.editing !== this.props.editing;
+        const instance = CKEDITOR.instances[this.id];
+        const data = instance.getData();
+        return nextProps.value !== data || nextProps.editing !== this.props.editing;
       }
 
     get id() {
