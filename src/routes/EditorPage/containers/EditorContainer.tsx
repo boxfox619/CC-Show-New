@@ -7,7 +7,6 @@ import StoreModel from '../models/store/StoreModel';
 import styled from 'styled-components';
 import ShowController from './ShowController';
 import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../modules/asset';
-import PointModel from 'src/core/models/PointModel';
 import SlideListManager from './SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../modules/slide';
 import { AssetCanvas } from '../components/asset/canvas/AssetCanvas';
@@ -54,7 +53,6 @@ const mapStateToProps = (state: StoreModel) => {
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & OwnProps;
 
 const EditorContainer: React.FC<Props> = (props: Props) => {
-  const createAsset = (assetType: string, point: PointModel) => props.addAsset({ assetType, point });
   const [visibleAssetManager, setVisibleAssetManager] = useState(false);
   const [visibleSlideManager, setVisibleSlideManager] = useState(false);
   const [visibleSlideShow, setVisibleSlideShow] = useState(false);
@@ -85,7 +83,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           name={props.auth.name}
           email={props.auth.email}
           thumbnail={props.auth.thumbnail}
-          addAsset={createAsset}
+          addAsset={props.addAsset}
           toggleAssetManager={toggleAssetManager}
           toggleSlideManager={toggleSlideManager}
           toggleSlideShow={toggleSlideShow}

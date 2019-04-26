@@ -1,6 +1,6 @@
 import EditorStoreModel from '../models/store/EditorStoreModel';
 import AssetModel from 'src/core/models/AssetModel';
-import PointModel from 'src/core/models/PointModel';
+import {CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload} from '../models/payload';
 import { Action, createActionCreator } from 'src/core/store/actionCreator';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
@@ -12,41 +12,19 @@ export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
 export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 
-interface CreateAssetOptions {
-    assetType: string,
-    point: PointModel,
-}
-
-interface MoveAssetOptions {
-    assetId: number,
-    point: PointModel
-}
-
-interface ResizeAssetOptions {
-    id: number,
-    position: PointModel,
-    width: number,
-    height: number
-}
-
-interface UpdateAssetValueOptions {
-    id: number,
-    value: any
-}
-
-export const addAsset = createActionCreator<CreateAssetOptions>(ADD_ASSET);
+export const addAsset = createActionCreator<CreateAssetPayload>(ADD_ASSET);
 export const deleteAsset = createActionCreator<number>(DELETE_ASSET);
-export const moveAsset = createActionCreator<MoveAssetOptions>(MOVE_ASSET);
+export const moveAsset = createActionCreator<MoveAssetPayload>(MOVE_ASSET);
 export const copyAsset = createActionCreator<number>(COPY_ASSET);
 export const pasteAsset = createActionCreator<number>(PASTE_ASSET);
 export const selectAsset = createActionCreator<number>(SELECT_ASSET);
-export const resizeAsset = createActionCreator<ResizeAssetOptions>(RESIZE_ASSET);
-export const updateAssetValue = createActionCreator<UpdateAssetValueOptions>(UPDATE_ASSET_VALUE);
+export const resizeAsset = createActionCreator<ResizeAssetPayload>(RESIZE_ASSET);
+export const updateAssetValue = createActionCreator<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
 
 const getCurrentSlideIdx = (state: EditorStoreModel) => state.slides.findIndex(s => s.id === state.selectedSlideId);
 
 export const ACTION_HANDLERS = {
-    [ADD_ASSET]: (state: EditorStoreModel, action: Action<CreateAssetOptions>) => {
+    [ADD_ASSET]: (state: EditorStoreModel, action: Action<CreateAssetPayload>) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;
         const newAsset = new AssetModel(lastAssetId, action.payload.assetType, 100, 100, action.payload.point);
@@ -65,7 +43,7 @@ export const ACTION_HANDLERS = {
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
         return { slides: { [idx]: { assets: { $splice: [[assetIdx, 1]] } } } };
     },
-    [MOVE_ASSET]: (state: EditorStoreModel, action: Action<MoveAssetOptions>) => {
+    [MOVE_ASSET]: (state: EditorStoreModel, action: Action<MoveAssetPayload>) => {
         const idx = getCurrentSlideIdx(state);
         const assetId = action.payload.assetId;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
@@ -103,7 +81,7 @@ export const ACTION_HANDLERS = {
             }
         }
     },
-    [UPDATE_ASSET_VALUE]: (state: EditorStoreModel, action: Action<UpdateAssetValueOptions>) => {
+    [UPDATE_ASSET_VALUE]: (state: EditorStoreModel, action: Action<UpdateAssetValuePayload>) => {
         const idx = getCurrentSlideIdx(state);
         const assetIdx = state.slides[idx].assets.findIndex(a => a.id === action.payload.id);
         return {
@@ -118,7 +96,7 @@ export const ACTION_HANDLERS = {
             }
         }
     },
-    [RESIZE_ASSET]: (state: EditorStoreModel, action: Action<ResizeAssetOptions>) => {
+    [RESIZE_ASSET]: (state: EditorStoreModel, action: Action<ResizeAssetPayload>) => {
         const idx = getCurrentSlideIdx(state);
         const assetIdx = state.slides[idx].assets.findIndex(a => a.id === action.payload.id);
         return {

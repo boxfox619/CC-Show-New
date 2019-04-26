@@ -29,13 +29,6 @@ const createReduxStore = (initialState = {}) => {
     ) as AsyncStore;
     store.asyncReducers = asyncReducers;
 
-    if ((module as any).hot) {
-        (module as any).hot.accept('./reducers', () => {
-            const reducers = require('./reducers').default
-            store.replaceReducer(reducers(asyncReducers))
-        })
-    }
-
     const epic$ = new BehaviorSubject<any>(combineEpics());
     const rootEpic = (action$: ActionsObservable<Action>, state$: StateObservable<any>, dependencies: any): Observable<Action> => {
         return epic$.pipe(mergeMap((epic: Epic) => epic(action$, state$, dependencies)));

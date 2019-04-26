@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import {CreateAssetPayload} from '../models/payload';
 import GradientButtonItem from '../components/asset/creator/GradientButtonItem';
 import Profile from '../components/asset/creator/Profile';
-import PointModel from 'src/core/models/PointModel';
 
 const Container = styled.div`
     background-color: white;
@@ -32,7 +32,7 @@ interface OwnProps {
     name: string,
     email: string,
     thumbnail: string,
-    addAsset: (type: string, point: PointModel) => void,
+    addAsset: (payload: CreateAssetPayload) => void,
     toggleAssetManager: () => void,
     toggleSlideManager: () => void,
     toggleSlideShow: () => void
@@ -42,7 +42,7 @@ type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 const ShowController: React.FC<Props> = (props: Props) => {
     const divProps = props as React.HTMLAttributes<HTMLDivElement>;
-    const createAssetByType = (assetType: string) => () => props.addAsset(assetType, { x: 0, y: 0 });
+    const createAssetByType = (assetType: string) => () => props.addAsset(new CreateAssetPayload(assetType, { x: 0, y: 0 }));
     return (
         <Container {...divProps}>
             <Profile

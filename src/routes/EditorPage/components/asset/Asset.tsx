@@ -48,8 +48,7 @@ interface Props {
     onValueChange: (value: any) => void
 }
 
-export const Asset: React.FC<Props> = (props: Props) => {
-    const { data, isHovered, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked } = props;
+export const Asset: React.FC<Props> = ( { data, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked }) => {
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -100,7 +99,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 'left': `${data.position.x}px`,
                 'top': `${data.position.y}px`
             }}>
-            {(isSelected || isHovered) && renderSelectorLine(data.width, data.height)}
+            {(isSelected) && renderSelectorLine(data.width, data.height)}
             <AssetContext
                 data={data}
                 isSelected={isSelected}
@@ -108,7 +107,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 controllable={controllable}
                 onValueChange={onValueChange}
             />
-            {(isSelected || isHovered) && renderSelectorDot(data.width, data.height)}
+            {(isSelected) && renderSelectorDot(data.width, data.height)}
         </AssetContainer>
     )
 }
