@@ -1,4 +1,4 @@
-import PointModel from 'src/core/models/PointModel';
+import PointModel from 'src/models/PointModel';
 export class ResizeAssetPayload {
     constructor(
         public id: number,

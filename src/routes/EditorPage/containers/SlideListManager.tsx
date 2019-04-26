@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import EllipseIcon from '../assets/ic_ellipse_gray.png';
 import HideIcon from '../assets/ic_arrow_left.png';
 import DraggableSlideList from '../components/slide/DraggableSlideList';
-import SlideModel from '../models/store/SlideModel';
+import SlideModel from '../models/SlideModel';
 
 const Container = styled.div`
     position: absolute;

@@ -1,7 +1,7 @@
-import EditorStoreModel from '../models/store/EditorStoreModel';
-import AssetModel from 'src/core/models/AssetModel';
+import { createAction } from 'redux-actions';
+import EditorStoreModel from '../models/EditorStore';
+import AssetModel from 'src/models/AssetModel';
 import {CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload} from '../models/payload';
-import { Action, createActionCreator } from 'src/core/store/actionCreator';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -12,22 +12,24 @@ export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
 export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 
-export const addAsset = createActionCreator<CreateAssetPayload>(ADD_ASSET);
-export const deleteAsset = createActionCreator<number>(DELETE_ASSET);
-export const moveAsset = createActionCreator<MoveAssetPayload>(MOVE_ASSET);
-export const copyAsset = createActionCreator<number>(COPY_ASSET);
-export const pasteAsset = createActionCreator<number>(PASTE_ASSET);
-export const selectAsset = createActionCreator<number>(SELECT_ASSET);
-export const resizeAsset = createActionCreator<ResizeAssetPayload>(RESIZE_ASSET);
-export const updateAssetValue = createActionCreator<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
+export const addAsset = createAction<CreateAssetPayload>(ADD_ASSET);
+export const deleteAsset = createAction<number>(DELETE_ASSET);
+export const moveAsset = createAction<MoveAssetPayload>(MOVE_ASSET);
+export const copyAsset = createAction<number>(COPY_ASSET);
+export const pasteAsset = createAction<number>(PASTE_ASSET);
+export const selectAsset = createAction<number>(SELECT_ASSET);
+export const resizeAsset = createAction<ResizeAssetPayload>(RESIZE_ASSET);
+export const updateAssetValue = createAction<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
+
+
 
 const getCurrentSlideIdx = (state: EditorStoreModel) => state.slides.findIndex(s => s.id === state.selectedSlideId);
 
 export const ACTION_HANDLERS = {
-    [ADD_ASSET]: (state: EditorStoreModel, action: Action<CreateAssetPayload>) => {
+    [ADD_ASSET]: (state: EditorStoreModel, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;
-        const newAsset = new AssetModel(lastAssetId, action.payload.assetType, 100, 100, action.payload.point);
+        const newAsset = new AssetModel(lastAssetId, payload.assetType, 100, 100, payload.point);
         return {
             slides: {
                 [idx]: {
@@ -37,25 +39,25 @@ export const ACTION_HANDLERS = {
             }
         };
     },
-    [DELETE_ASSET]: (state: EditorStoreModel, action: Action<number>) => {
+    [DELETE_ASSET]: (state: EditorStoreModel, payload: number) => {
         const idx = getCurrentSlideIdx(state);
-        const assetId = action.payload;
+        const assetId = payload;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
         return { slides: { [idx]: { assets: { $splice: [[assetIdx, 1]] } } } };
     },
-    [MOVE_ASSET]: (state: EditorStoreModel, action: Action<MoveAssetPayload>) => {
+    [MOVE_ASSET]: (state: EditorStoreModel, payload: MoveAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
-        const assetId = action.payload.assetId;
+        const assetId = payload.assetId;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
-        return { slides: { [idx]: { assets: { [assetIdx]: {position: action.payload.point} } } } };
+        return { slides: { [idx]: { assets: { [assetIdx]: {position: payload.point} } } } };
     },
-    [COPY_ASSET]: (state: EditorStoreModel, action: Action<number>) => {
+    [COPY_ASSET]: (state: EditorStoreModel, payload: number) => {
         const idx = getCurrentSlideIdx(state);
-        const assetId = action.payload;
+        const assetId = payload;
         const asset = state.slides[idx].assets.find(a => a.id === assetId);
         return { copiedAsset: { $set: { ...asset } } };
     },
-    [PASTE_ASSET]: (state: EditorStoreModel, action: Action<number>) => {
+    [PASTE_ASSET]: (state: EditorStoreModel) => {
         const idx = getCurrentSlideIdx(state);
         const copiedAsset = state.copiedAsset;
         const lastAssetId = state.slides[idx].lastAssetId;
@@ -69,44 +71,44 @@ export const ACTION_HANDLERS = {
             }
         };
     },
-    [SELECT_ASSET]: (state: EditorStoreModel, action: Action<number>) => {
+    [SELECT_ASSET]: (state: EditorStoreModel, payload: number) => {
         const idx = getCurrentSlideIdx(state);
         return {
             slides: {
                 [idx]: {
                     selectedAssetId: {
-                        $set: action.payload
+                        $set: payload
                     }
                 }
             }
         }
     },
-    [UPDATE_ASSET_VALUE]: (state: EditorStoreModel, action: Action<UpdateAssetValuePayload>) => {
+    [UPDATE_ASSET_VALUE]: (state: EditorStoreModel, payload: UpdateAssetValuePayload) => {
         const idx = getCurrentSlideIdx(state);
-        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === action.payload.id);
+        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === payload.id);
         return {
             slides: {
                 [idx]: {
                     assets : {
                         [assetIdx] : {
-                            value: {$set: action.payload.value}
+                            value: {$set: payload.value}
                         }
                     }
                 }
             }
         }
     },
-    [RESIZE_ASSET]: (state: EditorStoreModel, action: Action<ResizeAssetPayload>) => {
+    [RESIZE_ASSET]: (state: EditorStoreModel, payload: ResizeAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
-        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === action.payload.id);
+        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === payload.id);
         return {
             slides: {
                 [idx]: {
                     assets : {
                         [assetIdx] : {
-                            position: {$set: action.payload.position},
-                            width: {$set: action.payload.width},
-                            height: {$set: action.payload.height}
+                            position: {$set: payload.position},
+                            width: {$set: payload.width},
+                            height: {$set: payload.height}
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 import SlideModel from './SlideModel';
-import AssetModel from 'src/core/models/AssetModel';
+import AssetModel from 'src/models/AssetModel';
 
-export default class EditorStoreModel {
+export default class EditorStore {
     constructor(
         public title: string = '',
         public slides: SlideModel[] = [new SlideModel()],

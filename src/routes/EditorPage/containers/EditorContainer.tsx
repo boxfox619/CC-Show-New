@@ -3,12 +3,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { match } from 'react-router-dom';
-import StoreModel from '../models/store/StoreModel';
+import StoreModel from '../models/StoreModel';
 import styled from 'styled-components';
 import ShowController from './ShowController';
-import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../modules/asset';
+import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../reducers/asset';
 import SlideListManager from './SlideListManager';
-import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../modules/slide';
+import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
 import { AssetCanvas } from '../components/asset/canvas/AssetCanvas';
 
 const Container = styled.div`

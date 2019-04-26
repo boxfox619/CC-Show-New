@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import AssetModel from 'src/core/models/AssetModel';
+import AssetModel from 'src/models/AssetModel';
 import { Guideline } from './Guideline';
-import { calGuideLine } from 'src/routes/EditorPage/modules/services/asset.service';
+import { calGuideLine } from '../../../modules/asset.service';
 import { Asset } from '../Asset';
 import styled from 'styled-components';
 

@@ -6,8 +6,8 @@ import {
     LOGIN, LOGOUT, REGISTER, LOGIN_STARTED, LOGIN_FAILED, LOGIN_SUCCESSED, REGISTER_STARTED, REGISTER_SUCCESSED, REGISTER_FAILED
     , CHECK_LOGINED, CHECK_LOGINED_SUCCESSED, CHECK_LOGINED_FAILED,
     LOGOUT_STARTED, LOGOUT_SUCCESSED, LOGOUT_FAILED, CHECK_LOGINED_STARTED
-} from './action';
-import { login, register, checkLogined, logout } from '../../network/AuthApi';
+} from '../reducers/auth';
+import { login, register, checkLogined, logout } from '../api/AuthApi';
 
 const loginEpic = (
     action: Observable<Action>

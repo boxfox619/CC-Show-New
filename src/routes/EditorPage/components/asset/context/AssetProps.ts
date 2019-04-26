@@ -1,4 +1,4 @@
-import AssetModel from 'src/core/models/AssetModel';
+import AssetModel from 'src/models/AssetModel';
 
 export default interface AssetProps {
     data: AssetModel,
