@@ -9,7 +9,7 @@ import ShowController from './ShowController';
 import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../reducers/asset';
 import SlideListManager from './SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
-import { AssetCanvas } from '../components/asset/canvas/AssetCanvas';
+import AssetCanvas from '../components/assetCanvas';
 
 const Container = styled.div`
   width: 100vw;

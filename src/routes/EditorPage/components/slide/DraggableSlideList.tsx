@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SlideModel from './../../models/SlideModel';
+import SlideModel from '../../models/Slide';
 import SlidePreview from './SlidePreview';
 import SlideCreateCard from './SlideCreateCard';
 

@@ -1,5 +1,5 @@
 import AssetModel from 'src/models/AssetModel';
-import GuidelineModel from '../models/GuidelineModel';
+import GuidelineModel from '../models/Guideline';
 
 export const DATASET_TYPE_ASSET = 'asset';
 export const DATASET_TYPE_RESIZER = 'asset-resizer';

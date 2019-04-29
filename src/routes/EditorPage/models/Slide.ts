@@ -1,6 +1,6 @@
 import AssetModel from 'src/models/AssetModel';
 
-export default class SlideModel {
+export default class Slide {
     constructor(
         public id: number = 0,
         public name: string = '',

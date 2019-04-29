@@ -1,4 +1,4 @@
-export default class GuidelineModel {
+export default class Guideline {
     constructor(
         public x: number,
         public y: number,

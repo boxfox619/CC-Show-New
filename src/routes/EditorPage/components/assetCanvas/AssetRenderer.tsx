@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import AssetModel from 'src/models/AssetModel';
 import { Guideline } from './Guideline';
-import { calGuideLine } from '../../../modules/asset.service';
-import { Asset } from '../Asset';
+import { calGuideLine } from '../../modules/asset.service';
+import Asset from '../asset';
 import styled from 'styled-components';
 
 const Container = styled.div`

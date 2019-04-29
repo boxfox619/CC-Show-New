@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { MoveSlidePayload } from '../models/payload';
 import EditorStore from '../models/EditorStore';
-import SlideModel from '../models/SlideModel';
+import Slide from '../models/Slide';
 
 export const MOVE_SLIDE = 'SLIDE.MOVE_SLIDE';
 export const COPY_SLIDE = 'SLIDE.COPY_SLIDE';
@@ -21,7 +21,7 @@ export const ACTION_HANDLERS = {
     [SELECT_SLIDE]: (state: EditorStore, payload: number) => ({ selectedSlideId: { $set: payload } }),
     [CREATE_SLIDE]: (state: EditorStore) => {
         const { lastSlideId } = state;
-        const newSlide = new SlideModel(lastSlideId, `슬라이드 ${state.slides.length}`);
+        const newSlide = new Slide(lastSlideId, `슬라이드 ${state.slides.length}`);
         return {
             slides: { $push: [newSlide] },
             lastSlideId: { $set: lastSlideId + 1 }

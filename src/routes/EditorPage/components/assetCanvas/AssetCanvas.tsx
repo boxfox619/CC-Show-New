@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import AssetModel from 'src/models/AssetModel';
 import { AssetRenderer } from './AssetRenderer';
-import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../../modules/asset.service';
+import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../modules/asset.service';
 import { clearSelection } from 'src/routes/EditorPage/modules/dom.service';
 
 const ACTION_MOVE = 'move';
@@ -20,8 +20,7 @@ interface OwnProps {
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
-export const AssetCanvas: React.FC<Props> = (props: Props) => {
-    const { assets, selectedAssetId, editable, onSelectAsset, onChangeValue, modifyAsset, ...divProps } = props;
+export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable, onSelectAsset, onChangeValue, modifyAsset, ...divProps }) => {
     const [doubleClicked, setDoubleClicked] = useState(false);
     const [mouseAction, setMouseAction] = useState(ACTION_NONE);
     const [xInElement, setXInElement] = useState(0);

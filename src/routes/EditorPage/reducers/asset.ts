@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import EditorStoreModel from '../models/EditorStore';
+import EditorStore from '../models/EditorStore';
 import AssetModel from 'src/models/AssetModel';
 import {CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload} from '../models/payload';
 
@@ -23,10 +23,10 @@ export const updateAssetValue = createAction<UpdateAssetValuePayload>(UPDATE_ASS
 
 
 
-const getCurrentSlideIdx = (state: EditorStoreModel) => state.slides.findIndex(s => s.id === state.selectedSlideId);
+const getCurrentSlideIdx = (state: EditorStore) => state.slides.findIndex(s => s.id === state.selectedSlideId);
 
 export const ACTION_HANDLERS = {
-    [ADD_ASSET]: (state: EditorStoreModel, payload: CreateAssetPayload) => {
+    [ADD_ASSET]: (state: EditorStore, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;
         const newAsset = new AssetModel(lastAssetId, payload.assetType, 100, 100, payload.point);
@@ -39,25 +39,25 @@ export const ACTION_HANDLERS = {
             }
         };
     },
-    [DELETE_ASSET]: (state: EditorStoreModel, payload: number) => {
+    [DELETE_ASSET]: (state: EditorStore, payload: number) => {
         const idx = getCurrentSlideIdx(state);
         const assetId = payload;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
         return { slides: { [idx]: { assets: { $splice: [[assetIdx, 1]] } } } };
     },
-    [MOVE_ASSET]: (state: EditorStoreModel, payload: MoveAssetPayload) => {
+    [MOVE_ASSET]: (state: EditorStore, payload: MoveAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const assetId = payload.assetId;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
         return { slides: { [idx]: { assets: { [assetIdx]: {position: payload.point} } } } };
     },
-    [COPY_ASSET]: (state: EditorStoreModel, payload: number) => {
+    [COPY_ASSET]: (state: EditorStore, payload: number) => {
         const idx = getCurrentSlideIdx(state);
         const assetId = payload;
         const asset = state.slides[idx].assets.find(a => a.id === assetId);
         return { copiedAsset: { $set: { ...asset } } };
     },
-    [PASTE_ASSET]: (state: EditorStoreModel) => {
+    [PASTE_ASSET]: (state: EditorStore) => {
         const idx = getCurrentSlideIdx(state);
         const copiedAsset = state.copiedAsset;
         const lastAssetId = state.slides[idx].lastAssetId;
@@ -71,7 +71,7 @@ export const ACTION_HANDLERS = {
             }
         };
     },
-    [SELECT_ASSET]: (state: EditorStoreModel, payload: number) => {
+    [SELECT_ASSET]: (state: EditorStore, payload: number) => {
         const idx = getCurrentSlideIdx(state);
         return {
             slides: {
@@ -83,7 +83,7 @@ export const ACTION_HANDLERS = {
             }
         }
     },
-    [UPDATE_ASSET_VALUE]: (state: EditorStoreModel, payload: UpdateAssetValuePayload) => {
+    [UPDATE_ASSET_VALUE]: (state: EditorStore, payload: UpdateAssetValuePayload) => {
         const idx = getCurrentSlideIdx(state);
         const assetIdx = state.slides[idx].assets.findIndex(a => a.id === payload.id);
         return {
@@ -98,7 +98,7 @@ export const ACTION_HANDLERS = {
             }
         }
     },
-    [RESIZE_ASSET]: (state: EditorStoreModel, payload: ResizeAssetPayload) => {
+    [RESIZE_ASSET]: (state: EditorStore, payload: ResizeAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const assetIdx = state.slides[idx].assets.findIndex(a => a.id === payload.id);
         return {

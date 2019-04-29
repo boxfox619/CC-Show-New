@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {CreateAssetPayload} from '../models/payload';
-import GradientButtonItem from '../components/asset/creator/GradientButtonItem';
-import Profile from '../components/asset/creator/Profile';
+import GradientButtonItem from '../components/GradientButtonItem';
+import Profile from '../components/Profile';
 
 const Container = styled.div`
     background-color: white;

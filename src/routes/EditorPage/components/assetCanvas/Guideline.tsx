@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GuidelineModel from './../../../models/GuidelineModel';
+import GuidelineModel from '../../models/Guideline';
 import styled from 'styled-components';
 
 const Line = styled.div`

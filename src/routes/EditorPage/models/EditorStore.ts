@@ -1,4 +1,4 @@
-import SlideModel from './SlideModel';
+import SlideModel from './Slide';
 import AssetModel from 'src/models/AssetModel';
 
 export default class EditorStore {

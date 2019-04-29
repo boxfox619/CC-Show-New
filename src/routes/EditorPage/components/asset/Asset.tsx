@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DATASET_TYPE_ASSET, DATASET_TYPE_SELECTOR_LINE, DATASET_TYPE_SELECTOR_DOT, RESIZE_TYPE_TOP, RESIZE_TYPE_LEFT_TOP, RESIZE_TYPE_RIGHT_TOP, RESIZE_TYPE_LEFT_BOTTOM, RESIZE_TYPE_RIGHT_BOTTOM, RESIZE_TYPE_RIGHT, RESIZE_TYPE_LEFT, RESIZE_TYPE_BOTTOM } from '../../modules/asset.service';
 import AssetModel from 'src/models/AssetModel';
-import { AssetContext } from './context/AssetContext';
+import { AssetContext } from './AssetContext';
 
 const AssetContainer = styled.div`
     position: absolute !important;

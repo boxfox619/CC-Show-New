@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import GradientBackgroundImg from '../../../assets/bg_active.png';
-import ButtonCircleImg from '../../../assets/ic_ellipse_white.png';
+import GradientBackgroundImg from '../assets/bg_active.png';
+import ButtonCircleImg from '../assets/ic_ellipse_white.png';
 
 const GradientButton = styled.div`
     display: table;
