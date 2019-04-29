@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DATASET_TYPE_ASSET, DATASET_TYPE_SELECTOR_LINE, DATASET_TYPE_SELECTOR_DOT, RESIZE_TYPE_TOP, RESIZE_TYPE_LEFT_TOP, RESIZE_TYPE_RIGHT_TOP, RESIZE_TYPE_LEFT_BOTTOM, RESIZE_TYPE_RIGHT_BOTTOM, RESIZE_TYPE_RIGHT, RESIZE_TYPE_LEFT, RESIZE_TYPE_BOTTOM } from '../../modules/services/asset.service';
-import AssetModel from 'src/core/models/AssetModel';
-import { AssetContext } from './context/AssetContext';
+import { DATASET_TYPE_ASSET, DATASET_TYPE_SELECTOR_LINE, DATASET_TYPE_SELECTOR_DOT, RESIZE_TYPE_TOP, RESIZE_TYPE_LEFT_TOP, RESIZE_TYPE_RIGHT_TOP, RESIZE_TYPE_LEFT_BOTTOM, RESIZE_TYPE_RIGHT_BOTTOM, RESIZE_TYPE_RIGHT, RESIZE_TYPE_LEFT, RESIZE_TYPE_BOTTOM } from '../../modules/asset.service';
+import AssetModel from 'src/models/AssetModel';
+import { AssetContext } from './AssetContext';
 
 const AssetContainer = styled.div`
     position: absolute !important;
@@ -48,8 +48,7 @@ interface Props {
     onValueChange: (value: any) => void
 }
 
-export const Asset: React.FC<Props> = (props: Props) => {
-    const { data, isHovered, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked } = props;
+export const Asset: React.FC<Props> = ( { data, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked }) => {
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -100,7 +99,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 'left': `${data.position.x}px`,
                 'top': `${data.position.y}px`
             }}>
-            {(isSelected || isHovered) && renderSelectorLine(data.width, data.height)}
+            {(isSelected) && renderSelectorLine(data.width, data.height)}
             <AssetContext
                 data={data}
                 isSelected={isSelected}
@@ -108,7 +107,7 @@ export const Asset: React.FC<Props> = (props: Props) => {
                 controllable={controllable}
                 onValueChange={onValueChange}
             />
-            {(isSelected || isHovered) && renderSelectorDot(data.width, data.height)}
+            {(isSelected) && renderSelectorDot(data.width, data.height)}
         </AssetContainer>
     )
 }

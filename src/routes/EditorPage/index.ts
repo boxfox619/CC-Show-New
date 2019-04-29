@@ -1,14 +1,13 @@
 import { Store } from "redux";
-import { injectReducer } from 'src/core/store/reducers';
+import { injectReducer } from 'src/core/store';
 
 const REDUCER_KEY = 'editor';
 
 export default (store: Store) => (
     async () => {
-        const modules = await import('./modules');
-        const reducer = modules.default.reducer;
-        const epics = modules.default.epics;
-        injectReducer(store, REDUCER_KEY, reducer, epics)
+        const reducer = await import('./reducers');
+        const epic = await import('./epics');
+        injectReducer(store, REDUCER_KEY, reducer.default, epic.default)
         return await import("./containers/EditorContainer");
     }
 )

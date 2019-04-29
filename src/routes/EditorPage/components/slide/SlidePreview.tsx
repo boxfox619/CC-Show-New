@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import SlideModel from '../../models/store/SlideModel';
+import SlideModel from '../../models/Slide';
 import IconButton from './IconButton';
 import ShareIcon from '../../assets/ic_share_white.png';
 import CopyIcon from '../../assets/ic_copy_white.png';

@@ -3,14 +3,13 @@ import * as React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { match } from 'react-router-dom';
-import StoreModel from '../models/store/StoreModel';
+import StoreModel from '../models/StoreModel';
 import styled from 'styled-components';
 import ShowController from './ShowController';
-import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../modules/asset';
-import PointModel from 'src/core/models/PointModel';
+import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../reducers/asset';
 import SlideListManager from './SlideListManager';
-import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../modules/slide';
-import { AssetCanvas } from '../components/asset/canvas/AssetCanvas';
+import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
+import AssetCanvas from '../components/assetCanvas';
 
 const Container = styled.div`
   width: 100vw;
@@ -54,7 +53,6 @@ const mapStateToProps = (state: StoreModel) => {
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & OwnProps;
 
 const EditorContainer: React.FC<Props> = (props: Props) => {
-  const createAsset = (assetType: string, point: PointModel) => props.addAsset({ assetType, point });
   const [visibleAssetManager, setVisibleAssetManager] = useState(false);
   const [visibleSlideManager, setVisibleSlideManager] = useState(false);
   const [visibleSlideShow, setVisibleSlideShow] = useState(false);
@@ -85,7 +83,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           name={props.auth.name}
           email={props.auth.email}
           thumbnail={props.auth.thumbnail}
-          addAsset={createAsset}
+          addAsset={props.addAsset}
           toggleAssetManager={toggleAssetManager}
           toggleSlideManager={toggleSlideManager}
           toggleSlideShow={toggleSlideShow}
