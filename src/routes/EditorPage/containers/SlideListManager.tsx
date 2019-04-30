@@ -7,7 +7,6 @@ import SlideModel from '../models/Slide';
 
 const Container = styled.div`
     position: absolute;
-    z-index: -1;
     top:0;
     left: 0;
     background: #F5F5F6;
