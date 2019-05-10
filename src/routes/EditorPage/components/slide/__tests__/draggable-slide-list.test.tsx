@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
 import DraggableSlideList from '../DraggableSlideList';
-import SlideModel from '../../../models/SlideModel';
+import SlideModel from '../../../models/Slide';
 
 describe('<IconButton />', () => {
   const url = 'https://avatars0.githubusercontent.com/u/14067209?s=88&v=4';

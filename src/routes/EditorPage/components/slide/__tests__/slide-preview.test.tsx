@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
 import SlidePreview from './../SlidePreview';
-import SlideModel from './../../../models/SlideModel';
+import SlideModel from './../../../models/Slide';
 
 describe('<SlidePreview />', () => {
   const mockFn = jest.fn();

@@ -9,6 +9,7 @@ describe('<ShowController />', () => {
             name="홍길동"
             email="치킨비어"
             thumbnail=""
+            visiableSlideManager={false}
             addAsset={new mockFn()}
             toggleAssetManager={new mockFn()}
             toggleSlideManager={new mockFn()}
