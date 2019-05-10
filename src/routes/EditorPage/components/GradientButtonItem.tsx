@@ -23,19 +23,32 @@ const GradientButton = styled.div`
         background: url('${ButtonCircleImg}') no-repeat left center;
         width: 23px;
     }
+    ${(props: {active: boolean}) => props.active && `
+        background: url('${GradientBackgroundImg}');
+        background-repeat: no-repeat;
+        color: white;
+        &:after {
+            content: "";
+            display: table-cell;
+            vertical-align: middle;
+            background: url('${ButtonCircleImg}') no-repeat left center;
+            width: 23px;
+        }
+    `}
 `
 
 interface OwnProps {
-    label: string
+    label: string,
+    active?: boolean
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
-const GradientButtonItem: React.FC<Props> = (props: Props) => {
+const GradientButtonItem: React.FC<Props> = ({label, active = false, ...divProps}) => {
     return (
-        <GradientButton {...props}>
+        <GradientButton {...divProps} active={active}>
             <div style={{ padding: '7px 8px' }}>
-                {props.label}
+                {label}
             </div>
         </GradientButton>
     )

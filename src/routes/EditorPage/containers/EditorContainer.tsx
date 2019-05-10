@@ -78,6 +78,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           name={props.auth.name}
           email={props.auth.email}
           thumbnail={props.auth.thumbnail}
+          visibleSlideManager={visibleSlideManager}
           addAsset={props.addAsset}
           toggleAssetManager={toggleAssetManager}
           toggleSlideManager={toggleSlideManager}
