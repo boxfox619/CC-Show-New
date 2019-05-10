@@ -29,7 +29,7 @@ export const ACTION_HANDLERS = {
     [ADD_ASSET]: (state: EditorStore, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;
-        const newAsset = new AssetModel(lastAssetId, payload.assetType, 100, 100, payload.point);
+        const newAsset = new AssetModel(lastAssetId, payload.assetType, 100, 100, payload.point, payload.value);
         return {
             slides: {
                 [idx]: {
