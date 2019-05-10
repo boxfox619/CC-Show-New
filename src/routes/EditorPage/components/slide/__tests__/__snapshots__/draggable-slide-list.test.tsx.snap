@@ -7,24 +7,26 @@ ShallowWrapper {
     copySlide={[MockFunction]}
     createSlide={[MockFunction]}
     deleteSlide={[MockFunction]}
-    exchangeSlide={[MockFunction]}
+    moveSlide={[MockFunction]}
     selectSlide={[MockFunction]}
     selectedSlideId={0}
     shareSlide={[MockFunction]}
     slides={
       Array [
-        SlideModel {
+        Slide {
           "assets": Array [],
           "id": 0,
           "lastAssetId": 0,
           "name": "테스트 슬라이드",
+          "selectedAssetId": undefined,
           "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
         },
-        SlideModel {
+        Slide {
           "assets": Array [],
           "id": 1,
           "lastAssetId": 0,
           "name": "테스트 슬라이드2",
+          "selectedAssetId": undefined,
           "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
         },
       ]
@@ -62,11 +64,12 @@ ShallowWrapper {
               onDelete={[Function]}
               onShare={[Function]}
               slide={
-                SlideModel {
+                Slide {
                   "assets": Array [],
                   "id": 0,
                   "lastAssetId": 0,
                   "name": "테스트 슬라이드",
+                  "selectedAssetId": undefined,
                   "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                 }
               }
@@ -86,11 +89,12 @@ ShallowWrapper {
               onDelete={[Function]}
               onShare={[Function]}
               slide={
-                SlideModel {
+                Slide {
                   "assets": Array [],
                   "id": 1,
                   "lastAssetId": 0,
                   "name": "테스트 슬라이드2",
+                  "selectedAssetId": undefined,
                   "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                 }
               }
@@ -124,11 +128,12 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onShare={[Function]}
                 slide={
-                  SlideModel {
+                  Slide {
                     "assets": Array [],
                     "id": 0,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   }
                 }
@@ -148,11 +153,12 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onShare={[Function]}
                 slide={
-                  SlideModel {
+                  Slide {
                     "assets": Array [],
                     "id": 1,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드2",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   }
                 }
@@ -176,11 +182,12 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onShare={[Function]}
                 slide={
-                  SlideModel {
+                  Slide {
                     "assets": Array [],
                     "id": 0,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   }
                 }
@@ -202,11 +209,12 @@ ShallowWrapper {
                 "onCopy": [Function],
                 "onDelete": [Function],
                 "onShare": [Function],
-                "slide": SlideModel {
+                "slide": Slide {
                   "assets": Array [],
                   "id": 0,
                   "lastAssetId": 0,
                   "name": "테스트 슬라이드",
+                  "selectedAssetId": undefined,
                   "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                 },
               },
@@ -229,11 +237,12 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onShare={[Function]}
                 slide={
-                  SlideModel {
+                  Slide {
                     "assets": Array [],
                     "id": 1,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드2",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   }
                 }
@@ -255,11 +264,12 @@ ShallowWrapper {
                 "onCopy": [Function],
                 "onDelete": [Function],
                 "onShare": [Function],
-                "slide": SlideModel {
+                "slide": Slide {
                   "assets": Array [],
                   "id": 1,
                   "lastAssetId": 0,
                   "name": "테스트 슬라이드2",
+                  "selectedAssetId": undefined,
                   "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                 },
               },
@@ -310,11 +320,12 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onShare={[Function]}
                 slide={
-                  SlideModel {
+                  Slide {
                     "assets": Array [],
                     "id": 0,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   }
                 }
@@ -334,11 +345,12 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onShare={[Function]}
                 slide={
-                  SlideModel {
+                  Slide {
                     "assets": Array [],
                     "id": 1,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드2",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   }
                 }
@@ -372,11 +384,12 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onShare={[Function]}
                   slide={
-                    SlideModel {
+                    Slide {
                       "assets": Array [],
                       "id": 0,
                       "lastAssetId": 0,
                       "name": "테스트 슬라이드",
+                      "selectedAssetId": undefined,
                       "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                     }
                   }
@@ -396,11 +409,12 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onShare={[Function]}
                   slide={
-                    SlideModel {
+                    Slide {
                       "assets": Array [],
                       "id": 1,
                       "lastAssetId": 0,
                       "name": "테스트 슬라이드2",
+                      "selectedAssetId": undefined,
                       "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                     }
                   }
@@ -424,11 +438,12 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onShare={[Function]}
                   slide={
-                    SlideModel {
+                    Slide {
                       "assets": Array [],
                       "id": 0,
                       "lastAssetId": 0,
                       "name": "테스트 슬라이드",
+                      "selectedAssetId": undefined,
                       "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                     }
                   }
@@ -450,11 +465,12 @@ ShallowWrapper {
                   "onCopy": [Function],
                   "onDelete": [Function],
                   "onShare": [Function],
-                  "slide": SlideModel {
+                  "slide": Slide {
                     "assets": Array [],
                     "id": 0,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   },
                 },
@@ -477,11 +493,12 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onShare={[Function]}
                   slide={
-                    SlideModel {
+                    Slide {
                       "assets": Array [],
                       "id": 1,
                       "lastAssetId": 0,
                       "name": "테스트 슬라이드2",
+                      "selectedAssetId": undefined,
                       "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                     }
                   }
@@ -503,11 +520,12 @@ ShallowWrapper {
                   "onCopy": [Function],
                   "onDelete": [Function],
                   "onShare": [Function],
-                  "slide": SlideModel {
+                  "slide": Slide {
                     "assets": Array [],
                     "id": 1,
                     "lastAssetId": 0,
                     "name": "테스트 슬라이드2",
+                    "selectedAssetId": undefined,
                     "thumbnail": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
                   },
                 },

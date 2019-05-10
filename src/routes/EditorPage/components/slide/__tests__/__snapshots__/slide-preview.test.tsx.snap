@@ -11,11 +11,12 @@ ShallowWrapper {
     onDelete={[MockFunction]}
     onShare={[MockFunction]}
     slide={
-      SlideModel {
+      Slide {
         "assets": "https://avatars0.githubusercontent.com/u/14067209?s=88&v=4",
         "id": 0,
         "lastAssetId": 0,
         "name": "테스트슬라이드",
+        "selectedAssetId": undefined,
         "thumbnail": Array [],
       }
     }
