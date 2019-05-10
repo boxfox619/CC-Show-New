@@ -29,7 +29,7 @@ export const ACTION_HANDLERS = {
     },
     [DELETE_SLIDE]: (state: EditorStore, payload: number) => {
         const idx = state.slides.findIndex(s => s.id === payload);
-        return { slides: { $splice: [idx, 1] } }
+        return { slides: { $splice: [[idx, 1]] } }
     },
     [COPY_SLIDE]: (state: EditorStore, payload: number) => {
         const slide = state.slides.find(s => s.id === payload);
@@ -42,7 +42,7 @@ export const ACTION_HANDLERS = {
     },
     [MOVE_SLIDE]: (state: EditorStore, payload: MoveSlidePayload) => {
         const { from, to } = payload;
-        const newSlides = { ...state.slides };
+        const newSlides = [...state.slides];
         const slide = newSlides.splice(from, 1)[0];
         newSlides.splice(to, 0, slide);
         return { slides: { $set: newSlides } }

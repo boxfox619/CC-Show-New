@@ -12,12 +12,7 @@ import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide
 import AssetCanvas from '../components/assetCanvas';
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 2;
-`
-const MainContainer = styled.div`
+  position: relative;
   display: flex;
   flex-flow: row;
   width: 100vw;
@@ -66,6 +61,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
   return (
     <Container>
       <SlideListManager
+        style={{ zIndex: 1 }}
         visible={visibleSlideManager}
         toggleSlideManager={toggleSlideManager}
         selectedSlideId={props.editor.selectedSlideId}
@@ -77,12 +73,12 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
         shareSlide={props.shareSlide}
         deleteSlide={props.deleteSlide}
       />
-      <MainContainer>
         <ShowController
-          style={{ flex: 0 }}
+          style={{ flex: 0, zIndex: 2 }}
           name={props.auth.name}
           email={props.auth.email}
           thumbnail={props.auth.thumbnail}
+          visibleSlideManager={visibleSlideManager}
           addAsset={props.addAsset}
           toggleAssetManager={toggleAssetManager}
           toggleSlideManager={toggleSlideManager}
@@ -97,7 +93,6 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           onChangeValue={handleValueChange}
           editable={true}
         />
-      </MainContainer>
     </Container>
   );
 }

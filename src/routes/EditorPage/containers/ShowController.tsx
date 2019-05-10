@@ -32,6 +32,7 @@ interface OwnProps {
     name: string,
     email: string,
     thumbnail: string,
+    visibleSlideManager: boolean,
     addAsset: (payload: CreateAssetPayload) => void,
     toggleAssetManager: () => void,
     toggleSlideManager: () => void,
@@ -59,7 +60,7 @@ const ShowController: React.FC<Props> = (props: Props) => {
             </ButtonGroup>
             <SplitBar />
             <ButtonGroup>
-                <GradientButtonItem label="슬라이드 리스트" onClick={props.toggleSlideManager}/>
+                <GradientButtonItem label="슬라이드 리스트" onClick={props.toggleSlideManager} active={props.visibleSlideManager}/>
                 <GradientButtonItem label="슬라이드 쇼" onClick={props.toggleSlideShow}/>
             </ButtonGroup>
         </Container>
