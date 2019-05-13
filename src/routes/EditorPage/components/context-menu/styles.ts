@@ -1,0 +1,70 @@
+import styled from 'styled-components';
+
+export const MenuContainer = styled.div`
+    position: fixed;
+    background: #F2F2F2;
+    box-shadow: 0px 2px 10px #999999;
+    border-radius: 10px;
+    z-index: 100;
+    color: black !important;
+    ${(props: {left?: number, top?: number}) => `
+        ${props.left && `left: ${props.left};`}
+        ${props.top && `top: ${props.top};`}
+    `}
+`
+
+export const MenuContent = styled.div`
+    overflow: hidden;
+    border-radius: 10px;
+`
+export const ShortCut = styled.div`
+    margin-left: 10px;
+    float:right;
+`
+
+export const Submenu = styled.div`
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float:right;
+    width: 9px;
+    height: 15px;
+`
+
+export const Option = styled.div`
+    padding: 10px 15px 10px 15px;
+    min-width: 160px;
+    cursor: default;
+    font-size: 12px;
+    cursor: pointer;
+    ${(props: {disabled?: boolean}) => props.disabled ? `
+        cursor: not-allowed;
+    ` : `
+        &:hover > ${MenuContainer} {
+            display: block;
+        }
+    `}
+    &:hover {
+        background: #5B86B4;
+        color: white !important;
+    }
+    &:active {
+        color: #e9e9e9;
+        background: #5B86B4;
+    }
+    & > ${MenuContainer} {
+        position: absolute;
+        left: calc(100% + 3px);
+        transform: translate(0, -30px);
+        display: none;
+    }
+`
+
+export const Seperator = styled.div `
+    width: 100%;
+    height: 1px;
+    background: #CCCCCC;
+    margin: 0 0 0 0;
+`

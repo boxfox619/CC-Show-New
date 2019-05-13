@@ -7,6 +7,7 @@ import StoreModel from '../models/StoreModel';
 import styled from 'styled-components';
 import ShowController from './ShowController';
 import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../reducers/asset';
+import { ContextMenu } from '../components/context-menu';
 import SlideListManager from './SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
 import AssetCanvas from '../components/assetCanvas';
@@ -44,6 +45,19 @@ const mapStateToProps = (state: StoreModel) => {
     editor: state.editor
   }
 };
+
+const menu = [
+  { label: '복사', shortcut: 'Ctrl + C', onClick: () => alert('aa') },
+  { label: '붙여넣기', shortcut: 'Ctrl + V', onClick: () => alert('aa') },
+  { label: '삭제', shortcut: 'Ctrl + D', onClick: () => alert('aa') },
+  { label: '잘라내기', shortcut: 'Ctrl + X', onClick: () => alert('aa') },
+  { label: '정렬', subMenus: [
+      { label: '맨 앞으로 가져오기', shortcut: 'SHIFT + CTRL + ]', onClick: () => alert('aa') },
+      { label: '앞으로 가져오기', shortcut: 'CTRL + ]', onClick: () => alert('aa') },
+      { label: '뒤로 보내기', shortcut: 'CTRL + [', onClick: () => alert('aa') },
+      { label: '맨 뒤로 보내기', shortcut: 'SHIFT + CTRL + [', onClick: () => alert('aa') },
+  ]},
+];
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & OwnProps;
 
@@ -93,6 +107,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           onChangeValue={handleValueChange}
           editable={true}
         />
+        <ContextMenu visible={true} menu={menu}/>
     </Container>
   );
 }
