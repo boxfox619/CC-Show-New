@@ -1,13 +1,6 @@
 import * as React from 'react';
+import { Menu } from '.';
 import { MenuContainer, MenuContent, Option, ShortCut } from './styles';
-
-interface Menu {
-    label: string
-    shortcut?: string
-    subMenus?: Menu[]
-    disabled?: boolean
-    onClick?: () => void
-}
 
 interface Props {
     visible: boolean,
