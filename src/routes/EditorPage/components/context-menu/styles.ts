@@ -7,9 +7,10 @@ export const MenuContainer = styled.div`
     border-radius: 10px;
     z-index: 100;
     color: black !important;
-    ${(props: {left?: number, top?: number}) => `
+    ${(props: {left?: number, top?: number, visible: boolean}) => `
         ${props.left && `left: ${props.left};`}
         ${props.top && `top: ${props.top};`}
+        display: ${props.visible ? 'block' : 'none'};
     `}
 `
 

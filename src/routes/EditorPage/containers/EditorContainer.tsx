@@ -51,8 +51,9 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
   const toggleAssetManager = () => setVisibleAssetManager(!visibleAssetManager);
   const toggleSlideManager = () => setVisibleSlideManager(!visibleSlideManager);
   const toggleSlideShow = () => setVisibleSlideShow(!visibleSlideShow);
+  const onContext = (e: React.MouseEvent) => e.preventDefault();
   return (
-    <Container>
+    <Container onContextMenu={onContext}>
       <SlideListManager
         style={{ zIndex: 1 }}
         visible={visibleSlideManager}

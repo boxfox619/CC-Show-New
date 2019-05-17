@@ -4,6 +4,7 @@ import {AssetModel, AssetType} from 'src/models';
 import { AssetRenderer } from './AssetRenderer';
 import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../modules/asset.service';
 import { clearSelection } from 'src/routes/EditorPage/modules/dom.service';
+import { UpdateAssetValuePayload } from '../../models/payload';
 
 const ACTION_MOVE = 'move';
 const ACTION_RESIZE = 'resize';
@@ -14,7 +15,7 @@ interface OwnProps {
     selectedAssetId?: number,
     editable: boolean,
     onSelectAsset: (id?: number) => void,
-    onChangeValue: (id: number, value: any) => void,
+    onChangeValue: (payload: UpdateAssetValuePayload) => void,
     modifyAsset: (id: number, x: number, y: number, width: number, height: number) => void,
 }
 

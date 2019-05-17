@@ -2,7 +2,7 @@ import * as React from 'react';
 import AssetCanvas from '../components/assetCanvas';
 import StoreModel from '../models/StoreModel';
 import { connect } from 'react-redux';
-import { Menu, ContextMenu } from '../components/context-menu';
+import { ContextMenu } from '../components/context-menu';
 import { selectAsset, resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset } from '../reducers/asset';
 
 const mapDispatchToProps = {
@@ -25,17 +25,16 @@ type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
   const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
   if (!currentSlide) { return (<></>); }
-  const assets = currentSlide.assets;
+  const [visibleMenu, setVisibleMenu] = React.useState(false);
   const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
-  const handleValueChange = (id: number, value: any) => props.updateAssetValue({ id, value });
-  const selectedAssetId = currentSlide.selectedAssetId;
-  let menu: Menu[] = new Array<Menu>();
-  if (!!selectedAssetId) {
-    menu = [
-      { label: '복사', shortcut: 'Ctrl + C', onClick: () => props.copyAsset(selectedAssetId) },
-      { label: '붙여넣기', shortcut: 'Ctrl + V', onClick: () => props.pasteAsset() },
-      { label: '삭제', shortcut: 'Ctrl + D', onClick: () => props.deleteAsset(selectedAssetId) },
-      { label: '잘라내기', shortcut: 'Ctrl + X', onClick: () => { props.copyAsset(selectedAssetId); props.deleteAsset(selectedAssetId); } },
+  const openContextMenu = () => setVisibleMenu(true);
+  const closeContextMenu = () => setVisibleMenu(false);
+  const assetId = currentSlide.selectedAssetId;
+  const menu = [
+      { label: '복사', shortcut: 'Ctrl + C', onClick: assetId ? () => props.copyAsset(assetId) : undefined },
+      { label: '붙여넣기', shortcut: 'Ctrl + V', onClick: props.editor.copiedAsset ? () => props.pasteAsset() : undefined },
+      { label: '삭제', shortcut: 'Ctrl + D', onClick: assetId ? () => props.deleteAsset(assetId) : undefined },
+      { label: '잘라내기', shortcut: 'Ctrl + X', onClick: assetId ? () => { props.copyAsset(assetId); props.deleteAsset(assetId); } : undefined },
       {
         label: '정렬', subMenus: [
           { label: '맨 앞으로 가져오기', shortcut: 'SHIFT + CTRL + ]', onClick: () => alert('aa') },
@@ -43,21 +42,23 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
           { label: '뒤로 보내기', shortcut: 'CTRL + [', onClick: () => alert('aa') },
           { label: '맨 뒤로 보내기', shortcut: 'SHIFT + CTRL + [', onClick: () => alert('aa') },
         ]
-      },
+      }
     ];
-  }
+    const position = {x : 10, y: 10};
   return (
     <>
       <AssetCanvas
         style={{ flex: 1 }}
-        assets={assets}
-        selectedAssetId={selectedAssetId}
+        assets={currentSlide.assets}
+        selectedAssetId={assetId}
         onSelectAsset={props.selectAsset}
         modifyAsset={modifyAsset}
-        onChangeValue={handleValueChange}
+        onChangeValue={props.updateAssetValue}
         editable={true}
+        onContextMenu={openContextMenu}
+        onClick={closeContextMenu}
       />
-      <ContextMenu visible={!!menu} menu={menu} />
+      <ContextMenu visible={!!menu && visibleMenu} menu={menu} position={position}/>
     </>
   )
 }
