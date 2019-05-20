@@ -19,9 +19,7 @@ interface Props {
     attr: GuidelineModel
 }
 
-export const Guideline: React.FC<Props> = ({height, style}) => {
-    const vertical = (!!height);
-    return (
-        <Line vertical={vertical} style={style}/>
-    )
+export const Guideline: React.FC<Props> = (props) => {
+    const vertical = (!!props.attr.height);
+    return ( <Line vertical={vertical} style={props.attr.style}/> );
 }

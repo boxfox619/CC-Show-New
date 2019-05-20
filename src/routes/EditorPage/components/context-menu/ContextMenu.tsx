@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PointModel } from 'src/models';
 import { Menu } from '.';
-import { MenuContainer, MenuContent, Option, ShortCut } from './styles';
+import { MenuContainer, MenuContent, Option, ShortCut, Submenu } from './styles';
 
 interface Props {
     visible: boolean,
@@ -14,10 +14,10 @@ const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean
         <MenuContainer left={left} top={top} visible={visible}>
             <MenuContent>
                 {menus.map(m => (
-                    <Option onClick={m.onClick} disabled={m.disabled || !m.onClick}>
+                    <Option onClick={m.onClick} disabled={(!m.subMenus) && (m.disabled || !m.onClick)}>
                         {m.label}
                         {m.shortcut && (<ShortCut>{m.shortcut}</ShortCut>)}
-                        {m.subMenus && createMenu(m.subMenus)}
+                        <Submenu>{m.subMenus && createMenu(m.subMenus)}</Submenu>
                     </Option>
                 ))}
             </MenuContent>

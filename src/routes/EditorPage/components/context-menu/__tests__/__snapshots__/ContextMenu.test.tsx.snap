@@ -59,6 +59,7 @@ ShallowWrapper {
           <ForwardRef>
             SHIFT + CTRL + ]
           </ForwardRef>
+          <ForwardRef />
         </ForwardRef>
         <ForwardRef
           disabled={false}
@@ -68,6 +69,7 @@ ShallowWrapper {
           <ForwardRef>
             CTRL + ]
           </ForwardRef>
+          <ForwardRef />
         </ForwardRef>
         <ForwardRef
           disabled={false}
@@ -77,6 +79,7 @@ ShallowWrapper {
           <ForwardRef>
             CTRL + [
           </ForwardRef>
+          <ForwardRef />
         </ForwardRef>
         <ForwardRef
           disabled={false}
@@ -86,6 +89,7 @@ ShallowWrapper {
           <ForwardRef>
             SHIFT + CTRL + [
           </ForwardRef>
+          <ForwardRef />
         </ForwardRef>
       </ForwardRef>,
       "left": 10,
@@ -107,6 +111,7 @@ ShallowWrapper {
             <ForwardRef>
               SHIFT + CTRL + ]
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>,
           <ForwardRef
             disabled={false}
@@ -116,6 +121,7 @@ ShallowWrapper {
             <ForwardRef>
               CTRL + ]
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>,
           <ForwardRef
             disabled={false}
@@ -125,6 +131,7 @@ ShallowWrapper {
             <ForwardRef>
               CTRL + [
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>,
           <ForwardRef
             disabled={false}
@@ -134,6 +141,7 @@ ShallowWrapper {
             <ForwardRef>
               SHIFT + CTRL + [
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>,
         ],
       },
@@ -149,7 +157,7 @@ ShallowWrapper {
               <ForwardRef>
                 SHIFT + CTRL + ]
               </ForwardRef>,
-              undefined,
+              <ForwardRef />,
             ],
             "disabled": false,
             "onClick": [Function],
@@ -189,7 +197,45 @@ ShallowWrapper {
                 "withComponent": [Function],
               },
             },
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bxivhb",
+                  "isStatic": true,
+                  "rules": Array [
+                    "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bxivhb",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              },
+            },
           ],
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -210,18 +256,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                ".sc-bxivhb",
+                " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                ".sc-bdVaJa",
-                " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
               ],
@@ -246,7 +289,7 @@ ShallowWrapper {
               <ForwardRef>
                 CTRL + ]
               </ForwardRef>,
-              undefined,
+              <ForwardRef />,
             ],
             "disabled": false,
             "onClick": [Function],
@@ -286,7 +329,45 @@ ShallowWrapper {
                 "withComponent": [Function],
               },
             },
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bxivhb",
+                  "isStatic": true,
+                  "rules": Array [
+                    "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bxivhb",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              },
+            },
           ],
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -307,18 +388,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                ".sc-bxivhb",
+                " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                ".sc-bdVaJa",
-                " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
               ],
@@ -343,7 +421,7 @@ ShallowWrapper {
               <ForwardRef>
                 CTRL + [
               </ForwardRef>,
-              undefined,
+              <ForwardRef />,
             ],
             "disabled": false,
             "onClick": [Function],
@@ -383,7 +461,45 @@ ShallowWrapper {
                 "withComponent": [Function],
               },
             },
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bxivhb",
+                  "isStatic": true,
+                  "rules": Array [
+                    "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bxivhb",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              },
+            },
           ],
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -404,18 +520,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                ".sc-bxivhb",
+                " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                ".sc-bdVaJa",
-                " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
               ],
@@ -440,7 +553,7 @@ ShallowWrapper {
               <ForwardRef>
                 SHIFT + CTRL + [
               </ForwardRef>,
-              undefined,
+              <ForwardRef />,
             ],
             "disabled": false,
             "onClick": [Function],
@@ -480,7 +593,45 @@ ShallowWrapper {
                 "withComponent": [Function],
               },
             },
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bxivhb",
+                  "isStatic": true,
+                  "rules": Array [
+                    "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bxivhb",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              },
+            },
           ],
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -501,18 +652,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                ".sc-bxivhb",
+                " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                ".sc-bdVaJa",
-                " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
               ],
@@ -596,6 +744,7 @@ ShallowWrapper {
             <ForwardRef>
               SHIFT + CTRL + ]
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>
           <ForwardRef
             disabled={false}
@@ -605,6 +754,7 @@ ShallowWrapper {
             <ForwardRef>
               CTRL + ]
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>
           <ForwardRef
             disabled={false}
@@ -614,6 +764,7 @@ ShallowWrapper {
             <ForwardRef>
               CTRL + [
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>
           <ForwardRef
             disabled={false}
@@ -623,6 +774,7 @@ ShallowWrapper {
             <ForwardRef>
               SHIFT + CTRL + [
             </ForwardRef>
+            <ForwardRef />
           </ForwardRef>
         </ForwardRef>,
         "left": 10,
@@ -644,6 +796,7 @@ ShallowWrapper {
               <ForwardRef>
                 SHIFT + CTRL + ]
               </ForwardRef>
+              <ForwardRef />
             </ForwardRef>,
             <ForwardRef
               disabled={false}
@@ -653,6 +806,7 @@ ShallowWrapper {
               <ForwardRef>
                 CTRL + ]
               </ForwardRef>
+              <ForwardRef />
             </ForwardRef>,
             <ForwardRef
               disabled={false}
@@ -662,6 +816,7 @@ ShallowWrapper {
               <ForwardRef>
                 CTRL + [
               </ForwardRef>
+              <ForwardRef />
             </ForwardRef>,
             <ForwardRef
               disabled={false}
@@ -671,6 +826,7 @@ ShallowWrapper {
               <ForwardRef>
                 SHIFT + CTRL + [
               </ForwardRef>
+              <ForwardRef />
             </ForwardRef>,
           ],
         },
@@ -686,7 +842,7 @@ ShallowWrapper {
                 <ForwardRef>
                   SHIFT + CTRL + ]
                 </ForwardRef>,
-                undefined,
+                <ForwardRef />,
               ],
               "disabled": false,
               "onClick": [Function],
@@ -726,7 +882,45 @@ ShallowWrapper {
                   "withComponent": [Function],
                 },
               },
-              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bxivhb",
+                    "isStatic": true,
+                    "rules": Array [
+                      "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                    ],
+                  },
+                  "displayName": "styled.div",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bxivhb",
+                  "target": "div",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                },
+              },
             ],
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
@@ -747,18 +941,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                  ".sc-bxivhb",
+                  " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                  ".sc-bdVaJa",
-                  " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
                 ],
@@ -783,7 +974,7 @@ ShallowWrapper {
                 <ForwardRef>
                   CTRL + ]
                 </ForwardRef>,
-                undefined,
+                <ForwardRef />,
               ],
               "disabled": false,
               "onClick": [Function],
@@ -823,7 +1014,45 @@ ShallowWrapper {
                   "withComponent": [Function],
                 },
               },
-              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bxivhb",
+                    "isStatic": true,
+                    "rules": Array [
+                      "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                    ],
+                  },
+                  "displayName": "styled.div",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bxivhb",
+                  "target": "div",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                },
+              },
             ],
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
@@ -844,18 +1073,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                  ".sc-bxivhb",
+                  " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                  ".sc-bdVaJa",
-                  " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
                 ],
@@ -880,7 +1106,7 @@ ShallowWrapper {
                 <ForwardRef>
                   CTRL + [
                 </ForwardRef>,
-                undefined,
+                <ForwardRef />,
               ],
               "disabled": false,
               "onClick": [Function],
@@ -920,7 +1146,45 @@ ShallowWrapper {
                   "withComponent": [Function],
                 },
               },
-              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bxivhb",
+                    "isStatic": true,
+                    "rules": Array [
+                      "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                    ],
+                  },
+                  "displayName": "styled.div",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bxivhb",
+                  "target": "div",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                },
+              },
             ],
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
@@ -941,18 +1205,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                  ".sc-bxivhb",
+                  " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                  ".sc-bdVaJa",
-                  " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
                 ],
@@ -977,7 +1238,7 @@ ShallowWrapper {
                 <ForwardRef>
                   SHIFT + CTRL + [
                 </ForwardRef>,
-                undefined,
+                <ForwardRef />,
               ],
               "disabled": false,
               "onClick": [Function],
@@ -1017,7 +1278,45 @@ ShallowWrapper {
                   "withComponent": [Function],
                 },
               },
-              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bxivhb",
+                    "isStatic": true,
+                    "rules": Array [
+                      "
+    background-image: url('/images/ic_right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    content: '';
+    float: right;
+    width: 9px;
+    height: 15px;
+    display: none;
+",
+                    ],
+                  },
+                  "displayName": "styled.div",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bxivhb",
+                  "target": "div",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                },
+              },
             ],
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
@@ -1038,18 +1337,15 @@ ShallowWrapper {
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ",
+                  ".sc-bxivhb",
+                  " {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ",
-                  ".sc-bdVaJa",
-                  " {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 ",
                 ],

@@ -29,9 +29,10 @@ export const Submenu = styled.div`
     background-position: center;
     background-size: cover;
     content: '';
-    float:right;
+    float: right;
     width: 9px;
     height: 15px;
+    display: none;
 `
 
 export const Option = styled.div`
@@ -40,26 +41,19 @@ export const Option = styled.div`
     cursor: default;
     font-size: 12px;
     cursor: pointer;
-    ${(props: {disabled?: boolean}) => props.disabled ? `
+    ${(props: {disabled?: boolean}) => props.disabled && `
         cursor: not-allowed;
-    ` : `
-        &:hover > ${MenuContainer} {
-            display: block;
-        }
     `}
     &:hover {
         background: #5B86B4;
         color: white !important;
+        & > ${Submenu} {
+            display: block;
+        }
     }
     &:active {
         color: #e9e9e9;
         background: #5B86B4;
-    }
-    & > ${MenuContainer} {
-        position: absolute;
-        left: calc(100% + 3px);
-        transform: translate(0, -30px);
-        display: none;
     }
 `
 
