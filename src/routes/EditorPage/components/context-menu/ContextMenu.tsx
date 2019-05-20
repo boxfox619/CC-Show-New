@@ -25,6 +25,6 @@ const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean
     )
 }
 
-export const ContextMenu: React.FC<Props> = ({visible, menu}) => {
-    return createMenu(menu, 0, 0, visible);
+export const ContextMenu: React.FC<Props> = ({visible, menu, position}) => {
+    return createMenu(menu, position.x, position.y, visible);
 }

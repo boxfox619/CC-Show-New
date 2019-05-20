@@ -8,8 +8,8 @@ export const MenuContainer = styled.div`
     z-index: 100;
     color: black !important;
     ${(props: {left?: number, top?: number, visible: boolean}) => `
-        ${props.left && `left: ${props.left};`}
-        ${props.top && `top: ${props.top};`}
+        ${props.left ? `left: ${props.left}px;` : ''}
+        ${props.top ? `top: ${props.top}px;` : ''}
         display: ${props.visible ? 'block' : 'none'};
     `}
 `
