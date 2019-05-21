@@ -1,9 +1,13 @@
 export {ContextMenu} from './ContextMenu';
 
-export interface Menu {
-    label: string
-    shortcut?: string
-    subMenus?: Menu[]
-    disabled?: boolean
-    onClick?: () => void
+type action = () => void;
+
+export class Menu {
+    constructor(
+        public label: string,
+        public shortcut?: string,
+        public actions: action[] = [],
+        public disabled: boolean = false,
+        public subMenus?: Menu[])
+        {}
 }

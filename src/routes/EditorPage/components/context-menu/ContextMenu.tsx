@@ -13,13 +13,16 @@ const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean
     return (
         <MenuContainer left={left} top={top} visible={visible}>
             <MenuContent>
-                {menus.map(m => (
-                    <Option onClick={m.onClick} disabled={(!m.subMenus) && (m.disabled || !m.onClick)}>
-                        {m.label}
-                        {m.shortcut && (<ShortCut>{m.shortcut}</ShortCut>)}
-                        <Submenu>{m.subMenus && createMenu(m.subMenus)}</Submenu>
-                    </Option>
-                ))}
+                {menus.map(m => {
+                    const onClick = () => {if(!m.disabled) {m.actions.map(action => action())}};
+                    return (
+                        <Option key={m.label} onClick={onClick} disabled={m.disabled}>
+                            {m.label}
+                            {m.shortcut && (<ShortCut>{m.shortcut}</ShortCut>)}
+                            <Submenu>{m.subMenus && createMenu(m.subMenus)}</Submenu>
+                        </Option>
+                    )
+                })}
             </MenuContent>
         </MenuContainer>
     )
