@@ -40,6 +40,7 @@ const SelectorDot = styled.div`
 
 interface Props {
     data: AssetModel,
+    index: number,
     isHovered: boolean,
     isSelected: boolean,
     controllable: boolean,
@@ -48,7 +49,7 @@ interface Props {
     onValueChange: (value: any) => void
 }
 
-export const Asset: React.FC<Props> = ( { data, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked }) => {
+export const Asset: React.FC<Props> = ( { data, index, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked }) => {
     const onMouseOver = () => onMouseHover(true);
     const onMouseOut = () => onMouseHover(false);
 
@@ -97,7 +98,8 @@ export const Asset: React.FC<Props> = ( { data, isSelected, controllable, onMous
                 'width': `${data.width}px`,
                 'height': `${data.height}px`,
                 'left': `${data.position.x}px`,
-                'top': `${data.position.y}px`
+                'top': `${data.position.y}px`,
+                zIndex: index
             }}>
             {(isSelected) && renderSelectorLine(data.width, data.height)}
             <AssetContext

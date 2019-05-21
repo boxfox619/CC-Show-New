@@ -33,6 +33,7 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
             return (
                 <Asset
                     key={asset.id}
+                    index={idx}
                     data={asset}
                     isSelected={isSelected}
                     isHovered={isHovered}

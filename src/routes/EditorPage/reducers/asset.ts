@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
 import AssetModel from 'src/models/AssetModel';
-import {CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload} from '../models/payload';
+import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload } from '../models/payload';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -11,6 +11,7 @@ export const PASTE_ASSET = 'ASSET.PASTE_ASSET';
 export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
 export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
+export const SORT_ASSET = 'ASSET.SORT_ASSET';
 
 export const addAsset = createAction<CreateAssetPayload>(ADD_ASSET);
 export const deleteAsset = createAction<number>(DELETE_ASSET);
@@ -20,7 +21,7 @@ export const pasteAsset = createAction(PASTE_ASSET);
 export const selectAsset = createAction<number>(SELECT_ASSET);
 export const resizeAsset = createAction<ResizeAssetPayload>(RESIZE_ASSET);
 export const updateAssetValue = createAction<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
-
+export const sortAsset = createAction<SortAssetPayload>(SORT_ASSET);
 
 
 const getCurrentSlideIdx = (state: EditorStore) => state.slides.findIndex(s => s.id === state.selectedSlideId);
@@ -49,7 +50,7 @@ export const ACTION_HANDLERS = {
         const idx = getCurrentSlideIdx(state);
         const assetId = payload.assetId;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
-        return { slides: { [idx]: { assets: { [assetIdx]: {position: payload.point} } } } };
+        return { slides: { [idx]: { assets: { [assetIdx]: { position: payload.point } } } } };
     },
     [COPY_ASSET]: (state: EditorStore, payload: number) => {
         const idx = getCurrentSlideIdx(state);
@@ -89,9 +90,9 @@ export const ACTION_HANDLERS = {
         return {
             slides: {
                 [idx]: {
-                    assets : {
-                        [assetIdx] : {
-                            value: {$set: payload.value}
+                    assets: {
+                        [assetIdx]: {
+                            value: { $set: payload.value }
                         }
                     }
                 }
@@ -104,15 +105,23 @@ export const ACTION_HANDLERS = {
         return {
             slides: {
                 [idx]: {
-                    assets : {
-                        [assetIdx] : {
-                            position: {$set: payload.position},
-                            width: {$set: payload.width},
-                            height: {$set: payload.height}
+                    assets: {
+                        [assetIdx]: {
+                            position: { $set: payload.position },
+                            width: { $set: payload.width },
+                            height: { $set: payload.height }
                         }
                     }
                 }
             }
         }
+    },
+    [SORT_ASSET]: (state: EditorStore, payload: SortAssetPayload) => {
+        const slideIdx = getCurrentSlideIdx(state);
+        const assetIdx = state.slides[slideIdx].assets.findIndex(a => a.id === payload.id);
+        const afterIndex = assetIdx + payload.index;
+        const assets = state.slides[slideIdx].assets.slice();
+        assets.splice(afterIndex, 0 ,assets.splice(assetIdx, 1)[0]);
+        return { slides: { [slideIdx]: { assets: { $set: assets } } } };
     }
 }
