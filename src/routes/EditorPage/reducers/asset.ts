@@ -119,8 +119,8 @@ export const ACTION_HANDLERS = {
     [SORT_ASSET]: (state: EditorStore, payload: SortAssetPayload) => {
         const slideIdx = getCurrentSlideIdx(state);
         const assetIdx = state.slides[slideIdx].assets.findIndex(a => a.id === payload.id);
-        const afterIndex = assetIdx + payload.index;
         const assets = state.slides[slideIdx].assets.slice();
+        const afterIndex = payload.getTargetIndex(assetIdx, assets.length);
         assets.splice(afterIndex, 0 ,assets.splice(assetIdx, 1)[0]);
         return { slides: { [slideIdx]: { assets: { $set: assets } } } };
     }
