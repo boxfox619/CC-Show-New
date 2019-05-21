@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AssetModel from 'src/models/AssetModel';
 import { Guideline } from './Guideline';
 import { calGuideLine } from '../../modules/asset.service';
+import { UpdateAssetValuePayload } from '../../models/payload';
 import Asset from '../asset';
 import styled from 'styled-components';
 
@@ -15,7 +16,7 @@ interface OwnProps {
     selectedAssetId?: number,
     editable: boolean,
     doubleClicked: boolean,
-    onChangeValue: (id: number, value: any) => void
+    onChangeValue: (payload: UpdateAssetValuePayload) => void
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
@@ -28,7 +29,7 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
             const isSelected = asset.id === selectedAssetId;
             const isHovered = idx === hoveredAssetIdx;
             const handleMouseHover = (hover: boolean) => setHoveredAsset(hover ? idx : -1);
-            const onValueChange = (value: any) => onChangeValue(asset.id, value);
+            const onValueChange = (value: any) => onChangeValue({id: asset.id, value});
             return (
                 <Asset
                     key={asset.id}

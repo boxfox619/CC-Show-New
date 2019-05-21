@@ -6,10 +6,10 @@ import { match } from 'react-router-dom';
 import StoreModel from '../models/StoreModel';
 import styled from 'styled-components';
 import ShowController from './ShowController';
-import { addAsset, selectAsset, resizeAsset, updateAssetValue } from '../reducers/asset';
+import { addAsset } from '../reducers/asset';
 import SlideListManager from './SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
-import AssetCanvas from '../components/assetCanvas';
+import AssetCanvasContainer from './AssetCanvasContainer';
 
 const Container = styled.div`
   position: relative;
@@ -27,9 +27,6 @@ interface OwnProps {
 
 const mapDispatchToProps = {
   addAsset,
-  selectAsset,
-  updateAssetValue,
-  resizeAsset,
   moveSlide,
   selectSlide,
   copySlide,
@@ -54,12 +51,9 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
   const toggleAssetManager = () => setVisibleAssetManager(!visibleAssetManager);
   const toggleSlideManager = () => setVisibleSlideManager(!visibleSlideManager);
   const toggleSlideShow = () => setVisibleSlideShow(!visibleSlideShow);
-  const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
-  const assets = currentSlide ? currentSlide.assets : [];
-  const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
-  const handleValueChange = (id: number, value: any) => props.updateAssetValue({id, value});
+  const onContext = (e: React.MouseEvent) => e.preventDefault();
   return (
-    <Container>
+    <Container onContextMenu={onContext}>
       <SlideListManager
         style={{ zIndex: 1 }}
         visible={visibleSlideManager}
@@ -84,15 +78,7 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
           toggleSlideManager={toggleSlideManager}
           toggleSlideShow={toggleSlideShow}
         />
-        <AssetCanvas
-          style={{ flex: 1 }}
-          assets={assets}
-          selectedAssetId={currentSlide && currentSlide.selectedAssetId}
-          onSelectAsset={props.selectAsset}
-          modifyAsset={modifyAsset}
-          onChangeValue={handleValueChange}
-          editable={true}
-        />
+        <AssetCanvasContainer/>
     </Container>
   );
 }
