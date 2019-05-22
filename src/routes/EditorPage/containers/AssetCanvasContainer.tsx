@@ -1,9 +1,10 @@
 import * as React from 'react';
 import AssetCanvas from '../components/assetCanvas';
 import StoreModel from '../models/StoreModel';
+import { SortAssetPayload } from '../models/payload';
 import { connect } from 'react-redux';
 import { ContextMenu, Menu } from '../components/context-menu';
-import { selectAsset, resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset } from '../reducers/asset';
+import { selectAsset, resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset, sortAsset } from '../reducers/asset';
 import PointModel from './../../../models/PointModel';
 
 const mapDispatchToProps = {
@@ -12,7 +13,8 @@ const mapDispatchToProps = {
   resizeAsset,
   copyAsset,
   pasteAsset,
-  deleteAsset
+  deleteAsset,
+  sortAsset
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -38,10 +40,10 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
     new Menu('삭제', 'Ctrl + D', [props.deleteAsset.bind(null, assetId), closeContextMenu], !assetValid ),
     new Menu('잘라내기', 'Ctrl + X', [props.copyAsset.bind(null, assetId), props.deleteAsset.bind(null, assetId)], !assetValid ),
     new Menu('정렬', '', [], false, [
-        new Menu('맨 앞으로 가져오기', 'SHIFT + CTRL + ]', [alert.bind(null,'aa')] ),
-        new Menu('앞으로 가져오기', 'CTRL + ]', [alert.bind(null,'aa')]),
-        new Menu('뒤로 보내기', 'CTRL + [', [alert.bind(null,'aa')]),
-        new Menu('맨 뒤로 보내기', 'SHIFT + CTRL + [', [alert.bind(null,'aa')])
+        new Menu('맨 앞으로 가져오기', 'SHIFT + CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(assetId, +1, true)), closeContextMenu] ),
+        new Menu('앞으로 가져오기', 'CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(assetId, +1)), closeContextMenu]),
+        new Menu('뒤로 보내기', 'CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(assetId, -1)), closeContextMenu]),
+        new Menu('맨 뒤로 보내기', 'SHIFT + CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(assetId, -1, true)), closeContextMenu])
       ]
     )
   ];
