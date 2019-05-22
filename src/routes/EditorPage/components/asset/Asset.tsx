@@ -98,12 +98,12 @@ export const Asset: React.FC<Props> = ( { data, index, isSelected, controllable,
                 'width': `${data.width}px`,
                 'height': `${data.height}px`,
                 'left': `${data.position.x}px`,
-                'top': `${data.position.y}px`,
-                zIndex: index
+                'top': `${data.position.y}px`
             }}>
             {(isSelected) && renderSelectorLine(data.width, data.height)}
             <AssetContext
                 data={data}
+                index={index}
                 isSelected={isSelected}
                 isDoubleClicked={isDoubleClicked}
                 controllable={controllable}
