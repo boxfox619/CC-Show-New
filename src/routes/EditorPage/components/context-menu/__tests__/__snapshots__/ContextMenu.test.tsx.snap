@@ -6,25 +6,33 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Unknown
     menu={
       Array [
-        Object {
+        Menu {
+          "actions": Array [],
+          "disabled": false,
           "label": "맨 앞으로 가져오기",
-          "onClick": [Function],
           "shortcut": "SHIFT + CTRL + ]",
+          "subMenus": undefined,
         },
-        Object {
+        Menu {
+          "actions": Array [],
+          "disabled": false,
           "label": "앞으로 가져오기",
-          "onClick": [Function],
           "shortcut": "CTRL + ]",
+          "subMenus": undefined,
         },
-        Object {
+        Menu {
+          "actions": Array [],
+          "disabled": false,
           "label": "뒤로 보내기",
-          "onClick": [Function],
           "shortcut": "CTRL + [",
+          "subMenus": undefined,
         },
-        Object {
+        Menu {
+          "actions": Array [],
+          "disabled": false,
           "label": "맨 뒤로 보내기",
-          "onClick": [Function],
           "shortcut": "SHIFT + CTRL + [",
+          "subMenus": undefined,
         },
       ]
     }
@@ -149,7 +157,7 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "맨 앞으로 가져오기",
           "nodeType": "function",
           "props": Object {
             "children": Array [
@@ -281,7 +289,7 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "앞으로 가져오기",
           "nodeType": "function",
           "props": Object {
             "children": Array [
@@ -413,7 +421,7 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "뒤로 보내기",
           "nodeType": "function",
           "props": Object {
             "children": Array [
@@ -545,7 +553,7 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "맨 뒤로 보내기",
           "nodeType": "function",
           "props": Object {
             "children": Array [
@@ -834,7 +842,7 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "맨 앞으로 가져오기",
             "nodeType": "function",
             "props": Object {
               "children": Array [
@@ -966,7 +974,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "앞으로 가져오기",
             "nodeType": "function",
             "props": Object {
               "children": Array [
@@ -1098,7 +1106,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "뒤로 보내기",
             "nodeType": "function",
             "props": Object {
               "children": Array [
@@ -1230,7 +1238,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "맨 뒤로 보내기",
             "nodeType": "function",
             "props": Object {
               "children": Array [
