@@ -13,12 +13,7 @@ const Image = styled.img`
 `
 
 export const ImageAsset: React.FC<Props> = ({value, ...imgProps}) => {
-    const onDragStart = (e: React.MouseEvent) => e.preventDefault();
-    return (
-        <Image {...imgProps}
-            onDragStart={onDragStart}
-            src={value}
-        />
-    )
+    const onDragStart = React.useCallback((e: React.MouseEvent) => e.preventDefault(), []);
+    return ( <Image {...imgProps} onDragStart={onDragStart} src={value} /> )
 }
 export default ImageAsset;

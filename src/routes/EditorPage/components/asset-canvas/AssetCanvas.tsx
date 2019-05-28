@@ -68,9 +68,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
         setYInElement(e.pageY);
     };
 
-    const handleDoubleClickItem = () => {
-        setDoubleClicked(true);
-    };
+    const handleDoubleClickItem = () => setDoubleClicked(true);
 
     const handleMouseDown = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -104,9 +102,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
         setYInElement(e.pageY);
     };
 
-    const handleMouseRelease = () => {
-        setMouseAction(ACTION_NONE);
-    };
+    const handleMouseRelease = () => setMouseAction(ACTION_NONE);
 
     return (
         <AssetRenderer

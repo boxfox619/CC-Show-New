@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AssetCanvas from '../components/assetCanvas';
+import AssetCanvas from '../components/asset-canvas';
 import StoreModel from '../models/StoreModel';
 import { SortAssetPayload } from '../models/payload';
 import { connect } from 'react-redux';
