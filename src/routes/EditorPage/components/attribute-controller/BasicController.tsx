@@ -2,20 +2,10 @@ import * as React from 'react';
 import colorIcon from '../../assets/ic_color.png';
 import lineIcon from '../../assets/ic_line.png';
 import ControllerWrapper from './ControllerWrapper';
-import styled from 'styled-components';
 import { TextControlItem, TextInput } from './Input/TextInput';
 import { ControlGroup } from './ControlGroup';
 import { ControlItem } from './ControlItem';
-
-const ColorRound = styled.div`
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
-    float: right;
-    display: inline-block;
-    margin-top: -1px;
-`
+import ColorPicker from './Input/ColorPicker';
 
 interface Props {
     width: number
@@ -23,15 +13,18 @@ interface Props {
     x: number
     y: number
     angle: number
-    style: React.CSSProperties
+    style: React.CSSProperties,
+    onChangeStyle: (style: React.CSSProperties) => void
 }
 
-const BasicContainer: React.FC<Props> = ({ width, height, x, y, angle, style }) => {
-    const fillColor = style.fill;
+const BasicContainer: React.FC<Props> = ({ width, height, x, y, angle, style, onChangeStyle }) => {
+    const backgroundColor = style.backgroundColor;
     const borderColor = style.borderColor;
     const borderWidth = style.borderWidth;
-    const colorStyle = (!fillColor || fillColor === 'white') ? { border: '1px solid #5D87B5' } : { backgroundColor: fillColor };
+    const colorStyle = (!backgroundColor || backgroundColor === 'white') ? { border: '1px solid #5D87B5' } : { backgroundColor };
     const borderStyle = (!borderColor || borderColor === 'white') ? { border: '1px solid #5D87B5' } : { backgroundColor: borderColor };
+    const onChangeBackground = React.useCallback((color: string) => onChangeStyle(({ ...style, backgroundColor: color })), [style, onChangeStyle]);
+    const onChangeBorder = React.useCallback((color: string) => onChangeStyle(({ ...style, borderColor: color })), [style, onChangeStyle]);
     return (
         <>
             <ControllerWrapper title="속성">
@@ -48,11 +41,11 @@ const BasicContainer: React.FC<Props> = ({ width, height, x, y, angle, style }) 
             <ControllerWrapper title="모양">
                 <ControlGroup>
                     <ControlItem label={<img src={colorIcon} />}>
-                        <div><ColorRound style={colorStyle} /></div>
+                        <div><ColorPicker style={colorStyle} color={backgroundColor || 'white'} onColorChange={onChangeBackground} /></div>
                     </ControlItem>
                     <ControlItem label={<img src={lineIcon} />}>
                         <div>
-                            <ColorRound style={borderStyle} />
+                            <ColorPicker style={borderStyle} color={style.borderColor || 'black'} onColorChange={onChangeBorder} />
                             <TextInput style={{ width: "60%" }} type="text" value={borderWidth} />
                         </div>
                     </ControlItem>

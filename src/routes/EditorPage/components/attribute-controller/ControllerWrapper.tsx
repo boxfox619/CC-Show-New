@@ -36,8 +36,8 @@ const FlipButton = styled.img`
 const Items = styled.div`
     display: flex;
     flex-flow: column;
-    padding: 0;
-    margin: 0 2%;
+    padding: 0 4%;
+    margin: 0;
 `
 
 interface Props {

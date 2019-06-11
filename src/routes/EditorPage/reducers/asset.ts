@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
 import AssetModel from 'src/models/AssetModel';
-import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload } from '../models/payload';
+import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload } from '../models/payload';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -12,6 +12,7 @@ export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
 export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 export const SORT_ASSET = 'ASSET.SORT_ASSET';
+export const CHANGE_ASSET_STYLE = 'ASSET.CHANGE_ASSET_STYLE';
 
 export const addAsset = createAction<CreateAssetPayload>(ADD_ASSET);
 export const deleteAsset = createAction<number>(DELETE_ASSET);
@@ -22,6 +23,7 @@ export const selectAsset = createAction<number>(SELECT_ASSET);
 export const resizeAsset = createAction<ResizeAssetPayload>(RESIZE_ASSET);
 export const updateAssetValue = createAction<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
 export const sortAsset = createAction<SortAssetPayload>(SORT_ASSET);
+export const changeAssetStyle = createAction<ChangeStylePayload>(CHANGE_ASSET_STYLE);
 
 
 const getCurrentSlideIdx = (state: EditorStore) => state.slides.findIndex(s => s.id === state.selectedSlideId);
@@ -121,7 +123,22 @@ export const ACTION_HANDLERS = {
         const assetIdx = state.slides[slideIdx].assets.findIndex(a => a.id === payload.id);
         const assets = state.slides[slideIdx].assets.slice();
         const afterIndex = payload.getTargetIndex(assetIdx, assets.length);
-        assets.splice(afterIndex, 0 ,assets.splice(assetIdx, 1)[0]);
+        assets.splice(afterIndex, 0, assets.splice(assetIdx, 1)[0]);
         return { slides: { [slideIdx]: { assets: { $set: assets } } } };
+    },
+    [CHANGE_ASSET_STYLE]: (state: EditorStore, payload: ChangeStylePayload) => {
+        const idx = getCurrentSlideIdx(state);
+        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === payload.id);
+        return {
+            slides: {
+                [idx]: {
+                    assets: {
+                        [assetIdx]: {
+                            style: { $set: payload.style }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

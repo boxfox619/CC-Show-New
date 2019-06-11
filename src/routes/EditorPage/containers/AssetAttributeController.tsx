@@ -1,37 +1,48 @@
 import * as React from "react";
 import styled from 'styled-components';
-import { AssetModel } from "src/models";
 import BasicContainer from '../components/attribute-controller/BasicController';
+import StoreModel from '../models/StoreModel';
+import { changeAssetStyle } from '../reducers/asset';
+import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
+import { connect } from 'react-redux';
 
 const Container = styled.div`
   width: 300px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 `
 
-interface Props {
-  asset?: AssetModel;
-}
+const mapDispatchToProps = {
+  changeAssetStyle
+};
 
-const AssetAttributeController: React.FC<Props> = ({ asset }) => {
+const mapStateToProps = (state: StoreModel) => {
+  return {
+    editor: state.editor
+  }
+};
+
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+const AssetAttributeController: React.FC<Props> = (props) => {
+  const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
+  if (!currentSlide) { return (<></>); }
+  const assetId = currentSlide.selectedAssetId;
+  const asset = currentSlide.assets.find(a => a.id === assetId);
+  if (assetId === undefined || !asset) { return (<></>); }
+  const changeStyleHandler = React.useCallback((style: React.CSSProperties) => props.changeAssetStyle(new ChangeStylePayload(assetId, style)), [assetId, props.changeAssetStyle]);
   return (
     <Container>
-      {/*       <BasicController
+      <BasicContainer
         width={asset.width}
         height={asset.height}
         x={asset.position.x}
         y={asset.position.y}
         angle={asset.attr.angle}
         style={asset.style}
-      /> */}
-      <BasicContainer
-        width={30}
-        height={30}
-        x={30}
-        y={30}
-        angle={30}
-        style={{ background: 'red' }}
+        onChangeStyle={changeStyleHandler}
       />
     </Container>
   );
 };
-export default AssetAttributeController;
+
+export default connect(mapStateToProps, mapDispatchToProps)(AssetAttributeController);
