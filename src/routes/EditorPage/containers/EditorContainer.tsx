@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   flex-flow: row;
   width: 100vw;
-  height: 100vh;
+  height: 99.9vh;
 `
 
 interface OwnProps {

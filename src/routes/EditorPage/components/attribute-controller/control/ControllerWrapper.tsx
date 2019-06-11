@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import arrowUpIcon from '../../assets/ic_arrow_up.png';
-import arrowDownIcon from '../../assets/ic_arrow_down.png';
-import ellipseIcon from '../../assets/ic_ellipse_gray.png';
+import arrowUpIcon from '../../../assets/ic_arrow_up.png';
+import arrowDownIcon from '../../../assets/ic_arrow_down.png';
+import ellipseIcon from '../../../assets/ic_ellipse_gray.png';
 
 
 const Wrapper = styled.div`
@@ -36,8 +36,8 @@ const FlipButton = styled.img`
 const Items = styled.div`
     display: flex;
     flex-flow: column;
-    padding: 0;
-    margin: 0 2%;
+    padding: 0 4%;
+    margin: 0;
 `
 
 interface Props {

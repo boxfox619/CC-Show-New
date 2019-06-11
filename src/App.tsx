@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Provider} from 'react-redux';
-import {Store} from "redux";
+import { Provider } from 'react-redux';
+import { Store } from "redux";
 import './App.css';
 import createRoutes from "./routes";
 
-interface Props extends React.Props<App>{
+interface Props extends React.Props<App> {
     store: Store,
     routes: any
 }
@@ -12,12 +12,10 @@ interface Props extends React.Props<App>{
 export default class App extends React.Component<Props, {}> {
 
     public render() {
-        const {store} = this.props;
+        const { store } = this.props;
         return (
             <Provider store={store}>
-                <div style={{height: '100%'}}>
-                    {createRoutes(store)}
-                </div>
+                {createRoutes(store)}
             </Provider>
         );
     }

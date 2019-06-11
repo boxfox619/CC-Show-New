@@ -11,6 +11,7 @@ const Container = styled.div`
     & > *:nth-child(2) {
         flex: 1;
         width: 0;
+        margin-top: -1px;
     }
 `
 const Title = styled.div`

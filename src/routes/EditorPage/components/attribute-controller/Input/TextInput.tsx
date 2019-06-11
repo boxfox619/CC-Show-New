@@ -1,7 +1,8 @@
+import * as React from 'react';
 import styled from 'styled-components';
-import { toControlItem } from '../ControlItem';
+import { toControlItem } from '../control/ControlItem';
 
-export const TextInput = styled.input`
+const Input = styled.input`
     height: 100%;
     text-align: right;
     border: 0;
@@ -10,5 +11,14 @@ export const TextInput = styled.input`
     float: right;
     margin-right: 5px;
 `
+
+interface Props {
+    onValueChange: (value: any) => void
+}
+
+export const TextInput: React.FC<Props & React.InputHTMLAttributes<HTMLInputElement>> = ({ onValueChange, ...inputProps }) => {
+    const handleChange = React.useCallback((e: React.ChangeEvent) => onValueChange((e.target as HTMLInputElement).value), [onValueChange]);
+    return (<Input {...inputProps} onChange={handleChange} />)
+}
 
 export const TextControlItem = toControlItem(TextInput);

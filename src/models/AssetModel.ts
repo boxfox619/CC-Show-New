@@ -11,6 +11,6 @@ export default class AssetModel {
         public position: PointModel,
         public value: any = '',
         public attr: any = {},
-        public style: CSSProperties = {}
-    ) {}
+        public style: CSSProperties = { borderStyle: 'solid', borderWidth: 0 }
+    ) { }
 }
