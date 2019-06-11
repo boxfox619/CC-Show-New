@@ -2,9 +2,10 @@ import * as React from "react";
 import styled from 'styled-components';
 import BasicContainer from '../components/attribute-controller/BasicController';
 import StoreModel from '../models/StoreModel';
-import { changeAssetStyle } from '../reducers/asset';
+import { changeAssetStyle, updateAssetAttr } from '../reducers/asset';
 import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { connect } from 'react-redux';
+import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
 
 const Container = styled.div`
   width: 300px;
@@ -12,7 +13,8 @@ const Container = styled.div`
 `
 
 const mapDispatchToProps = {
-  changeAssetStyle
+  changeAssetStyle,
+  updateAssetAttr
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -30,6 +32,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
   const asset = currentSlide.assets.find(a => a.id === assetId);
   if (assetId === undefined || !asset) { return (<></>); }
   const changeStyleHandler = React.useCallback((style: React.CSSProperties) => props.changeAssetStyle(new ChangeStylePayload(assetId, style)), [assetId, props.changeAssetStyle]);
+  const changeAttrHandler = React.useCallback((name: string, value: any) => props.updateAssetAttr(new UpdateAttrPayload(assetId, name, value)), [assetId, props.updateAssetAttr]);
   return (
     <Container>
       <BasicContainer
@@ -40,6 +43,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         angle={asset.attr.angle}
         style={asset.style}
         onChangeStyle={changeStyleHandler}
+        onChangeAttribute={changeAttrHandler}
       />
     </Container>
   );

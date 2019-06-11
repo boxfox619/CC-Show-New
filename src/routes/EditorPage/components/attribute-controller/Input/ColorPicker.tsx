@@ -9,7 +9,6 @@ const ColorRound = styled.div`
     border-radius: 20px;
     float: right;
     display: inline-block;
-    margin-top: -1px;
 `
 const PickerContainer = styled.div`
     position: relative;
@@ -27,7 +26,7 @@ interface Props {
     onColorChange: (color: string) => void
 }
 
-const ColorPicker: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> = ({ color, onColorChange, ...divProps }) => {
+export const ColorPicker: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> = ({ color, onColorChange, ...divProps }) => {
     const [pickerVisible, setVisiblePicker] = React.useState(false);
     const togglePicker = React.useCallback(() => setVisiblePicker(!pickerVisible), [pickerVisible, setVisiblePicker]);
     const changeColor = React.useCallback((colorResult: ColorResult) => onColorChange(colorResult.hex), [onColorChange]);

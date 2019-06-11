@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
 import AssetModel from 'src/models/AssetModel';
-import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload } from '../models/payload';
+import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload, UpdateAttrPayload } from '../models/payload';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -13,6 +13,7 @@ export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
 export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 export const SORT_ASSET = 'ASSET.SORT_ASSET';
 export const CHANGE_ASSET_STYLE = 'ASSET.CHANGE_ASSET_STYLE';
+export const UPDATE_ASSET_ATTR = 'ASSET.UPDATE_ASSET_ATTR';
 
 export const addAsset = createAction<CreateAssetPayload>(ADD_ASSET);
 export const deleteAsset = createAction<number>(DELETE_ASSET);
@@ -24,6 +25,7 @@ export const resizeAsset = createAction<ResizeAssetPayload>(RESIZE_ASSET);
 export const updateAssetValue = createAction<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
 export const sortAsset = createAction<SortAssetPayload>(SORT_ASSET);
 export const changeAssetStyle = createAction<ChangeStylePayload>(CHANGE_ASSET_STYLE);
+export const updateAssetAttr = createAction<UpdateAttrPayload>(UPDATE_ASSET_ATTR);
 
 
 const getCurrentSlideIdx = (state: EditorStore) => state.slides.findIndex(s => s.id === state.selectedSlideId);
@@ -140,5 +142,20 @@ export const ACTION_HANDLERS = {
                 }
             }
         }
-    }
+    },
+    [UPDATE_ASSET_ATTR]: (state: EditorStore, payload: UpdateAttrPayload) => {
+        const idx = getCurrentSlideIdx(state);
+        const assetIdx = state.slides[idx].assets.findIndex(a => a.id === payload.id);
+        return {
+            slides: {
+                [idx]: {
+                    assets: {
+                        [assetIdx]: {
+                            [payload.attrName]: { $set: payload.value }
+                        }
+                    }
+                }
+            }
+        }
+    },
 }

@@ -5,3 +5,4 @@ export { UpdateAssetValuePayload } from './UpdateAssetValuePayload';
 export { MoveSlidePayload } from './MoveSlidePayload';
 export { SortAssetPayload } from './SortAssetPayload';
 export { ChangeStylePayload } from './ChangeStylePayload';
+export { UpdateAttrPayload } from './UpdateAttrPayload';

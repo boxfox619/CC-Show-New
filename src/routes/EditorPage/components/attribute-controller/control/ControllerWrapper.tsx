@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import arrowUpIcon from '../../assets/ic_arrow_up.png';
-import arrowDownIcon from '../../assets/ic_arrow_down.png';
-import ellipseIcon from '../../assets/ic_ellipse_gray.png';
+import arrowUpIcon from '../../../assets/ic_arrow_up.png';
+import arrowDownIcon from '../../../assets/ic_arrow_down.png';
+import ellipseIcon from '../../../assets/ic_ellipse_gray.png';
 
 
 const Wrapper = styled.div`

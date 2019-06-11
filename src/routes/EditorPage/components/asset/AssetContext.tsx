@@ -22,15 +22,15 @@ const Cover = styled.div`
 const asset = {
     [AssetType.Text]: (props: AssetProps) => (
         <TextAsset
-                assetId={props.data.id}
-                controllable={props.controllable}
-                value={props.data.value}
-                editing={props.isSelected && props.isDoubleClicked}
-                handleChange={props.onValueChange}
-            />
+            assetId={props.data.id}
+            controllable={props.controllable}
+            value={props.data.value}
+            editing={props.isSelected && props.isDoubleClicked}
+            handleChange={props.onValueChange}
+        />
     ),
     [AssetType.Image]: (props: AssetProps) => (
-        <ImageAsset value={props.data.value}/>
+        <ImageAsset value={props.data.value} />
     )
 }
 
@@ -40,10 +40,10 @@ interface ContextProps {
 
 type Props = AssetProps & ContextProps;
 
-export const AssetContext: React.FC<Props> = ({index, ...assetProps}) => {
+export const AssetContext: React.FC<Props> = ({ index, ...assetProps }) => {
     return (
-        <Container style={{zIndex: index}}>
-            {!assetProps.isDoubleClicked && <Cover/>}
+        <Container style={{ zIndex: index, ...assetProps.data.style }}>
+            {!assetProps.isDoubleClicked && <Cover />}
             {asset[assetProps.data.type](assetProps)}
         </Container>
     );
