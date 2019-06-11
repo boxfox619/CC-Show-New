@@ -8,8 +8,9 @@ const Container = styled.div`
     padding: 3px 5px 3px 5px;
     margin: 3px;
     height: 20px;
-    &:nth-child(2) {
+    & > *:nth-child(2) {
         flex: 1;
+        width: 0;
     }
 `
 const Title = styled.div`
@@ -22,12 +23,23 @@ const Title = styled.div`
 `
 
 interface Props {
-    label: string
+    label: any
 }
 
-export const toControlItem = <P extends object>(ControlItem: React.ComponentType<P>): React.FC<Props & P> => ({ label, ...props }) => {
-    return (<Container>
-        <Title>{label} :</Title>
-        <ControlItem {...props as P} />
-    </Container>)
+export const ControlItem: React.FC<Props> = ({ label, children }) => {
+    const titleContent = (typeof label === 'string') ? `${label} :` : label;
+    return (
+        <Container>
+            <Title>{titleContent}</Title>
+            {children}
+        </Container>
+    )
+}
+
+export const toControlItem = <P extends object>(Item: React.ComponentType<P>): React.FC<Props & P> => ({ label, ...props }) => {
+    return (
+        <ControlItem label={label}>
+            <Item {...props as P} />
+        </ControlItem>
+    )
 }
