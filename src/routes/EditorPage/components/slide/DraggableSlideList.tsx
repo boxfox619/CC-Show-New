@@ -25,11 +25,6 @@ export default class DraggableSlideList extends React.Component<Props> {
     public render() {
         const renderSlidePreviews = (slides: SlideModel[]) => {
             return slides.map((slide, idx) => {
-                const isActive = slide.id === this.props.selectedSlideId;
-                const onShare = () => this.props.shareSlide(slide.id);
-                const onCopy = () => this.props.copySlide(slide.id);
-                const onDelete = () => this.props.deleteSlide(slide.id);
-                const onClick = () => this.props.selectSlide(slide.id);
                 return (
                     <li data-id={idx}
                         key={'slide' + slide.id}
@@ -39,11 +34,11 @@ export default class DraggableSlideList extends React.Component<Props> {
                         <SlidePreview
                             idx={idx}
                             slide={slide}
-                            active={isActive}
-                            onShare={onShare}
-                            onCopy={onCopy}
-                            onDelete={onDelete}
-                            onClick={onClick}
+                            active={slide.id === this.props.selectedSlideId}
+                            onShare={this.props.shareSlide}
+                            onCopy={this.props.copySlide}
+                            onDelete={this.props.deleteSlide}
+                            onClick={this.props.selectSlide}
                         />
                     </li>
                 )

@@ -34,11 +34,17 @@ const asset = {
     )
 }
 
-export const AssetContext: React.FC<AssetProps> = (props: AssetProps) => {
+interface ContextProps {
+    index: number
+}
+
+type Props = AssetProps & ContextProps;
+
+export const AssetContext: React.FC<Props> = ({index, ...assetProps}) => {
     return (
-        <Container>
-            {!props.isDoubleClicked && <Cover/>}
-            {asset[props.data.type](props)}
+        <Container style={{zIndex: index}}>
+            {!assetProps.isDoubleClicked && <Cover/>}
+            {asset[assetProps.data.type](assetProps)}
         </Container>
     );
 };
