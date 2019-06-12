@@ -59,10 +59,10 @@ ShallowWrapper {
             <SlidePreview
               active={true}
               idx={0}
-              onClick={[Function]}
-              onCopy={[Function]}
-              onDelete={[Function]}
-              onShare={[Function]}
+              onClick={[MockFunction]}
+              onCopy={[MockFunction]}
+              onDelete={[MockFunction]}
+              onShare={[MockFunction]}
               slide={
                 Slide {
                   "assets": Array [],
@@ -84,10 +84,10 @@ ShallowWrapper {
             <SlidePreview
               active={false}
               idx={1}
-              onClick={[Function]}
-              onCopy={[Function]}
-              onDelete={[Function]}
-              onShare={[Function]}
+              onClick={[MockFunction]}
+              onCopy={[MockFunction]}
+              onDelete={[MockFunction]}
+              onShare={[MockFunction]}
               slide={
                 Slide {
                   "assets": Array [],
@@ -123,10 +123,10 @@ ShallowWrapper {
               <SlidePreview
                 active={true}
                 idx={0}
-                onClick={[Function]}
-                onCopy={[Function]}
-                onDelete={[Function]}
-                onShare={[Function]}
+                onClick={[MockFunction]}
+                onCopy={[MockFunction]}
+                onDelete={[MockFunction]}
+                onShare={[MockFunction]}
                 slide={
                   Slide {
                     "assets": Array [],
@@ -148,10 +148,10 @@ ShallowWrapper {
               <SlidePreview
                 active={false}
                 idx={1}
-                onClick={[Function]}
-                onCopy={[Function]}
-                onDelete={[Function]}
-                onShare={[Function]}
+                onClick={[MockFunction]}
+                onCopy={[MockFunction]}
+                onDelete={[MockFunction]}
+                onShare={[MockFunction]}
                 slide={
                   Slide {
                     "assets": Array [],
@@ -177,10 +177,10 @@ ShallowWrapper {
               "children": <SlidePreview
                 active={true}
                 idx={0}
-                onClick={[Function]}
-                onCopy={[Function]}
-                onDelete={[Function]}
-                onShare={[Function]}
+                onClick={[MockFunction]}
+                onCopy={[MockFunction]}
+                onDelete={[MockFunction]}
+                onShare={[MockFunction]}
                 slide={
                   Slide {
                     "assets": Array [],
@@ -205,10 +205,10 @@ ShallowWrapper {
               "props": Object {
                 "active": true,
                 "idx": 0,
-                "onClick": [Function],
-                "onCopy": [Function],
-                "onDelete": [Function],
-                "onShare": [Function],
+                "onClick": [MockFunction],
+                "onCopy": [MockFunction],
+                "onDelete": [MockFunction],
+                "onShare": [MockFunction],
                 "slide": Slide {
                   "assets": Array [],
                   "id": 0,
@@ -232,10 +232,10 @@ ShallowWrapper {
               "children": <SlidePreview
                 active={false}
                 idx={1}
-                onClick={[Function]}
-                onCopy={[Function]}
-                onDelete={[Function]}
-                onShare={[Function]}
+                onClick={[MockFunction]}
+                onCopy={[MockFunction]}
+                onDelete={[MockFunction]}
+                onShare={[MockFunction]}
                 slide={
                   Slide {
                     "assets": Array [],
@@ -260,10 +260,10 @@ ShallowWrapper {
               "props": Object {
                 "active": false,
                 "idx": 1,
-                "onClick": [Function],
-                "onCopy": [Function],
-                "onDelete": [Function],
-                "onShare": [Function],
+                "onClick": [MockFunction],
+                "onCopy": [MockFunction],
+                "onDelete": [MockFunction],
+                "onShare": [MockFunction],
                 "slide": Slide {
                   "assets": Array [],
                   "id": 1,
@@ -315,10 +315,10 @@ ShallowWrapper {
               <SlidePreview
                 active={true}
                 idx={0}
-                onClick={[Function]}
-                onCopy={[Function]}
-                onDelete={[Function]}
-                onShare={[Function]}
+                onClick={[MockFunction]}
+                onCopy={[MockFunction]}
+                onDelete={[MockFunction]}
+                onShare={[MockFunction]}
                 slide={
                   Slide {
                     "assets": Array [],
@@ -340,10 +340,10 @@ ShallowWrapper {
               <SlidePreview
                 active={false}
                 idx={1}
-                onClick={[Function]}
-                onCopy={[Function]}
-                onDelete={[Function]}
-                onShare={[Function]}
+                onClick={[MockFunction]}
+                onCopy={[MockFunction]}
+                onDelete={[MockFunction]}
+                onShare={[MockFunction]}
                 slide={
                   Slide {
                     "assets": Array [],
@@ -379,10 +379,10 @@ ShallowWrapper {
                 <SlidePreview
                   active={true}
                   idx={0}
-                  onClick={[Function]}
-                  onCopy={[Function]}
-                  onDelete={[Function]}
-                  onShare={[Function]}
+                  onClick={[MockFunction]}
+                  onCopy={[MockFunction]}
+                  onDelete={[MockFunction]}
+                  onShare={[MockFunction]}
                   slide={
                     Slide {
                       "assets": Array [],
@@ -404,10 +404,10 @@ ShallowWrapper {
                 <SlidePreview
                   active={false}
                   idx={1}
-                  onClick={[Function]}
-                  onCopy={[Function]}
-                  onDelete={[Function]}
-                  onShare={[Function]}
+                  onClick={[MockFunction]}
+                  onCopy={[MockFunction]}
+                  onDelete={[MockFunction]}
+                  onShare={[MockFunction]}
                   slide={
                     Slide {
                       "assets": Array [],
@@ -433,10 +433,10 @@ ShallowWrapper {
                 "children": <SlidePreview
                   active={true}
                   idx={0}
-                  onClick={[Function]}
-                  onCopy={[Function]}
-                  onDelete={[Function]}
-                  onShare={[Function]}
+                  onClick={[MockFunction]}
+                  onCopy={[MockFunction]}
+                  onDelete={[MockFunction]}
+                  onShare={[MockFunction]}
                   slide={
                     Slide {
                       "assets": Array [],
@@ -461,10 +461,10 @@ ShallowWrapper {
                 "props": Object {
                   "active": true,
                   "idx": 0,
-                  "onClick": [Function],
-                  "onCopy": [Function],
-                  "onDelete": [Function],
-                  "onShare": [Function],
+                  "onClick": [MockFunction],
+                  "onCopy": [MockFunction],
+                  "onDelete": [MockFunction],
+                  "onShare": [MockFunction],
                   "slide": Slide {
                     "assets": Array [],
                     "id": 0,
@@ -488,10 +488,10 @@ ShallowWrapper {
                 "children": <SlidePreview
                   active={false}
                   idx={1}
-                  onClick={[Function]}
-                  onCopy={[Function]}
-                  onDelete={[Function]}
-                  onShare={[Function]}
+                  onClick={[MockFunction]}
+                  onCopy={[MockFunction]}
+                  onDelete={[MockFunction]}
+                  onShare={[MockFunction]}
                   slide={
                     Slide {
                       "assets": Array [],
@@ -516,10 +516,10 @@ ShallowWrapper {
                 "props": Object {
                   "active": false,
                   "idx": 1,
-                  "onClick": [Function],
-                  "onCopy": [Function],
-                  "onDelete": [Function],
-                  "onShare": [Function],
+                  "onClick": [MockFunction],
+                  "onCopy": [MockFunction],
+                  "onDelete": [MockFunction],
+                  "onShare": [MockFunction],
                   "slide": Slide {
                     "assets": Array [],
                     "id": 1,

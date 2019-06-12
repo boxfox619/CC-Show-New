@@ -54,18 +54,18 @@ ShallowWrapper {
           </ForwardRef>
           <ForwardRef>
             <IconButton
-              onClick={[MockFunction]}
+              onClick={[Function]}
             />
             <IconButton
-              onClick={[MockFunction]}
+              onClick={[Function]}
             />
             <IconButton
-              onClick={[MockFunction]}
+              onClick={[Function]}
             />
           </ForwardRef>
         </ForwardRef>,
       ],
-      "onClick": [MockFunction],
+      "onClick": [Function],
     },
     "ref": null,
     "rendered": Array [
@@ -163,13 +163,13 @@ ShallowWrapper {
             </ForwardRef>,
             <ForwardRef>
               <IconButton
-                onClick={[MockFunction]}
+                onClick={[Function]}
               />
               <IconButton
-                onClick={[MockFunction]}
+                onClick={[Function]}
               />
               <IconButton
-                onClick={[MockFunction]}
+                onClick={[Function]}
               />
             </ForwardRef>,
           ],
@@ -296,13 +296,13 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <IconButton
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 />,
                 <IconButton
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 />,
                 <IconButton
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 />,
               ],
             },
@@ -314,7 +314,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "icon": undefined,
-                  "onClick": [MockFunction],
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": null,
@@ -326,7 +326,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "icon": undefined,
-                  "onClick": [MockFunction],
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": null,
@@ -338,7 +338,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "icon": undefined,
-                  "onClick": [MockFunction],
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": null,
@@ -457,18 +457,18 @@ ShallowWrapper {
             </ForwardRef>
             <ForwardRef>
               <IconButton
-                onClick={[MockFunction]}
+                onClick={[Function]}
               />
               <IconButton
-                onClick={[MockFunction]}
+                onClick={[Function]}
               />
               <IconButton
-                onClick={[MockFunction]}
+                onClick={[Function]}
               />
             </ForwardRef>
           </ForwardRef>,
         ],
-        "onClick": [MockFunction],
+        "onClick": [Function],
       },
       "ref": null,
       "rendered": Array [
@@ -566,13 +566,13 @@ ShallowWrapper {
               </ForwardRef>,
               <ForwardRef>
                 <IconButton
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 />
                 <IconButton
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 />
                 <IconButton
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 />
               </ForwardRef>,
             ],
@@ -699,13 +699,13 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <IconButton
-                    onClick={[MockFunction]}
+                    onClick={[Function]}
                   />,
                   <IconButton
-                    onClick={[MockFunction]}
+                    onClick={[Function]}
                   />,
                   <IconButton
-                    onClick={[MockFunction]}
+                    onClick={[Function]}
                   />,
                 ],
               },
@@ -717,7 +717,7 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "icon": undefined,
-                    "onClick": [MockFunction],
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": null,
@@ -729,7 +729,7 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "icon": undefined,
-                    "onClick": [MockFunction],
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": null,
@@ -741,7 +741,7 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "icon": undefined,
-                    "onClick": [MockFunction],
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": null,

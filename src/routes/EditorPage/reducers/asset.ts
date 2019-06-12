@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
-import AssetModel from 'src/models/AssetModel';
+import AssetModel from '../../../models/AssetModel';
 import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload, UpdateAttrPayload } from '../models/payload';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
@@ -54,7 +54,7 @@ export const ACTION_HANDLERS = {
         const idx = getCurrentSlideIdx(state);
         const assetId = payload.assetId;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
-        return { slides: { [idx]: { assets: { [assetIdx]: { position: payload.point } } } } };
+        return { slides: { [idx]: { assets: { [assetIdx]: { position: { $set: payload.point } } } } } };
     },
     [COPY_ASSET]: (state: EditorStore, payload: number) => {
         const idx = getCurrentSlideIdx(state);
