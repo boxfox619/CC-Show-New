@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {CreateAssetPayload} from '../models/payload';
-import {AssetType} from 'src/models';
+import {AssetType} from '../../../models';
 import GradientButtonItem from '../components/GradientButtonItem';
 import Profile from '../components/Profile';
 
