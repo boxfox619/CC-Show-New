@@ -5,9 +5,7 @@ import { ResizeAssetPayload } from '../../models/payload/ResizeAssetPayload';
 import { UpdateAttrPayload } from '../../models/payload/UpdateAttrPayload';
 import EditorStore from '../../models/EditorStore';
 import { handleActions } from '../../../../core/store';
-import Asset from '../../components/asset/index';
 import AssetModel from '../../../../models/AssetModel';
-import { changeAssetStyle } from '../asset';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
