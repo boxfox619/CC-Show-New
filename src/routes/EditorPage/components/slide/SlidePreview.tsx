@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import SlideModel from '../../models/Slide';
 import IconButton from './IconButton';
@@ -87,28 +88,32 @@ const Actions = styled.div`
 interface Props {
     idx: number,
     slide: SlideModel,
-    onClick: () => void,
+    onClick: (id: number) => void,
     active: boolean,
-    onShare: () => void,
-    onCopy: () => void,
-    onDelete: () => void
+    onShare: (id: number) => void,
+    onCopy: (id: number) => void,
+    onDelete: (id: number) => void
 }
 
-const SlidePreview: React.FC<Props> = (props: Props) => {
+const SlidePreview: React.FC<Props> = ({idx, slide, onClick, active, onShare, onCopy, onDelete}) => {
+    const handleClick = useCallback(() => onClick(slide.id), [slide]);
+    const handleShare = useCallback(() => onShare(slide.id), [slide]);
+    const handleCopy = useCallback(() => onCopy(slide.id), [slide]);
+    const handleDelete = useCallback(() => onDelete(slide.id), [slide]);
     return (
-        <Container onClick={props.onClick} active={props.active}>
+        <Container onClick={handleClick} active={active}>
             <ThumbnailWrapper>
-                <Thumbnail background={props.slide.thumbnail} />
+                <Thumbnail background={slide.thumbnail} />
             </ThumbnailWrapper>
             <Controller>
                 <Info>
-                    <Title>{props.slide.name}</Title>
-                    <SubTitle>슬라이드{props.idx}</SubTitle>
+                    <Title>{slide.name}</Title>
+                    <SubTitle>슬라이드{idx}</SubTitle>
                 </Info>
                 <Actions>
-                    <IconButton icon={ShareIcon} onClick={props.onShare}/>
-                    <IconButton icon={CopyIcon} onClick={props.onCopy}/>
-                    <IconButton icon={DeleteIcon} onClick={props.onDelete}/>
+                    <IconButton icon={ShareIcon} onClick={handleShare}/>
+                    <IconButton icon={CopyIcon} onClick={handleCopy}/>
+                    <IconButton icon={DeleteIcon} onClick={handleDelete}/>
                 </Actions>
             </Controller>
         </Container>

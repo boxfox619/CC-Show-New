@@ -26,6 +26,7 @@ const config = {
         { name: 'colors', items: ['TextColor', 'BGColor'] }
     ]
 };
+
 export default class TextAsset extends React.Component<Props>{
     editorRef: React.RefObject<HTMLDivElement>;
 
