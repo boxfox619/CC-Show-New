@@ -1,11 +1,11 @@
 import * as React from "react";
 
-interface AsyncComponentState{
+interface AsyncComponentState {
     ImportedComponent: any;
 }
 
 export default function asyncComponent(getComponent: () => Promise<any>): any {
-    class AsyncComponent extends React.Component<{},AsyncComponentState> {
+    class AsyncComponent extends React.Component<{}, AsyncComponentState> {
 
         constructor(props: any) {
             super(props);
@@ -14,7 +14,7 @@ export default function asyncComponent(getComponent: () => Promise<any>): any {
             }
         }
 
-        componentDidMount(){
+        componentDidMount() {
             getComponent().then(result => {
                 const component = result.default;
                 this.setState({
@@ -26,8 +26,8 @@ export default function asyncComponent(getComponent: () => Promise<any>): any {
         }
 
         render() {
-            const {ImportedComponent} = this.state;
-            return ImportedComponent ? (<ImportedComponent {...this.props}/>) : (<div>....Loading</div>)
+            const { ImportedComponent } = this.state;
+            return ImportedComponent ? (<ImportedComponent {...this.props} />) : (<div>....Loading</div>)
         }
     }
     return AsyncComponent;

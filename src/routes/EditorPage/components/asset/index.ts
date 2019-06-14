@@ -1,2 +1,2 @@
-import {Asset} from './Asset';
-export default Asset;
+import { AssetView } from './Asset';
+export default AssetView;

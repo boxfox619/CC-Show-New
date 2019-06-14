@@ -2,10 +2,13 @@ import * as React from "react";
 import styled from 'styled-components';
 import BasicContainer from '../components/attribute-controller/BasicController';
 import StoreModel from '../models/StoreModel';
-import { changeAssetStyle, updateAssetAttr } from '../reducers/asset';
+import { changeAssetStyle, updateAssetAttr, updateAssetValue } from '../reducers/asset';
 import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { connect } from 'react-redux';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
+import ImageController from '../components/attribute-controller/ImageController';
+import { AssetType } from 'src/models';
+import { UpdateAssetValuePayload } from '../models/payload';
 
 const Container = styled.div`
   width: 300px;
@@ -14,7 +17,8 @@ const Container = styled.div`
 
 const mapDispatchToProps = {
   changeAssetStyle,
-  updateAssetAttr
+  updateAssetAttr,
+  updateAssetValue
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -33,6 +37,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
   if (assetId === undefined || !asset) { return (<></>); }
   const changeStyleHandler = React.useCallback((style: React.CSSProperties) => props.changeAssetStyle(new ChangeStylePayload(assetId, style)), [assetId, props.changeAssetStyle]);
   const changeAttrHandler = React.useCallback((name: string, value: any) => props.updateAssetAttr(new UpdateAttrPayload(assetId, name, value)), [assetId, props.updateAssetAttr]);
+  const changeValue = React.useCallback((value: any) => props.updateAssetValue(new UpdateAssetValuePayload(asset.id, value)), [asset, updateAssetValue]);
   return (
     <Container>
       <BasicContainer
@@ -44,6 +49,11 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         style={asset.style}
         onChangeStyle={changeStyleHandler}
         onChangeAttribute={changeAttrHandler}
+      />
+      <ImageController
+        visible={asset.type === AssetType.Image}
+        image={asset.value}
+        onChangeValue={changeValue}
       />
     </Container>
   );

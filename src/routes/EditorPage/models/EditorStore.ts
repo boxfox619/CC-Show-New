@@ -1,5 +1,5 @@
 import SlideModel from './Slide';
-import AssetModel from 'src/models/AssetModel';
+import { Asset } from 'src/models/asset';
 
 export default class EditorStore {
     constructor(
@@ -12,6 +12,6 @@ export default class EditorStore {
         public selectedSlideId: number = 0,
         public lastSlideId: number = 1,
         public copiedSlide?: SlideModel,
-        public copiedAsset?: AssetModel
-    ){}
+        public copiedAsset?: Asset
+    ) { }
 }

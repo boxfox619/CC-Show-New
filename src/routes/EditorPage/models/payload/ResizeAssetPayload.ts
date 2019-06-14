@@ -1,9 +1,9 @@
-import PointModel from 'src/models/PointModel';
+import { Point } from 'src/models'; 
 export class ResizeAssetPayload {
     constructor(
         public id: number,
-        public position: PointModel,
+        public position: Point,
         public width: number,
         public height: number
-    ){}
+    ) { }
 }

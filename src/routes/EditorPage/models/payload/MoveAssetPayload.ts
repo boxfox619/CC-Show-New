@@ -1,7 +1,7 @@
-import PointModel from 'src/models/PointModel';
+import { Point } from 'src/models';
 export class MoveAssetPayload {
     constructor(
         public assetId: number,
-        public point: PointModel
-    ){}
+        public point: Point
+    ) { }
 }
