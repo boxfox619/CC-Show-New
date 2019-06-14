@@ -1,6 +1,5 @@
 import * as React from 'react';
-import colorIcon from '../../assets/ic_color.png';
-import lineIcon from '../../assets/ic_line.png';
+import { colorIcon, lineIcon } from '../../assets';
 import { TextControlItem, TextInput, ColorPicker } from './Input';
 import { ControllerWrapper, ControlGroup, ControlItem } from './control';
 
