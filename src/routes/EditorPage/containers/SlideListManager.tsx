@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import EllipseIcon from '../assets/ic_ellipse_gray.png';
-import HideIcon from '../assets/ic_arrow_left.png';
+import { ellipseGrayIcon, arrowLeftIcon } from '../assets';
 import DraggableSlideList from '../components/slide/DraggableSlideList';
 import SlideModel from '../models/Slide';
 
@@ -42,12 +41,12 @@ const Title = styled.div`
         content: "";
         display: table-cell;
         vertical-align: middle;
-        background: url(${EllipseIcon}) no-repeat left center;
+        background: url(${ellipseGrayIcon}) no-repeat left center;
         width: 23px;
     }
 `
 const Hide = styled.div`
-    background: url(${HideIcon}) no-repeat left center;
+    background: url(${arrowLeftIcon}) no-repeat left center;
     position: absolute;
     top: 24px;
     right: 10px;
@@ -60,7 +59,7 @@ interface OwnProps {
     toggleSlideManager: () => void,
     selectedSlideId: number,
     slides: SlideModel[],
-    moveSlide: (payload: {from: number, to: number}) => void,
+    moveSlide: (payload: { from: number, to: number }) => void,
     selectSlide: (id: number) => void,
     copySlide: (id: number) => void,
     createSlide: () => void,
@@ -79,13 +78,13 @@ const SlideListManager: React.FC<Props> = (props: Props) => {
                 <DraggableSlideList
                     selectedSlideId={props.selectedSlideId}
                     slides={props.slides}
-                    moveSlide={props.moveSlide} 
+                    moveSlide={props.moveSlide}
                     selectSlide={props.selectSlide}
                     copySlide={props.copySlide}
                     createSlide={props.createSlide}
                     shareSlide={props.shareSlide}
                     deleteSlide={props.deleteSlide}
-                    />
+                />
             </Inner>
         </Container>
     )

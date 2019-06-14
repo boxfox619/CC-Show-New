@@ -3,9 +3,7 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 import SlideModel from '../../models/Slide';
 import IconButton from './IconButton';
-import ShareIcon from '../../assets/ic_share_white.png';
-import CopyIcon from '../../assets/ic_copy_white.png';
-import DeleteIcon from '../../assets/ic_delete_white.png';
+import { shareWhiteIcon, copyWhiteIcon, deleteWhiteIcon } from '../../assets';
 
 const Container = styled.div`
   overflow: hidden;
@@ -16,7 +14,7 @@ const Container = styled.div`
   border-radius: 10px;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.26);
   cursor: pointer;
-  ${(props: {active: boolean}) => !props.active && `
+  ${(props: { active: boolean }) => !props.active && `
     &:after{
         content:'';
         position: absolute;
@@ -51,7 +49,7 @@ const Thumbnail = styled.div`
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-    ${(props: {background?: string}) => props.background && `
+    ${(props: { background?: string }) => props.background && `
         background: url(${props.background})
     `}
 `
@@ -95,7 +93,7 @@ interface Props {
     onDelete: (id: number) => void
 }
 
-const SlidePreview: React.FC<Props> = ({idx, slide, onClick, active, onShare, onCopy, onDelete}) => {
+const SlidePreview: React.FC<Props> = ({ idx, slide, onClick, active, onShare, onCopy, onDelete }) => {
     const handleClick = useCallback(() => onClick(slide.id), [slide]);
     const handleShare = useCallback(() => onShare(slide.id), [slide]);
     const handleCopy = useCallback(() => onCopy(slide.id), [slide]);
@@ -111,9 +109,9 @@ const SlidePreview: React.FC<Props> = ({idx, slide, onClick, active, onShare, on
                     <SubTitle>슬라이드{idx}</SubTitle>
                 </Info>
                 <Actions>
-                    <IconButton icon={ShareIcon} onClick={handleShare}/>
-                    <IconButton icon={CopyIcon} onClick={handleCopy}/>
-                    <IconButton icon={DeleteIcon} onClick={handleDelete}/>
+                    <IconButton icon={shareWhiteIcon} onClick={handleShare} />
+                    <IconButton icon={copyWhiteIcon} onClick={handleCopy} />
+                    <IconButton icon={deleteWhiteIcon} onClick={handleDelete} />
                 </Actions>
             </Controller>
         </Container>

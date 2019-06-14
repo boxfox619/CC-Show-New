@@ -1,14 +1,13 @@
 import * as React from "react";
 import styled from 'styled-components';
-import BasicContainer from '../components/attribute-controller/BasicController';
 import StoreModel from '../models/StoreModel';
+import { connect } from 'react-redux';
+import { AssetType } from 'src/models';
 import { changeAssetStyle, updateAssetAttr, updateAssetValue } from '../reducers/asset';
 import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
-import { connect } from 'react-redux';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
-import ImageController from '../components/attribute-controller/ImageController';
-import { AssetType } from 'src/models';
 import { UpdateAssetValuePayload } from '../models/payload';
+import { BasicContainer, ImageController, TextController } from '../components/attribute-controller';
 
 const Container = styled.div`
   width: 300px;
@@ -54,6 +53,11 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         visible={asset.type === AssetType.Image}
         image={asset.value}
         onChangeValue={changeValue}
+      />
+      <TextController
+        visible={asset.type === AssetType.Text}
+        style={asset.style}
+        onChangeStyle={changeStyleHandler}
       />
     </Container>
   );

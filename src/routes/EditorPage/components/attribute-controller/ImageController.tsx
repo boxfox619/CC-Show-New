@@ -12,7 +12,7 @@ const ImageController: React.FC<Props> = ({ image, onChangeValue }) => {
     const onChangeImage = React.useCallback((url: string) => onChangeValue(url), [onChangeValue]);
     return (<>
         <ControllerWrapper title="이미지">
-            <TextControlItem label="Url" value={image} onValueChange={onChangeImage} />
+            <TextControlItem label="URL" value={image} onValueChange={onChangeImage} />
         </ControllerWrapper>
     </>)
 }

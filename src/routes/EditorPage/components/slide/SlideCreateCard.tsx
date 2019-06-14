@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import AddIcon from '../../assets/ic_add_white.png';
+import { addWhiteIcon } from '../../assets';
 
 const Container = styled.div`
     cursor: pointer;
@@ -55,7 +55,7 @@ const SlideCreateCard: React.FC<Props> = (props: Props) => {
     return (
         <Container onClick={props.onClick}>
             <Description>새 슬라이드</Description>
-            <img src={AddIcon} />
+            <img src={addWhiteIcon} />
         </Container>
     )
 }
