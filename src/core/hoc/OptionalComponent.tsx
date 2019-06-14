@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 interface Props {
-    vIf?: boolean
+    visible?: boolean
 }
 
-export const optional = <P extends object>(Component: React.ComponentType<P>): React.FC<Props & P> => ({ vIf = true, ...props }) => {
-    return vIf ? (<Component {...props as P} />) : (<></>);
+export const optional = <P extends object>(Component: React.ComponentType<P>): React.FC<Props & P> => ({ visible = true, ...props }) => {
+    return visible ? (<Component {...props as P} />) : (<></>);
 }
