@@ -6,6 +6,8 @@ import { changeAssetStyle, updateAssetAttr } from '../reducers/asset';
 import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { connect } from 'react-redux';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
+import ImageController from '../components/attribute-controller/ImageController';
+import { AssetType } from 'src/models';
 
 const Container = styled.div`
   width: 300px;
@@ -44,6 +46,11 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         style={asset.style}
         onChangeStyle={changeStyleHandler}
         onChangeAttribute={changeAttrHandler}
+      />
+      <ImageController
+        vIf={asset.type === AssetType.Image}
+        style={asset.style}
+        onChangeStyle={changeStyleHandler}
       />
     </Container>
   );

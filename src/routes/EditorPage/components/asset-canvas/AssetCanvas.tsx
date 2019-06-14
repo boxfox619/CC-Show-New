@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import {AssetModel, AssetType} from 'src/models';
+import { Asset, AssetType } from 'src/models';
 import { AssetRenderer } from './AssetRenderer';
 import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../modules/asset.service';
 import { clearSelection } from 'src/routes/EditorPage/modules/dom.service';
@@ -11,7 +11,7 @@ const ACTION_RESIZE = 'resize';
 const ACTION_NONE = 'none';
 
 interface OwnProps {
-    assets: AssetModel[],
+    assets: Asset[],
     selectedAssetId?: number,
     editable: boolean,
     onSelectAsset: (id?: number) => void,
@@ -72,7 +72,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
 
     const handleMouseDown = (e: React.MouseEvent) => {
         e.preventDefault();
-        if(document.activeElement){
+        if (document.activeElement) {
             (document.activeElement as HTMLElement).blur();
         }
         const target = e.target as HTMLElement;

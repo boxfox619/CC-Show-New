@@ -1,8 +1,8 @@
-import {PointModel, AssetType} from 'src/models';
+import { Point, AssetType } from 'src/models';
 export class CreateAssetPayload {
     constructor(
         public assetType: AssetType,
-        public point: PointModel,
+        public point: Point,
         public value?: string
-    ){}
+    ) { }
 }

@@ -1,16 +1,20 @@
-import PointModel from './PointModel';
 import { CSSProperties } from 'react';
-import AssetType from './AssetType';
+import AssetType from '../AssetType';
+import Point from '../Point';
 
-export default class AssetModel {
+export default class Asset {
     constructor(
         public id: number,
-        public type: AssetType,
+        private assetType: AssetType,
         public width: number,
         public height: number,
-        public position: PointModel,
+        public position: Point,
         public value: any = '',
         public attr: any = {},
         public style: CSSProperties = { borderStyle: 'solid', borderWidth: 0 }
     ) { }
+
+    get type() {
+        return this.assetType;
+    }
 }
