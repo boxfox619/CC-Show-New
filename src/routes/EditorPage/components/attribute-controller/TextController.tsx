@@ -14,13 +14,20 @@ const IconGroup = styled.div`
         cursor: pointer;
     }
 `
+const FontSelector = styled.select`
+    width: 90%; 
+    cursor: pointer;
+    border: none;
+    outline: none;
+`
 
 interface Props {
+    fonts: string[]
     style: React.CSSProperties,
     onChangeStyle: (style: React.CSSProperties) => void
 }
 
-const TextController: React.FC<Props> = ({ style, onChangeStyle }) => {
+const TextController: React.FC<Props> = ({ fonts, style, onChangeStyle }) => {
     const fontHandler = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => onChangeStyle({ ...style, fontFamily: e.target.value }), [style, onChangeStyle]);
     const numberHandler = React.useCallback((attribute: string, e: React.ChangeEvent<HTMLInputElement>) => onChangeStyle({ ...style, [attribute]: parseInt(e.target.value || '0', 10) }), [style, onChangeStyle])
     const colorHandler = React.useCallback((color: string) => onChangeStyle({ ...style, color }), [style, onChangeStyle]);
@@ -29,17 +36,9 @@ const TextController: React.FC<Props> = ({ style, onChangeStyle }) => {
         <ControllerWrapper title="텍스트">
             <ControlGroup>
                 <ControlItem label="폰트">
-                    <select style={{ 'width': '90%', 'cursor': 'pointer' }} onChange={fontHandler} value={style.fontFamily}>
-                        <option value="굴림">굴림</option>
-                        <option value="굴림체">굴림체</option>
-                        <option value="궁서">궁서</option>
-                        <option value="궁서체">궁서체</option>
-                        <option value="돋움">돋움</option>
-                        <option value="돋움체">돋움체</option>
-                        <option value="바탕">바탕</option>
-                        <option value="바탕체">바탕체</option>
-                        <option value="휴면엽서체">휴먼엽서체</option>
-                    </select>
+                    <FontSelector onChange={fontHandler} value={style.fontFamily}>
+                        {fonts.map(font => <option key={font} value={font}>{font}</option>)}
+                    </FontSelector>
                 </ControlItem>
                 <TextControlItem label="weight" type="number" onValueChange={numberHandler.bind(null, 'fontFamily')} />
             </ControlGroup>

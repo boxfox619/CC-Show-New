@@ -56,6 +56,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
       />
       <TextController
         visible={asset.type === AssetType.Text}
+        fonts={props.editor.supportFonts}
         style={asset.style}
         onChangeStyle={changeStyleHandler}
       />
