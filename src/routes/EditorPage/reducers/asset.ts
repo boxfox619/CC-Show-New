@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
-import { Asset } from '../../../models/asset';
 import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload, UpdateAttrPayload } from '../models/payload';
+import { createAsset } from '../../../models/asset/index';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -34,7 +34,7 @@ export const ACTION_HANDLERS = {
     [ADD_ASSET]: (state: EditorStore, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;
-        const newAsset = new Asset(lastAssetId, payload.assetType, 100, 100, payload.point, payload.value);
+        const newAsset = createAsset(payload.assetType, lastAssetId, 100, 100, payload.point, payload.value);
         return {
             slides: {
                 [idx]: {

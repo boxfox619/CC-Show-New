@@ -2,19 +2,24 @@ import { CSSProperties } from 'react';
 import AssetType from '../AssetType';
 import Point from '../Point';
 
-export default class Asset {
-    constructor(
-        public id: number,
-        private assetType: AssetType,
-        public width: number,
-        public height: number,
-        public position: Point,
-        public value: any = '',
-        public attr: any = {},
-        public style: CSSProperties = { borderStyle: 'solid', borderWidth: 0 }
-    ) { }
+export interface Asset<V, T> {
+    id: number
+    type: AssetType
+    width: number
+    height: number
+    position: Point
+    value: V
+    attribute: T
+    style: CSSProperties
+}
 
-    get type() {
-        return this.assetType;
-    }
+export interface AnyAsset extends Asset<any, any> {
+    id: number
+    type: AssetType
+    width: number
+    height: number
+    position: Point
+    value: any
+    attribute: any
+    style: CSSProperties
 }

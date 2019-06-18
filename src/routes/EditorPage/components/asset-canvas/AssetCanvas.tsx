@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Asset, AssetType } from 'src/models';
+import { AssetType } from 'src/models';
 import { AssetRenderer } from './AssetRenderer';
 import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../modules/asset.service';
 import { clearSelection } from 'src/routes/EditorPage/modules/dom.service';
 import { UpdateAssetValuePayload } from '../../models/payload';
+import { AnyAsset } from '../../../../models/asset/Asset';
 
 const ACTION_MOVE = 'move';
 const ACTION_RESIZE = 'resize';
 const ACTION_NONE = 'none';
 
 interface OwnProps {
-    assets: Asset[],
+    assets: AnyAsset[],
     selectedAssetId?: number,
     editable: boolean,
     onSelectAsset: (id?: number) => void,
@@ -33,7 +34,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
         if (!currentAsset || !mouseAction || mouseAction === ACTION_NONE) {
             return;
         }
-        if (currentAsset.type === AssetType.Video && currentAsset.attr.preview) {
+        if (currentAsset.type === AssetType.Video && currentAsset.attribute.preview) {
             setMouseAction(ACTION_NONE);
             return;
         }

@@ -12,8 +12,8 @@ const Image = styled.img`
     height: 100%;
 `
 
-export const ImageAsset: React.FC<Props> = ({value, ...imgProps}) => {
+export const ImageAssetView: React.FC<Props> = ({ value, ...imgProps }) => {
     const onDragStart = React.useCallback((e: React.MouseEvent) => e.preventDefault(), []);
-    return ( <Image {...imgProps} onDragStart={onDragStart} src={value} /> )
+    return (<Image {...imgProps} onDragStart={onDragStart} src={value} />)
 }
-export default ImageAsset;
+export default ImageAssetView;

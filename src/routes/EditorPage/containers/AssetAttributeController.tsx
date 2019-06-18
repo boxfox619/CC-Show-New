@@ -44,7 +44,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         height={asset.height}
         x={asset.position.x}
         y={asset.position.y}
-        angle={asset.attr.angle}
+        angle={asset.attribute.angle}
         style={asset.style}
         onChangeStyle={changeStyleHandler}
         onChangeAttribute={changeAttrHandler}

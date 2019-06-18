@@ -1,11 +1,11 @@
-import { Asset } from 'src/models/asset';
+import { AnyAsset } from '../../../models';
 
 export default class Slide {
     constructor(
         public id: number = 0,
         public name: string = '',
         public thumbnail?: string,
-        public assets: Asset[] = [],
+        public assets: AnyAsset[] = [],
         public lastAssetId: number = 0,
         public selectedAssetId?: number
     ) { }
