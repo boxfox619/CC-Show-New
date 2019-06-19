@@ -3,7 +3,7 @@ import AssetProps from './AssetProps';
 import styled from 'styled-components';
 import TextAssetView from './TextAssetView';
 import ImageAssetView from './ImageAssetView';
-import AssetType from 'src/models/AssetType';
+import AssetType from '../../../../models/AssetType';
 import VideoAssetView from './VideoAssetView';
 import { TextAsset, ImageAsset, VideoAsset, AnyAsset } from 'src/models';
 

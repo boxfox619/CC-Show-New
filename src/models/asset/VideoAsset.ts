@@ -7,7 +7,7 @@ interface VideoAttribute {
 }
 
 export default class VideoAsset implements Asset<string, VideoAttribute> {
-    public type: AssetType = AssetType.Image;
+    public type: AssetType = AssetType.Video;
     public style: CSSProperties = { borderStyle: 'solid', borderWidth: 0 };
     constructor(
         public id: number,

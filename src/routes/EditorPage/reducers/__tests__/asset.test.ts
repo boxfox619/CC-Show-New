@@ -5,7 +5,7 @@ import { ResizeAssetPayload } from '../../models/payload/ResizeAssetPayload';
 import { UpdateAttrPayload } from '../../models/payload/UpdateAttrPayload';
 import EditorStore from '../../models/EditorStore';
 import { handleActions } from '../../../../core/store';
-import AssetModel from '../../../../models/AssetModel';
+import { TextAsset } from '../../../../models/asset';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -62,23 +62,23 @@ describe('asset', () => {
             expect(state.slides.length).toBe(1);
             const assets = state.slides[0].assets;
             expect(assets.length).toBe(1);
-            expect(assets[0]).toEqual(new AssetModel(0, AssetType.Text, 100, 100, { x: 1, y: 1 }, 'value-text'));
+            expect(assets[0]).toEqual(new TextAsset(0, 100, 100, { x: 1, y: 1 }, 'value-text'));
         });
         it('should move asset well', () => {
             state = reducer(state, AssetActions.moveAsset(new MoveAssetPayload(0, { x: 10, y: 10 })));
             const assets = state.slides[0].assets;
             expect(assets.length).toBe(1);
-            expect(assets[0]).toEqual(new AssetModel(0, AssetType.Text, 100, 100, { x: 10, y: 10 }, 'value-text'));
+            expect(assets[0]).toEqual(new TextAsset(0, 100, 100, { x: 10, y: 10 }, 'value-text'));
         });
         it('should copy asset well', () => {
             state = reducer(state, AssetActions.copyAsset(0));
-            expect(state.copiedAsset).toEqual(new AssetModel(0, AssetType.Text, 100, 100, { x: 10, y: 10 }, 'value-text'));
+            expect(state.copiedAsset).toEqual(new TextAsset(0, 100, 100, { x: 10, y: 10 }, 'value-text'));
         });
         it('should paste asset well', () => {
             state = reducer(state, AssetActions.pasteAsset());
             const assets = state.slides[0].assets;
             expect(assets.length).toBe(2);
-            expect(assets[1]).toEqual(new AssetModel(1, AssetType.Text, 100, 100, { x: 10, y: 10 }, 'value-text'));
+            expect(assets[1]).toEqual(new TextAsset(1, 100, 100, { x: 10, y: 10 }, 'value-text'));
         });
         it('should sort asset well', () => {
             state = reducer(state, AssetActions.sortAsset(new SortAssetPayload(0, 1, true)));
@@ -103,13 +103,13 @@ describe('asset', () => {
             state = reducer(state, AssetActions.resizeAsset(new ResizeAssetPayload(0, { x: 1, y: 1 }, 30, 30)));
             const assets = state.slides[0].assets;
             expect(assets.length).toBe(1);
-            expect(assets[0]).toEqual(new AssetModel(0, AssetType.Text, 30, 30, { x: 1, y: 1 }, 'value-text'));
+            expect(assets[0]).toEqual(new TextAsset(0, 30, 30, { x: 1, y: 1 }, 'value-text'));
         });
         it('should update asset value well', () => {
             state = reducer(state, AssetActions.updateAssetValue(new UpdateAssetValuePayload(0, 'updated-text')));
             const assets = state.slides[0].assets;
             expect(assets.length).toBe(1);
-            expect(assets[0]).toEqual(new AssetModel(0, AssetType.Text, 30, 30, { x: 1, y: 1 }, 'updated-text'));
+            expect(assets[0]).toEqual(new TextAsset(0, 30, 30, { x: 1, y: 1 }, 'updated-text'));
         });
         it('should change asset style well', () => {
             state = reducer(state, AssetActions.changeAssetStyle(new ChangeStylePayload(0, { backgroundColor: 'red' })));

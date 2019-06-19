@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { previewPlayIcon } from '../../assets';
 
 interface OwnProps {
     visible: boolean
@@ -9,22 +8,14 @@ interface OwnProps {
 
 type Props = OwnProps & React.HTMLAttributes<HTMLImageElement>;
 
-const Blank = styled.img`
-    width: 100%;
-    height: 100%;
-`
 const VideoFrame = styled.iframe`
     width: 100%;
     height: 100%;
     border: 0;
 `
 
-export const VideoAssetView: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> = ({ visible, value, ...divProps }) => {
+export const VideoAssetView: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> = ({ value }) => {
     const code = value.split("?v=")[1];
-    return (
-        <div {...divProps}>
-            {visible ? (<VideoFrame src={`https://www.youtube.com/embed/${code}`} />) : (<Blank><img src={previewPlayIcon} /></Blank>)}
-        </div>
-    )
+    return <VideoFrame src={`https://www.youtube.com/embed/${code}`} />
 }
 export default VideoAssetView;
