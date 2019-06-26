@@ -21,8 +21,7 @@ interface OwnProps {
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
-export const AssetRenderer: React.FC<Props> = (props: Props) => {
-    const { assets, selectedAssetId, editable, doubleClicked, onChangeValue, ...divProps } = props;
+export const AssetRenderer: React.FC<Props> = ({ assets, selectedAssetId, editable, doubleClicked, onChangeValue, ...divProps }) => {
     const [hoveredAssetIdx, setHoveredAsset] = useState(-1);
     const renderAssets = useCallback((assetList: AnyAsset[]) => {
         return assetList.map((asset, idx) => {
@@ -37,14 +36,14 @@ export const AssetRenderer: React.FC<Props> = (props: Props) => {
                     data={asset}
                     isSelected={isSelected}
                     isHovered={isHovered}
-                    controllable={props.editable}
+                    controllable={editable}
                     onMouseHover={handleMouseHover}
-                    isDoubleClicked={props.doubleClicked}
+                    isDoubleClicked={doubleClicked}
                     onValueChange={onValueChange}
                 />
             )
         })
-    }, [hoveredAssetIdx, selectedAssetId]);
+    }, [hoveredAssetIdx, selectedAssetId, doubleClicked, editable]);
     const renderGuideLine = useCallback((assetList: AnyAsset[]) => {
         if (hoveredAssetIdx < 0) { return; }
         return calGuideLine(assetList, hoveredAssetIdx).map((guideline, idx) => <Guideline key={idx} attr={guideline} />);

@@ -51,8 +51,8 @@ interface Props {
 }
 
 export const AssetView: React.FC<Props> = ({ data, index, isSelected, controllable, onMouseHover, onValueChange, isDoubleClicked }) => {
-    const onMouseOver = () => onMouseHover(true);
-    const onMouseOut = () => onMouseHover(false);
+    const onMouseOver = React.useCallback(() => onMouseHover(true), [onMouseHover]);
+    const onMouseOut = React.useCallback(() => onMouseHover(false), [onMouseHover]);
 
     const renderSelectorLine = (width: number, height: number) => {
         return (

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-interface OwnProps {
+interface Props {
     visible: boolean
     value: string
 }
-
-type Props = OwnProps & React.HTMLAttributes<HTMLImageElement>;
 
 const VideoFrame = styled.iframe`
     width: 100%;
@@ -14,7 +12,7 @@ const VideoFrame = styled.iframe`
     border: 0;
 `
 
-export const VideoAssetView: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> = ({ value }) => {
+export const VideoAssetView: React.FC<Props> = ({ value }) => {
     const code = value.split("?v=")[1];
     return <VideoFrame src={`https://www.youtube.com/embed/${code}`} />
 }
