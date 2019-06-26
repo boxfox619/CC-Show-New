@@ -7,7 +7,7 @@ import { changeAssetStyle, updateAssetAttr, updateAssetValue } from '../reducers
 import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
 import { UpdateAssetValuePayload } from '../models/payload';
-import { BasicContainer, ImageController, TextController } from '../components/attribute-controller';
+import { BasicContainer, ImageController, TextController, VideoController } from '../components/attribute-controller';
 
 const Container = styled.div`
   width: 300px;
@@ -59,6 +59,11 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         fonts={props.editor.supportFonts}
         style={asset.style}
         onChangeStyle={changeStyleHandler}
+      />
+      <VideoController
+        visible={asset.type === AssetType.Video}
+        value={asset.value}
+        onChangeValue={changeValue}
       />
     </Container>
   );
