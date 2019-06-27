@@ -12,6 +12,7 @@ export default class EditorStore {
         public selectedSlideId: number = 0,
         public lastSlideId: number = 1,
         public copiedSlide?: SlideModel,
-        public copiedAsset?: Asset
+        public copiedAsset?: Asset,
+        public supportFonts: string[] = [ '굴림', '굴림체', '궁서', '궁서체', '돋움', '돋움체', '바탕', '바탕체', '휴먼엽서체' ]
     ) { }
 }

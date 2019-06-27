@@ -1,10 +1,7 @@
 import * as React from 'react';
-import colorIcon from '../../assets/ic_color.png';
-import lineIcon from '../../assets/ic_line.png';
-import ControllerWrapper from './control/ControllerWrapper';
+import { colorIcon, lineIcon } from '../../assets';
 import { TextControlItem, TextInput, ColorPicker } from './Input';
-import { ControlGroup } from './control/ControlGroup';
-import { ControlItem } from './control/ControlItem';
+import { ControllerWrapper, ControlGroup, ControlItem } from './control';
 
 interface Props {
     width: number
@@ -18,13 +15,8 @@ interface Props {
 }
 
 const BasicContainer: React.FC<Props> = ({ width, height, x, y, angle, style, onChangeAttribute, onChangeStyle }) => {
-    const backgroundColor = style.backgroundColor;
-    const borderColor = style.borderColor;
     const borderWidth = style.borderWidth;
-    const colorStyle = (!backgroundColor || backgroundColor === 'white') ? { border: '1px solid #5D87B5' } : { backgroundColor };
-    const borderStyle = (!borderColor || borderColor === 'white') ? { border: '1px solid #5D87B5' } : { backgroundColor: borderColor };
-    const onChangeBackground = React.useCallback((color: string) => onChangeStyle(({ ...style, backgroundColor: color })), [style, onChangeStyle]);
-    const onChangeBorder = React.useCallback((color: string) => onChangeStyle(({ ...style, borderColor: color })), [style, onChangeStyle]);
+    const colorHandler = React.useCallback((attrName: string, color: string) => onChangeStyle(({ ...style, [attrName]: color })), [style, onChangeStyle]);
     const onChangeBorderWidth = React.useCallback((w: number) => onChangeStyle({ ...style, borderWidth: w }), [style, onChangeStyle]);
     return (
         <>
@@ -42,11 +34,11 @@ const BasicContainer: React.FC<Props> = ({ width, height, x, y, angle, style, on
             <ControllerWrapper title="모양">
                 <ControlGroup>
                     <ControlItem label={<img src={colorIcon} />}>
-                        <div><ColorPicker style={colorStyle} color={backgroundColor || 'white'} onColorChange={onChangeBackground} /></div>
+                        <div><ColorPicker color={style.backgroundColor || '#fff'} onColorChange={colorHandler.bind(null, 'backgroundColor')} /></div>
                     </ControlItem>
                     <ControlItem label={<img src={lineIcon} />}>
                         <div>
-                            <ColorPicker style={borderStyle} color={style.borderColor || 'black'} onColorChange={onChangeBorder} />
+                            <ColorPicker color={style.borderColor || '#000'} onColorChange={colorHandler.bind(null, 'borderColor')} />
                             <TextInput style={{ width: "60%" }} type="text" value={borderWidth} onValueChange={onChangeBorderWidth} />
                         </div>
                     </ControlItem>
