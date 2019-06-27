@@ -1,9 +1,11 @@
 import * as React from 'react';
 import AssetProps from './AssetProps';
 import styled from 'styled-components';
-import TextAsset from './TextAsset';
-import ImageAsset from './ImageAsset';
-import AssetType from 'src/models/AssetType';
+import TextAssetView from './TextAssetView';
+import ImageAssetView from './ImageAssetView';
+import AssetType from '../../../../models/AssetType';
+import VideoAssetView from './VideoAssetView';
+import { TextAsset, ImageAsset, VideoAsset, AnyAsset } from 'src/models';
 
 const Container = styled.div`
     width: 100%;
@@ -20,8 +22,8 @@ const Cover = styled.div`
 `
 
 const asset = {
-    [AssetType.Text]: (props: AssetProps) => (
-        <TextAsset
+    [AssetType.Text]: (props: AssetProps<TextAsset>) => (
+        <TextAssetView
             assetId={props.data.id}
             controllable={props.controllable}
             value={props.data.value}
@@ -29,8 +31,11 @@ const asset = {
             handleChange={props.onValueChange}
         />
     ),
-    [AssetType.Image]: (props: AssetProps) => (
-        <ImageAsset value={props.data.value} />
+    [AssetType.Image]: (props: AssetProps<ImageAsset>) => (
+        <ImageAssetView value={props.data.value} />
+    ),
+    [AssetType.Video]: (props: AssetProps<VideoAsset>) => (
+        <VideoAssetView visible={props.data.attribute.preview} value={props.data.value} />
     )
 }
 
@@ -38,7 +43,7 @@ interface ContextProps {
     index: number
 }
 
-type Props = AssetProps & ContextProps;
+type Props = AssetProps<AnyAsset> & ContextProps;
 
 export const AssetContext: React.FC<Props> = ({ index, ...assetProps }) => {
     return (

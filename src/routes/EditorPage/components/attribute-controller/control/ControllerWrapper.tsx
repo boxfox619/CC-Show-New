@@ -1,9 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import arrowUpIcon from '../../../assets/ic_arrow_up.png';
-import arrowDownIcon from '../../../assets/ic_arrow_down.png';
-import ellipseIcon from '../../../assets/ic_ellipse_gray.png';
-
+import { arrowUpIcon, arrowDownIcon, ellipseGrayIcon } from '../../../assets';
 
 const Wrapper = styled.div`
     display: flex;
@@ -21,7 +18,7 @@ const Header = styled.div`
         content: '';
         display: table-cell;
         vertical-align: middle;
-        background: url(${ellipseIcon}) no-repeat left center;
+        background: url(${ellipseGrayIcon}) no-repeat left center;
         width: 23px;
     }
 `

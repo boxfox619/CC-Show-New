@@ -1,11 +1,13 @@
 import * as React from "react";
 import styled from 'styled-components';
-import BasicContainer from '../components/attribute-controller/BasicController';
 import StoreModel from '../models/StoreModel';
-import { changeAssetStyle, updateAssetAttr } from '../reducers/asset';
-import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { connect } from 'react-redux';
+import { AssetType } from 'src/models';
+import { changeAssetStyle, updateAssetAttr, updateAssetValue } from '../reducers/asset';
+import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
+import { UpdateAssetValuePayload } from '../models/payload';
+import { BasicContainer, ImageController, TextController, VideoController } from '../components/attribute-controller';
 
 const Container = styled.div`
   width: 300px;
@@ -14,7 +16,8 @@ const Container = styled.div`
 
 const mapDispatchToProps = {
   changeAssetStyle,
-  updateAssetAttr
+  updateAssetAttr,
+  updateAssetValue
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -33,6 +36,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
   if (assetId === undefined || !asset) { return (<></>); }
   const changeStyleHandler = React.useCallback((style: React.CSSProperties) => props.changeAssetStyle(new ChangeStylePayload(assetId, style)), [assetId, props.changeAssetStyle]);
   const changeAttrHandler = React.useCallback((name: string, value: any) => props.updateAssetAttr(new UpdateAttrPayload(assetId, name, value)), [assetId, props.updateAssetAttr]);
+  const changeValue = React.useCallback((value: any) => props.updateAssetValue(new UpdateAssetValuePayload(asset.id, value)), [asset, updateAssetValue]);
   return (
     <Container>
       <BasicContainer
@@ -40,10 +44,26 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         height={asset.height}
         x={asset.position.x}
         y={asset.position.y}
-        angle={asset.attr.angle}
+        angle={asset.attribute.angle}
         style={asset.style}
         onChangeStyle={changeStyleHandler}
         onChangeAttribute={changeAttrHandler}
+      />
+      <ImageController
+        visible={asset.type === AssetType.Image}
+        image={asset.value}
+        onChangeValue={changeValue}
+      />
+      <TextController
+        visible={asset.type === AssetType.Text}
+        fonts={props.editor.supportFonts}
+        style={asset.style}
+        onChangeStyle={changeStyleHandler}
+      />
+      <VideoController
+        visible={asset.type === AssetType.Video}
+        value={asset.value}
+        onChangeValue={changeValue}
       />
     </Container>
   );

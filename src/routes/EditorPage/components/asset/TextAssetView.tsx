@@ -27,7 +27,7 @@ const config = {
     ]
 };
 
-export default class TextAsset extends React.Component<Props>{
+export default class TextAssetView extends React.Component<Props>{
     editorRef: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props){

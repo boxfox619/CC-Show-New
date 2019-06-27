@@ -1,5 +1,5 @@
-import AssetModel from 'src/models/AssetModel';
 import GuidelineModel from '../models/Guideline';
+import { AnyAsset } from '../../../models/asset/Asset';
 
 export const DATASET_TYPE_ASSET = 'asset';
 export const DATASET_TYPE_RESIZER = 'asset-resizer';
@@ -18,25 +18,25 @@ export const isResizer = (target: HTMLElement) => target.dataset.type === DATASE
 export const isSelector = (target: HTMLElement) => target.dataset.type === DATASET_TYPE_SELECTOR_DOT || target.dataset.type === DATASET_TYPE_SELECTOR_LINE;
 export const findAsset = (target: HTMLElement) => findNodeByType(DATASET_TYPE_ASSET, target);
 export const getResizeTarget = (target: HTMLElement) => target.dataset.resize || '';
-export const calMagneticPositionX = (position: number, size: number, assets: AssetModel[]) => calMagneticPosition('x', position, size, assets);
-export const calMagneticPositionY = (position: number, size: number, assets: AssetModel[]) => calMagneticPosition('y', position, size, assets);
-export const calMagneticSizeX = (position: number, size: number, assets: AssetModel[]) => calMagneticSize('x', position, size, assets);
-export const calMagneticSizeY = (position: number, size: number, assets: AssetModel[]) => calMagneticSize('y', position, size, assets);
+export const calMagneticPositionX = (position: number, size: number, assets: AnyAsset[]) => calMagneticPosition('x', position, size, assets);
+export const calMagneticPositionY = (position: number, size: number, assets: AnyAsset[]) => calMagneticPosition('y', position, size, assets);
+export const calMagneticSizeX = (position: number, size: number, assets: AnyAsset[]) => calMagneticSize('x', position, size, assets);
+export const calMagneticSizeY = (position: number, size: number, assets: AnyAsset[]) => calMagneticSize('y', position, size, assets);
 
 export function move(
     xInElement: number,
     yInElement: number,
     pageX: number,
     pageY: number,
-    selectedAsset: AssetModel,
-    otherAssets: AssetModel[],
+    selectedAsset: AnyAsset,
+    otherAssets: AnyAsset[],
     callback: (id: number, x: number, y: number, width: number, height: number) => void
 ) {
     let afterX = selectedAsset.position.x + (pageX - xInElement);
     let afterY = selectedAsset.position.y + (pageY - yInElement);
     afterX = calMagneticPositionX(afterX, selectedAsset.width, otherAssets);
-    afterY = calMagneticPositionY(afterY, selectedAsset.height, otherAssets );
-    callback(selectedAsset.id, afterX,afterY,selectedAsset.width, selectedAsset.height);
+    afterY = calMagneticPositionY(afterY, selectedAsset.height, otherAssets);
+    callback(selectedAsset.id, afterX, afterY, selectedAsset.width, selectedAsset.height);
 }
 
 export function resize(
@@ -45,8 +45,8 @@ export function resize(
     yInElement: number,
     pageX: number,
     pageY: number,
-    selectedAsset: AssetModel,
-    otherAssets: AssetModel[],
+    selectedAsset: AnyAsset,
+    otherAssets: AnyAsset[],
     callback: (id: number, x: number, y: number, width: number, height: number) => void) {
     const currentId = selectedAsset.id;
     const devX = (target.includes('left')) ? xInElement - pageX : pageX - xInElement;
@@ -113,7 +113,7 @@ export function findNodeByType(type: string, child: HTMLElement): undefined | HT
     return undefined;
 }
 
-export const calMagneticPosition = (type: string, position: number, size: number, assets: AssetModel[]) => {
+export const calMagneticPosition = (type: string, position: number, size: number, assets: AnyAsset[]) => {
     const sub = 100;
     let result = position;
     const endPosition = position + size;
@@ -145,7 +145,7 @@ export const calMagneticPosition = (type: string, position: number, size: number
     return result;
 }
 
-export const calMagneticSize = (type: string, position: number, size: number, assets: AssetModel[]) => {
+export const calMagneticSize = (type: string, position: number, size: number, assets: AnyAsset[]) => {
     const sub = 100;
     let result = size;
     const endPosition = position + size;
@@ -168,7 +168,7 @@ export const calMagneticSize = (type: string, position: number, size: number, as
 }
 
 
-export const calGuideLine = (assets: AssetModel[], selectedIndex: number) => {
+export const calGuideLine = (assets: AnyAsset[], selectedIndex: number) => {
     const guidelines: GuidelineModel[] = [];
     const selectedAsset = assets[selectedIndex];
     const selectedAssetX = selectedAsset.position.x;

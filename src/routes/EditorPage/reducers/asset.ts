@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
-import AssetModel from 'src/models/AssetModel';
 import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload, UpdateAttrPayload } from '../models/payload';
+import { createAsset } from '../../../models/asset/index';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -34,7 +34,7 @@ export const ACTION_HANDLERS = {
     [ADD_ASSET]: (state: EditorStore, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;
-        const newAsset = new AssetModel(lastAssetId, payload.assetType, 100, 100, payload.point, payload.value);
+        const newAsset = createAsset(payload.assetType, lastAssetId, 100, 100, payload.point, payload.value);
         return {
             slides: {
                 [idx]: {
@@ -54,7 +54,7 @@ export const ACTION_HANDLERS = {
         const idx = getCurrentSlideIdx(state);
         const assetId = payload.assetId;
         const assetIdx = state.slides[idx].assets.findIndex(asset => asset.id === assetId);
-        return { slides: { [idx]: { assets: { [assetIdx]: { position: payload.point } } } } };
+        return { slides: { [idx]: { assets: { [assetIdx]: { position: { $set: payload.point } } } } } };
     },
     [COPY_ASSET]: (state: EditorStore, payload: number) => {
         const idx = getCurrentSlideIdx(state);

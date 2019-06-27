@@ -1,7 +1,7 @@
-import AssetModel from 'src/models/AssetModel';
+import { Asset } from '../../../../models';
 
-export default interface AssetProps {
-    data: AssetModel,
+export default interface AssetProps<T extends Asset<any, any>> {
+    data: T,
     isSelected: boolean,
     isDoubleClicked: boolean,
     controllable: boolean,

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import {useCallback} from 'react';
-import { PointModel } from 'src/models';
+import { useCallback } from 'react';
+import { Point } from 'src/models';
 import { Menu } from '.';
 import { MenuContainer, MenuContent, Option, ShortCut, Submenu } from './styles';
 
 interface Props {
     visible: boolean,
     menu: Menu[],
-    position: PointModel
+    position: Point
 }
 
 const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean = true) => {
@@ -15,7 +15,7 @@ const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean
         <MenuContainer left={left} top={top} visible={visible}>
             <MenuContent>
                 {menus.map(m => {
-                    const onClick = useCallback(() => {if(!m.disabled) {m.actions.map(action => action())}}, [m.actions]);
+                    const onClick = useCallback(() => { if (!m.disabled) { m.actions.map(action => action()) } }, [m.actions]);
                     return (
                         <Option key={m.label} onClick={onClick} disabled={m.disabled}>
                             {m.label}
@@ -29,6 +29,6 @@ const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean
     )
 }
 
-export const ContextMenu: React.FC<Props> = ({visible, menu, position}) => {
+export const ContextMenu: React.FC<Props> = ({ visible, menu, position }) => {
     return createMenu(menu, position.x, position.y, visible);
 }

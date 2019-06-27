@@ -9,6 +9,11 @@ const ColorRound = styled.div`
     border-radius: 20px;
     float: right;
     display: inline-block;
+    ${(props: ({ currentColor?: string })) => (!props.currentColor || props.currentColor === '#fff') ? `
+        border: 1px solid #5D87B5;
+    ` : `
+        background-color: ${props.currentColor};
+    `}
 `
 const PickerContainer = styled.div`
     position: relative;
@@ -20,9 +25,10 @@ const PickerContext = styled.div`
     position: absolute;
     right: 0;
     top: 25px;
+    z-index: 10;
 `
 interface Props {
-    color: string,
+    color?: string,
     onColorChange: (color: string) => void
 }
 
@@ -42,7 +48,7 @@ export const ColorPicker: React.FC<Props & React.HTMLAttributes<HTMLDivElement>>
     }, [pickerRef])
     return (
         <>
-            <ColorRound onClick={togglePicker} {...divProps} />
+            <ColorRound onClick={togglePicker} currentColor={color} {...divProps} />
             <PickerContainer visible={pickerVisible} ref={pickerRef}>
                 <PickerContext>
                     <SketchPicker color={color} onChangeComplete={changeColor} />
