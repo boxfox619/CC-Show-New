@@ -5,7 +5,8 @@ import TextAssetView from './TextAssetView';
 import ImageAssetView from './ImageAssetView';
 import AssetType from '../../../../models/AssetType';
 import VideoAssetView from './VideoAssetView';
-import { TextAsset, ImageAsset, VideoAsset, AnyAsset } from 'src/models';
+import { TextAsset, ImageAsset, VideoAsset, AnyAsset, ShapeAsset } from 'src/models';
+import ShapeAssetView from './ShapeAssetView';
 
 const Container = styled.div`
     width: 100%;
@@ -21,22 +22,18 @@ const Cover = styled.div`
     z-index: 3;
 `
 
-const asset = {
-    [AssetType.Text]: (props: AssetProps<TextAsset>) => (
+const assetRenderer: { [type in keyof typeof AssetType]: (props: AssetProps<AnyAsset>) => any } = {
+    Text: (props: AssetProps<TextAsset>) => (
         <TextAssetView
             assetId={props.data.id}
             controllable={props.controllable}
             value={props.data.value}
             editing={props.isSelected && props.isDoubleClicked}
             handleChange={props.onValueChange}
-        />
-    ),
-    [AssetType.Image]: (props: AssetProps<ImageAsset>) => (
-        <ImageAssetView value={props.data.value} />
-    ),
-    [AssetType.Video]: (props: AssetProps<VideoAsset>) => (
-        <VideoAssetView visible={props.data.attribute.preview} value={props.data.value} />
-    )
+        />),
+    Image: (props: AssetProps<ImageAsset>) => (<ImageAssetView value={props.data.value} />),
+    Video: (props: AssetProps<VideoAsset>) => (<VideoAssetView visible={props.data.attribute.preview} value={props.data.value} />),
+    Shape: (props: AssetProps<ShapeAsset>) => (<ShapeAssetView value={props.data.value} />),
 }
 
 interface ContextProps {
@@ -49,7 +46,7 @@ export const AssetContext: React.FC<Props> = ({ index, ...assetProps }) => {
     return (
         <Container style={{ zIndex: index, ...assetProps.data.style }}>
             {!assetProps.isDoubleClicked && <Cover />}
-            {asset[assetProps.data.type](assetProps)}
+            {assetRenderer[assetProps.data.type](assetProps)}
         </Container>
     );
 };
