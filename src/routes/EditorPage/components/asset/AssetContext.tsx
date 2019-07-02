@@ -22,18 +22,27 @@ const Cover = styled.div`
     z-index: 3;
 `
 
-const assetRenderer: { [type in keyof typeof AssetType]: (props: AssetProps<AnyAsset>) => any } = {
-    Text: (props: AssetProps<TextAsset>) => (
-        <TextAssetView
-            assetId={props.data.id}
-            controllable={props.controllable}
-            value={props.data.value}
-            editing={props.isSelected && props.isDoubleClicked}
-            handleChange={props.onValueChange}
-        />),
-    Image: (props: AssetProps<ImageAsset>) => (<ImageAssetView value={props.data.value} />),
-    Video: (props: AssetProps<VideoAsset>) => (<VideoAssetView visible={props.data.attribute.preview} value={props.data.value} />),
-    Shape: (props: AssetProps<ShapeAsset>) => (<ShapeAssetView value={props.data.value} />),
+const assetRenderer = (type: AssetType, props: AssetProps<any>) => {
+    switch (type) {
+        case AssetType.Text:
+            const textAsset = props.data as TextAsset;
+            return (<TextAssetView
+                assetId={textAsset.id}
+                controllable={props.controllable}
+                value={textAsset.value}
+                editing={props.isSelected && props.isDoubleClicked}
+                handleChange={props.onValueChange}
+            />)
+        case AssetType.Image:
+            const imageAsset = props.data as ImageAsset;
+            return (<ImageAssetView value={imageAsset.value} />)
+        case AssetType.Video:
+            const videoAsset = props.data as VideoAsset;
+            return (<VideoAssetView visible={videoAsset.attribute.preview} value={videoAsset.value} />)
+        case AssetType.Shape:
+            const shapeAsset = props.data as ShapeAsset;
+            return (<ShapeAssetView asset={props.data} Shape={shapeAsset.value} />)
+    }
 }
 
 interface ContextProps {
@@ -46,7 +55,7 @@ export const AssetContext: React.FC<Props> = ({ index, ...assetProps }) => {
     return (
         <Container style={{ zIndex: index, ...assetProps.data.style }}>
             {!assetProps.isDoubleClicked && <Cover />}
-            {assetRenderer[assetProps.data.type](assetProps)}
+            {assetRenderer(assetProps.data.type, assetProps)}
         </Container>
     );
 };

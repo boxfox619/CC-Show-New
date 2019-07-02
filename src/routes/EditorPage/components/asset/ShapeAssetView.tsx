@@ -1,14 +1,21 @@
 import * as React from 'react';
+import { ShapeProps } from '../../assets/ShapeAsset';
+import { ShapeAsset } from 'src/models';
+
 
 interface Props {
-    value: SVGElement
+    Shape: React.ComponentType<ShapeProps>
+    asset: ShapeAsset
 }
 
-const ShapeAssetView: React.FC<Props> = ({ value }) => {
+const ShapeAssetView: React.FC<Props> = ({ Shape, asset }) => {
     return (
-        <>
-            {value}
-        </>
+        <Shape width={`${asset.width}px`}
+            height={`${asset.height}px`}
+            backgroundColor={asset.style.backgroundColor}
+            borderColor={asset.style.borderColor}
+            borderWidth={asset.style.borderWidth}
+        />
     )
 }
 
