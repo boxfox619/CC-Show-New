@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { optional } from 'src/core/hoc';
 
 const Container = styled.div`
     display: flex;
@@ -14,7 +15,7 @@ const Container = styled.div`
         margin-top: -1px;
     }
 `
-const Title = styled.div`
+const TitleLabel = styled.div`
     border: 0;
     margin: 0 0 0 5px;
     font-size: 15px;
@@ -23,15 +24,19 @@ const Title = styled.div`
     align-items: center;
 `
 
+const Title = optional(TitleLabel)
+
 interface Props {
-    label: any
+    label?: any,
+    onClick?: (e: React.MouseEvent) => void,
+    style?: React.CSSProperties
 }
 
-export const ControlItem: React.FC<Props> = ({ label, children }) => {
+export const ControlItem: React.FC<Props> = ({ label, children, onClick, style }) => {
     const titleContent = (typeof label === 'string') ? `${label} :` : label;
     return (
-        <Container>
-            <Title>{titleContent}</Title>
+        <Container onClick={onClick} style={style}>
+            <Title visible={label}>{titleContent}</Title>
             {children}
         </Container>
     )

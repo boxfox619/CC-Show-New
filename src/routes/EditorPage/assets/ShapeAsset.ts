@@ -6,4 +6,6 @@ export interface ShapeProps {
     backgroundColor?: BackgroundColorProperty
     borderColor?: BorderColorProperty
     borderWidth?: BorderWidthProperty<any>
+    onClick?: () => void,
+    style?: React.CSSProperties
 }

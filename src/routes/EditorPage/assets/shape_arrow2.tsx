@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ShapeProps } from './ShapeAsset';
 
-export const ShapeArrow2: React.FC<ShapeProps> = ({ width, height, backgroundColor, borderColor, borderWidth }) => (
-  <svg version='1.0' xmlns='http://www.w3.org/2000/svg'
+export const ShapeArrow2: React.FC<ShapeProps> = ({ width, height, backgroundColor, borderColor, borderWidth, onClick, style }) => (
+  <svg onClick={onClick} style={style} version='1.0' xmlns='http://www.w3.org/2000/svg'
     width={width} height={height} viewBox='0 0 23.000000 7.000000'
     preserveAspectRatio='xMidYMid meet'>
     <metadata>
