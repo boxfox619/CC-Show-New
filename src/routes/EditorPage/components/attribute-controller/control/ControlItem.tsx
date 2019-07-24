@@ -9,11 +9,13 @@ const Container = styled.div`
     padding: 3px 5px 3px 5px;
     margin: 3px;
     height: 20px;
-    & > *:nth-child(2) {
-        flex: 1;
-        width: 0;
-        margin-top: -1px;
-    }
+    ${(props: { useLabel: boolean }) => props.useLabel && `
+        & > *:nth-child(2) {
+            flex: 1;
+            width: 0;
+            margin-top: -1px;
+        }
+    `}
 `
 const TitleLabel = styled.div`
     border: 0;
@@ -35,7 +37,7 @@ interface Props {
 export const ControlItem: React.FC<Props> = ({ label, children, onClick, style }) => {
     const titleContent = (typeof label === 'string') ? `${label} :` : label;
     return (
-        <Container onClick={onClick} style={style}>
+        <Container onClick={onClick} style={style} useLabel={!!label}>
             <Title visible={label}>{titleContent}</Title>
             {children}
         </Container>

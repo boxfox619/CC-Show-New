@@ -34,13 +34,6 @@ export { default as activeBackground } from './bg_active.png';
 
 
 export { ShapeArrow1 } from './shape_arrow1';
-export { ShapeArrow2 } from './shape_arrow2';
-export { ShapeArrow3 } from './shape_arrow3';
-export { ShapeArrow4 } from './shape_arrow4';
-export { ShapeArrow5 } from './shape_arrow5';
-export { ShapeArrow6 } from './shape_arrow6';
-export { ShapeArrow7 } from './shape_arrow7';
-export { ShapeArrow8 } from './shape_arrow8';
 export { ShapeClover } from './shape_clover';
 export { ShapeDiamond } from './shape_diamond';
 export { ShapeEllipse } from './shape_ellipse';
@@ -52,6 +45,5 @@ export { ShapePentagon } from './shape_pentagon';
 export { ShapeRoundSquare } from './shape_round_square';
 export { ShapeSquare } from './shape_square';
 export { ShapeSpade } from './shape_spade';
-export { ShapeStain } from './shape_stain';
 export { ShapeStar } from './shape_star';
 export { ShapeTriangle } from './shape_triangle';

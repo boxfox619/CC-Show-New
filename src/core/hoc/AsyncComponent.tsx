@@ -4,7 +4,7 @@ interface AsyncComponentState {
     ImportedComponent: any;
 }
 
-export default function asyncComponent(getComponent: () => Promise<any>): any {
+const asyncComponent = (getComponent: () => Promise<any>): any => {
     class AsyncComponent extends React.Component<{}, AsyncComponentState> {
 
         constructor(props: any) {
@@ -32,3 +32,5 @@ export default function asyncComponent(getComponent: () => Promise<any>): any {
     }
     return AsyncComponent;
 }
+
+export default asyncComponent; 
