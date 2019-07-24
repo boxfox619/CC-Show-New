@@ -8,6 +8,7 @@ import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
 import { UpdateAssetValuePayload } from '../models/payload';
 import { BasicContainer, ImageController, TextController, VideoController } from '../components/attribute-controller';
+import ShapeController from '../components/attribute-controller/ShapeController';
 
 const Container = styled.div`
   width: 300px;
@@ -64,6 +65,10 @@ const AssetAttributeController: React.FC<Props> = (props) => {
         visible={asset.type === AssetType.Video}
         value={asset.value}
         onChangeValue={changeValue}
+      />
+      <ShapeController
+        visible={asset.type === AssetType.Shape}
+        onChangeShape={changeValue}
       />
     </Container>
   );

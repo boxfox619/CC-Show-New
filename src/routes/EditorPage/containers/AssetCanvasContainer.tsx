@@ -44,8 +44,7 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
       new Menu('앞으로 가져오기', 'CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(assetId, +1)), closeContextMenu]),
       new Menu('뒤로 보내기', 'CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(assetId, -1)), closeContextMenu]),
       new Menu('맨 뒤로 보내기', 'SHIFT + CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(assetId, -1, true)), closeContextMenu])
-    ]
-    )
+    ])
   ];
   return (
     <>
