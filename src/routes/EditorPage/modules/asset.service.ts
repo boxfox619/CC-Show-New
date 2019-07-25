@@ -113,11 +113,11 @@ export function findNodeByType(type: string, child: HTMLElement): undefined | HT
     return undefined;
 }
 
-export const calMagneticPosition = (type: string, position: number, size: number, assets: AnyAsset[]) => {
+export const calMagneticPosition = (type: 'x' | 'y', position: number, size: number, assets: AnyAsset[]) => {
     const sub = 100;
     let result = position;
     const endPosition = position + size;
-    assets.map(asset => {
+    assets.forEach((asset: AnyAsset) => {
         const assetPosition = asset.position[type];
         const assetSize = asset[type === 'x' ? 'width' : 'height'];
         const assetEndPosition = assetPosition + assetSize;
@@ -145,11 +145,11 @@ export const calMagneticPosition = (type: string, position: number, size: number
     return result;
 }
 
-export const calMagneticSize = (type: string, position: number, size: number, assets: AnyAsset[]) => {
+export const calMagneticSize = (type: 'x' | 'y', position: number, size: number, assets: AnyAsset[]) => {
     const sub = 100;
     let result = size;
     const endPosition = position + size;
-    assets.map(asset => {
+    assets.forEach(asset => {
         const assetPosition = asset.position[type];
         const assetSize = asset[type === 'x' ? 'width' : 'height'];
         const assetEndPosition = assetPosition + assetSize;
@@ -177,7 +177,7 @@ export const calGuideLine = (assets: AnyAsset[], selectedIndex: number) => {
     const selectedAssetHeight = selectedAsset.height;
     const selectedAssetXEnd = selectedAssetX + selectedAssetWidth;
     const selectedAssetYEnd = selectedAssetY + selectedAssetHeight;
-    assets.map((asset, idx) => {
+    assets.forEach((asset, idx) => {
         if (selectedIndex !== idx) {
             const assetX = asset.position.x;
             const assetY = asset.position.y;

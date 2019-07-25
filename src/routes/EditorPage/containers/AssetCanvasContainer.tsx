@@ -5,7 +5,7 @@ import { SortAssetPayload } from '../models/payload';
 import { connect } from 'react-redux';
 import { ContextMenu, Menu } from '../components/context-menu';
 import { selectAsset, resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset, sortAsset } from '../reducers/asset';
-import { Point } from 'src/models'; 
+import { Point } from '../../../models';
 
 const mapDispatchToProps = {
   selectAsset,
@@ -26,9 +26,9 @@ const mapStateToProps = (state: StoreModel) => {
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
+  const [menuPosition, setMenuPosition] = React.useState<Point>({ x: 0, y: 0 });
   const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
   if (!currentSlide) { return (<></>); }
-  const [menuPosition, setMenuPosition] = React.useState<Point>({ x: 0, y: 0 });
   const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
   const openContextMenu = (e: React.MouseEvent) => setMenuPosition({ x: e.pageX, y: e.pageY });
   const closeContextMenu = () => setMenuPosition({ x: 0, y: 0 });

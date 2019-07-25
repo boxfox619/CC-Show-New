@@ -94,10 +94,10 @@ interface Props {
 }
 
 const SlidePreview: React.FC<Props> = ({ idx, slide, onClick, active, onShare, onCopy, onDelete }) => {
-    const handleClick = useCallback(() => onClick(slide.id), [slide]);
-    const handleShare = useCallback(() => onShare(slide.id), [slide]);
-    const handleCopy = useCallback(() => onCopy(slide.id), [slide]);
-    const handleDelete = useCallback(() => onDelete(slide.id), [slide]);
+    const handleClick = useCallback(() => onClick(slide.id), [slide, onClick]);
+    const handleShare = useCallback(() => onShare(slide.id), [slide, onShare]);
+    const handleCopy = useCallback(() => onCopy(slide.id), [slide, onCopy]);
+    const handleDelete = useCallback(() => onDelete(slide.id), [slide, onDelete]);
     return (
         <Container onClick={handleClick} active={active}>
             <ThumbnailWrapper>

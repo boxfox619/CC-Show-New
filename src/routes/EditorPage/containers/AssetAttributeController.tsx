@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from 'styled-components';
 import StoreModel from '../models/StoreModel';
 import { connect } from 'react-redux';
-import { AssetType } from 'src/models';
+import { AssetType } from '../../../models';
 import { changeAssetStyle, updateAssetAttr, updateAssetValue } from '../reducers/asset';
 import { ChangeStylePayload } from '../models/payload/ChangeStylePayload';
 import { UpdateAttrPayload } from '../models/payload/UpdateAttrPayload';
@@ -29,15 +29,15 @@ const mapStateToProps = (state: StoreModel) => {
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
-const AssetAttributeController: React.FC<Props> = (props) => {
-  const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
+const AssetAttributeController: React.FC<Props> = ({ editor, changeAssetStyle, updateAssetAttr, updateAssetValue }) => {
+  const currentSlide = editor.slides.find(s => s.id === editor.selectedSlideId);
+  const assetId = !!currentSlide ? currentSlide.selectedAssetId : undefined;
+  const asset = !!currentSlide ? currentSlide.assets.find(a => a.id === assetId) : undefined;
+  const changeStyleHandler = React.useCallback((style: React.CSSProperties) => assetId && changeAssetStyle(new ChangeStylePayload(assetId, style)), [assetId, changeAssetStyle]);
+  const changeAttrHandler = React.useCallback((name: string, value: any) => assetId && updateAssetAttr(new UpdateAttrPayload(assetId, name, value)), [assetId, updateAssetAttr]);
+  const changeValue = React.useCallback((value: any) => asset && updateAssetValue(new UpdateAssetValuePayload(asset.id, value)), [asset, updateAssetValue]);
   if (!currentSlide) { return (<></>); }
-  const assetId = currentSlide.selectedAssetId;
-  const asset = currentSlide.assets.find(a => a.id === assetId);
   if (assetId === undefined || !asset) { return (<></>); }
-  const changeStyleHandler = React.useCallback((style: React.CSSProperties) => props.changeAssetStyle(new ChangeStylePayload(assetId, style)), [assetId, props.changeAssetStyle]);
-  const changeAttrHandler = React.useCallback((name: string, value: any) => props.updateAssetAttr(new UpdateAttrPayload(assetId, name, value)), [assetId, props.updateAssetAttr]);
-  const changeValue = React.useCallback((value: any) => props.updateAssetValue(new UpdateAssetValuePayload(asset.id, value)), [asset, updateAssetValue]);
   return (
     <Container>
       <BasicContainer
@@ -57,7 +57,7 @@ const AssetAttributeController: React.FC<Props> = (props) => {
       />
       <TextController
         visible={asset.type === AssetType.Text}
-        fonts={props.editor.supportFonts}
+        fonts={editor.supportFonts}
         style={asset.style}
         onChangeStyle={changeStyleHandler}
       />

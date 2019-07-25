@@ -1,4 +1,4 @@
-import { Point, AssetType } from 'src/models';
+import { Point, AssetType } from '../../../../models';
 export class CreateAssetPayload {
     constructor(
         public assetType: AssetType,

@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import AssetType from '../AssetType';
-import Point from '../Point';
+import { Point } from '..';
 
 export interface Asset<V, T> {
     id: number

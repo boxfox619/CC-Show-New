@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ControllerWrapper, ControlGroup, ControlItem } from './control';
-import { optional } from 'src/core/hoc';
-import { ShapeArrow1, ShapeClover } from '../../assets';
-import { ShapeDiamond, ShapeEllipse, ShapeHeart, ShapeHexagon, ShapeMoon, ShapeOctagon, ShapePentagon, ShapeRoundSquare, ShapeSpade } from '../../assets';
-import { ShapeSquare, ShapeStar, ShapeTriangle } from '../../assets';
-import { ShapeProps } from '../../assets/ShapeAsset';
+import { optional } from '../../../../core/hoc';
+import { ShapeArrow1, ShapeClover } from '../../../../assets';
+import { ShapeDiamond, ShapeEllipse, ShapeHeart, ShapeHexagon, ShapeMoon, ShapeOctagon, ShapePentagon, ShapeRoundSquare, ShapeSpade } from '../../../../assets';
+import { ShapeSquare, ShapeStar, ShapeTriangle } from '../../../../assets';
+import { ShapeProps } from '../../../../assets/ShapeAsset';
 
 interface Props {
     onChangeShape: (shape: React.ComponentType<ShapeProps>) => void

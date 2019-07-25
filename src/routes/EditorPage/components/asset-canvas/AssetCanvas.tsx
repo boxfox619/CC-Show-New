@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { AssetType } from 'src/models';
+import { AssetType } from '../../../../models';
 import { AssetRenderer } from './AssetRenderer';
 import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../modules/asset.service';
-import { clearSelection } from 'src/routes/EditorPage/modules/dom.service';
+import { clearSelection } from '../../../../routes/EditorPage/modules/dom.service';
 import { UpdateAssetValuePayload } from '../../models/payload';
 import { AnyAsset } from '../../../../models/asset/Asset';
 

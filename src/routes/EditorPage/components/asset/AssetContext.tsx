@@ -6,7 +6,7 @@ import ImageAssetView from './ImageAssetView';
 import AssetType from '../../../../models/AssetType';
 import VideoAssetView from './VideoAssetView';
 import ShapeAssetView from './ShapeAssetView';
-import { TextAsset, ImageAsset, VideoAsset, AnyAsset, ShapeAsset } from 'src/models';
+import { TextAsset, ImageAsset, VideoAsset, AnyAsset, ShapeAsset } from '../../../../models';
 
 const Container = styled.div`
     width: 100%;

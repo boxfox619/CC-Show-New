@@ -1,5 +1,5 @@
 import { Store } from "redux";
-import { injectReducer } from 'src/core/store';
+import { injectReducer } from '../../core/store';
 
 const REDUCER_KEY = 'editor';
 
