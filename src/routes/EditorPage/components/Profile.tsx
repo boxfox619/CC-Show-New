@@ -44,7 +44,7 @@ interface Props {
 const Profile: React.FC<Props> = (props: Props) => {
     return (
         <ProfileContainer>
-            <Thumbnail><img src={props.thumbnail}/></Thumbnail>
+            <Thumbnail><img src={props.thumbnail} alt="thumbnail" /></Thumbnail>
             <div>
                 <Name>{props.name}</Name>
                 <SubName>{props.subName}</SubName>

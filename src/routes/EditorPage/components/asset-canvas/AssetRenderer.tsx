@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useCallback } from 'react';
-import { AnyAsset } from 'src/models';
+import { AnyAsset } from '../../../../models';
 import { Guideline } from './Guideline';
 import { calGuideLine } from '../../modules/asset.service';
 import { UpdateAssetValuePayload } from '../../models/payload';
@@ -43,7 +43,7 @@ export const AssetRenderer: React.FC<Props> = ({ assets, selectedAssetId, editab
                 />
             )
         })
-    }, [hoveredAssetIdx, selectedAssetId, doubleClicked, editable]);
+    }, [hoveredAssetIdx, selectedAssetId, doubleClicked, editable, onChangeValue]);
     const renderGuideLine = useCallback((assetList: AnyAsset[]) => {
         if (hoveredAssetIdx < 0) { return; }
         return calGuideLine(assetList, hoveredAssetIdx).map((guideline, idx) => <Guideline key={idx} attr={guideline} />);

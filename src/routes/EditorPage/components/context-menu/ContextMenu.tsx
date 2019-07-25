@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useCallback } from 'react';
-import { Point } from 'src/models';
+import { Point } from '../../../../models';
 import { Menu } from '.';
 import { MenuContainer, MenuContent, Option, ShortCut, Submenu } from './styles';
 
@@ -15,7 +15,7 @@ const createMenu = (menus: Menu[], left?: number, top?: number, visible: boolean
         <MenuContainer left={left} top={top} visible={visible}>
             <MenuContent>
                 {menus.map(m => {
-                    const onClick = useCallback(() => { if (!m.disabled) { m.actions.map(action => action()) } }, [m.actions]);
+                    const onClick = useCallback(() => { if (!m.disabled) { m.actions.map(action => action()) } }, [m.actions, m.disabled]);
                     return (
                         <Option key={m.label} onClick={onClick} disabled={m.disabled}>
                             {m.label}

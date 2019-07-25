@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
-import { handleActions } from 'src/core/store';
+import { handleActions } from '../core/store';
 import { LoginSuccessPayload, LoginPayload, RegisterPayload, LoginResultPayload } from '../models/payload';
-import AccountStore from 'src/models/AccountStore';
+import AccountStore from '../models/AccountStore';
 
 // ------------------------------------
 // Constants
@@ -78,7 +78,7 @@ const ACTION_HANDLERS = {
     [REGISTER_FAILED]: (state: AccountStore, payload: Error) => ({
         auth: {
             isSigningUp: { $set: false },
-            isRegistred: { $set: false},
+            isRegistred: { $set: false },
             error: { $set: payload }
         }
     }),

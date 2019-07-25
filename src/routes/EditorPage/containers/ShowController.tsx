@@ -4,7 +4,7 @@ import { CreateAssetPayload } from '../models/payload';
 import { AssetType } from '../../../models';
 import GradientButtonItem from '../components/GradientButtonItem';
 import Profile from '../components/Profile';
-import { ShapeArrow1 } from '../assets';
+import { ShapeArrow1 } from '../../../assets';
 
 const Container = styled.div`
     background-color: white;

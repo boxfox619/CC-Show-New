@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ControllerWrapper from './control/ControllerWrapper';
 import { TextControlItem } from './Input';
-import { optional } from 'src/core/hoc';
+import { optional } from '../../../../core/hoc';
 
 interface Props {
     image: string,

@@ -5,7 +5,7 @@ import VideoAsset from './VideoAsset';
 import ShapeAsset from './ShapeAsset';
 
 
-export { Asset, AnyAsset } from './Asset';
+export * from './Asset';
 export { default as ImageAsset } from './ImageAsset';
 export { default as VideoAsset } from './VideoAsset';
 export { default as TextAsset } from './TextAsset';

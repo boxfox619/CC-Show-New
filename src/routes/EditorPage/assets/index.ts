@@ -31,19 +31,3 @@ export { default as previewPlayIcon } from './ic_play_circle_outline_white.png';
 
 
 export { default as activeBackground } from './bg_active.png';
-
-
-export { ShapeArrow1 } from './shape_arrow1';
-export { ShapeClover } from './shape_clover';
-export { ShapeDiamond } from './shape_diamond';
-export { ShapeEllipse } from './shape_ellipse';
-export { ShapeHeart } from './shape_heart';
-export { ShapeHexagon } from './shape_hexagon';
-export { ShapeMoon } from './shape_moon';
-export { ShapeOctagon } from './shape_octagon';
-export { ShapePentagon } from './shape_pentagon';
-export { ShapeRoundSquare } from './shape_round_square';
-export { ShapeSquare } from './shape_square';
-export { ShapeSpade } from './shape_spade';
-export { ShapeStar } from './shape_star';
-export { ShapeTriangle } from './shape_triangle';

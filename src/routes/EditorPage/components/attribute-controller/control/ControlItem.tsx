@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { optional } from 'src/core/hoc';
+import { optional } from '../../../../../core/hoc';
 
 const Container = styled.div`
     display: flex;

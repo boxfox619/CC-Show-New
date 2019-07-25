@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ShapeProps } from '../../assets/ShapeAsset';
-import { ShapeAsset } from 'src/models';
+import { ShapeProps } from '../../../../assets/ShapeAsset';
+import { ShapeAsset } from '../../../../models';
 
 
 interface Props {
