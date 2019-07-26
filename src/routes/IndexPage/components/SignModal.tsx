@@ -84,10 +84,8 @@ const SignModal: React.FC = () => {
                         <div>#화려하게  #빠르게</div>
                     </Tags>
                 </LeftContainer>
-                <div>
-                    <SigninForm visible={!signup} onSubmit={handleSignin} onChangeMode={handleChangeMode} />
-                    <SignupForm visible={signup} onSubmit={handleSignup} onChangeMode={handleChangeMode} />
-                </div>
+                <SigninForm visible={!signup} onSubmit={handleSignin} onChangeMode={handleChangeMode} />
+                <SignupForm visible={signup} onSubmit={handleSignup} onChangeMode={handleChangeMode} />
             </Content>
         </ModalShadow>
     )
