@@ -1,5 +1,5 @@
 export interface FormProps<T> {
-    data: T
+    data?: T
     error?: string
     onSubmit: (data: T) => void
 }
