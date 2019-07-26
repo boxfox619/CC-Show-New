@@ -5,7 +5,6 @@ import { optional } from './../../../core/hoc/OptionalComponent';
 import { SigninPayload } from '../models/SigninPayload';
 import { SignupPayload } from '../models/SignupPayload';
 import loginBackground from '../assets/bg_login_img.jpg';
-import logoIcon from '../assets/ic_cc_show.png';
 
 const ModalShadow = styled.div`
     width: 100vw;
@@ -48,15 +47,17 @@ const LeftContainer = styled.div`
     }
 `
 
-const Logo = styled.img`
-    height: 20px;
+const Logo = styled.div`
+    font-family: 'Sunflower';
+    font-weight: 700;
+    font-size: 1.5em;
     margin: 20px;
 `
 
 const Tags = styled.div`
-    font-size: 30px;
+    font-size: 2em;
     line-height: 1.5em;
-    font-family: 'NanumSquareEB';
+    font-weight: bold;
     width: 100%;
     height: 100%;
     display: flex;
@@ -72,19 +73,20 @@ const SignModal: React.FC = () => {
     const [signup, setSignup] = React.useState(false);
     const handleSignin = React.useCallback((data: SigninPayload) => { }, []);
     const handleSignup = React.useCallback((data: SignupPayload) => { }, []);
+    const handleChangeMode = React.useCallback(() => setSignup(!signup), [signup, setSignup]);
     return (
         <ModalShadow>
             <Content>
                 <LeftContainer>
-                    <Logo src={logoIcon} />
+                    <Logo>CC SHOW</Logo>
                     <Tags>
                         <div>#쉽게  #편리하게</div>
                         <div>#화려하게  #빠르게</div>
                     </Tags>
                 </LeftContainer>
                 <div>
-                    <SigninForm visible={!signup} onSubmit={handleSignin} />
-                    <SignupForm visible={signup} onSubmit={handleSignup} />
+                    <SigninForm visible={!signup} onSubmit={handleSignin} onChangeMode={handleChangeMode} />
+                    <SignupForm visible={signup} onSubmit={handleSignup} onChangeMode={handleChangeMode} />
                 </div>
             </Content>
         </ModalShadow>
