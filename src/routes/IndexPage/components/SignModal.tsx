@@ -91,4 +91,4 @@ const SignModal: React.FC = () => {
     )
 }
 
-export default SignModal;
+export default optional(SignModal);
