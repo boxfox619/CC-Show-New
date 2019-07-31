@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import SignModal from '../components/SignModal';
 import './style.css';
 import { FullPage, Section } from '../components/page';
+import { FirstSection } from '../components/section/FirstSection';
 
 const IndexContainer: React.FC = () => {
     const [visibleModal, setVisibleModal] = React.useState(false);
@@ -11,9 +12,7 @@ const IndexContainer: React.FC = () => {
             <Header />
             <SignModal visible={visibleModal} />
             <FullPage>
-                <Section>
-                    aaaa
-                </Section>
+                <FirstSection />
                 <Section>
                     bbb
                 </Section>
