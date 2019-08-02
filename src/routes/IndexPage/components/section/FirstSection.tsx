@@ -4,7 +4,7 @@ import { Section } from '../page';
 import styled from 'styled-components';
 
 const Container = styled(Section)`
-    background: url(${bgIcon});
+    background-image: url(${bgIcon});
     font-size: 1em;
     color: white;
     line-height: 1.4em;
@@ -22,6 +22,7 @@ const Tags = styled.div`
     width: 30em;
     font-size: 3em;
     line-height: 1.1em;
+    font-weight: 800;
 `
 
 const WhiteButton = styled.a`
@@ -34,6 +35,7 @@ const WhiteButton = styled.a`
     border-radius: 1em;
     border-style: solid;
     border-width: 2px;
+    margin-top: 10px;
     &:hover {
         background: rgba(255, 255, 255, 0.9);
         color: black;
@@ -57,11 +59,8 @@ export const FirstSection: React.FC = () => {
                     </div>
                 </Tags>
                 <div>
-                    기존 파워포인트보다 더 쉽고 간편하게 HTML로 발표자료를 제작할 수 있습니다.
-                <br />
-                    여러분의 아이디어, 창작물을 실현시켜드립니다.
-            </div>
-                <div>
+                    <p>기존 파워포인트보다 더 쉽고 간편하게 HTML로 발표자료를 제작할 수 있습니다.</p>
+                    <p>여러분의 아이디어, 창작물을 실현시켜드립니다.</p>
                     <WhiteButton>시작하기</WhiteButton>
                 </div>
             </Content>
