@@ -1,6 +1,7 @@
 export const clearSelection = () => {
-    if (window.getSelection) {
-        window.getSelection().removeAllRanges();
+    const windowSelection = window.getSelection();
+    if (!!windowSelection) {
+        windowSelection.removeAllRanges();
     }
     if (document.getSelection) {
         const selection = document.getSelection();

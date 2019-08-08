@@ -55,7 +55,7 @@ const SlideCreateCard: React.FC<Props> = (props: Props) => {
     return (
         <Container onClick={props.onClick}>
             <Description>새 슬라이드</Description>
-            <img src={addWhiteIcon} />
+            <img src={addWhiteIcon} alt="Add new slide" />
         </Container>
     )
 }

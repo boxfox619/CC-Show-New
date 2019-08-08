@@ -7,13 +7,14 @@ export const makeRootReducer = (asyncReducers: any) => {
     })
 };
 
-export const injectReducer = (store: any, key: string, reducer: Reducer, epics?: Epic[]) => {
+export const injectReducer = (store: any, key: string, reducer?: Reducer, epics?: Epic[]) => {
     if (Object.hasOwnProperty.call(store.asyncReducers, key)) {
         return;
     }
-
-    store.asyncReducers[key] = reducer;
-    store.replaceReducer(makeRootReducer(store.asyncReducers));
+    if (!!reducer) {
+        store.asyncReducers[key] = reducer;
+        store.replaceReducer(makeRootReducer(store.asyncReducers));
+    }
     if (!!epics) {
         epics.forEach((epic: any) => store.epic$.next(epic));
     }

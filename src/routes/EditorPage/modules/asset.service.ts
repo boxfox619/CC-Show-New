@@ -1,5 +1,5 @@
-import { Asset } from 'src/models/asset';
 import GuidelineModel from '../models/Guideline';
+import { AnyAsset } from '../../../models/asset/Asset';
 
 export const DATASET_TYPE_ASSET = 'asset';
 export const DATASET_TYPE_RESIZER = 'asset-resizer';
@@ -18,18 +18,18 @@ export const isResizer = (target: HTMLElement) => target.dataset.type === DATASE
 export const isSelector = (target: HTMLElement) => target.dataset.type === DATASET_TYPE_SELECTOR_DOT || target.dataset.type === DATASET_TYPE_SELECTOR_LINE;
 export const findAsset = (target: HTMLElement) => findNodeByType(DATASET_TYPE_ASSET, target);
 export const getResizeTarget = (target: HTMLElement) => target.dataset.resize || '';
-export const calMagneticPositionX = (position: number, size: number, assets: Asset[]) => calMagneticPosition('x', position, size, assets);
-export const calMagneticPositionY = (position: number, size: number, assets: Asset[]) => calMagneticPosition('y', position, size, assets);
-export const calMagneticSizeX = (position: number, size: number, assets: Asset[]) => calMagneticSize('x', position, size, assets);
-export const calMagneticSizeY = (position: number, size: number, assets: Asset[]) => calMagneticSize('y', position, size, assets);
+export const calMagneticPositionX = (position: number, size: number, assets: AnyAsset[]) => calMagneticPosition('x', position, size, assets);
+export const calMagneticPositionY = (position: number, size: number, assets: AnyAsset[]) => calMagneticPosition('y', position, size, assets);
+export const calMagneticSizeX = (position: number, size: number, assets: AnyAsset[]) => calMagneticSize('x', position, size, assets);
+export const calMagneticSizeY = (position: number, size: number, assets: AnyAsset[]) => calMagneticSize('y', position, size, assets);
 
 export function move(
     xInElement: number,
     yInElement: number,
     pageX: number,
     pageY: number,
-    selectedAsset: Asset,
-    otherAssets: Asset[],
+    selectedAsset: AnyAsset,
+    otherAssets: AnyAsset[],
     callback: (id: number, x: number, y: number, width: number, height: number) => void
 ) {
     let afterX = selectedAsset.position.x + (pageX - xInElement);
@@ -45,8 +45,8 @@ export function resize(
     yInElement: number,
     pageX: number,
     pageY: number,
-    selectedAsset: Asset,
-    otherAssets: Asset[],
+    selectedAsset: AnyAsset,
+    otherAssets: AnyAsset[],
     callback: (id: number, x: number, y: number, width: number, height: number) => void) {
     const currentId = selectedAsset.id;
     const devX = (target.includes('left')) ? xInElement - pageX : pageX - xInElement;
@@ -113,11 +113,11 @@ export function findNodeByType(type: string, child: HTMLElement): undefined | HT
     return undefined;
 }
 
-export const calMagneticPosition = (type: string, position: number, size: number, assets: Asset[]) => {
+export const calMagneticPosition = (type: 'x' | 'y', position: number, size: number, assets: AnyAsset[]) => {
     const sub = 100;
     let result = position;
     const endPosition = position + size;
-    assets.map(asset => {
+    assets.forEach((asset: AnyAsset) => {
         const assetPosition = asset.position[type];
         const assetSize = asset[type === 'x' ? 'width' : 'height'];
         const assetEndPosition = assetPosition + assetSize;
@@ -145,11 +145,11 @@ export const calMagneticPosition = (type: string, position: number, size: number
     return result;
 }
 
-export const calMagneticSize = (type: string, position: number, size: number, assets: Asset[]) => {
+export const calMagneticSize = (type: 'x' | 'y', position: number, size: number, assets: AnyAsset[]) => {
     const sub = 100;
     let result = size;
     const endPosition = position + size;
-    assets.map(asset => {
+    assets.forEach(asset => {
         const assetPosition = asset.position[type];
         const assetSize = asset[type === 'x' ? 'width' : 'height'];
         const assetEndPosition = assetPosition + assetSize;
@@ -168,7 +168,7 @@ export const calMagneticSize = (type: string, position: number, size: number, as
 }
 
 
-export const calGuideLine = (assets: Asset[], selectedIndex: number) => {
+export const calGuideLine = (assets: AnyAsset[], selectedIndex: number) => {
     const guidelines: GuidelineModel[] = [];
     const selectedAsset = assets[selectedIndex];
     const selectedAssetX = selectedAsset.position.x;
@@ -177,7 +177,7 @@ export const calGuideLine = (assets: Asset[], selectedIndex: number) => {
     const selectedAssetHeight = selectedAsset.height;
     const selectedAssetXEnd = selectedAssetX + selectedAssetWidth;
     const selectedAssetYEnd = selectedAssetY + selectedAssetHeight;
-    assets.map((asset, idx) => {
+    assets.forEach((asset, idx) => {
         if (selectedIndex !== idx) {
             const assetX = asset.position.x;
             const assetY = asset.position.y;

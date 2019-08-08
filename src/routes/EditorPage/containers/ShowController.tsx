@@ -4,6 +4,7 @@ import { CreateAssetPayload } from '../models/payload';
 import { AssetType } from '../../../models';
 import GradientButtonItem from '../components/GradientButtonItem';
 import Profile from '../components/Profile';
+import { ShapeArrow1 } from '../../../assets';
 
 const Container = styled.div`
     background-color: white;
@@ -44,7 +45,7 @@ type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
 const ShowController: React.FC<Props> = (props: Props) => {
     const divProps = props as React.HTMLAttributes<HTMLDivElement>;
-    const createAssetByType = (assetType: AssetType, value?: string) => () => props.addAsset(new CreateAssetPayload(assetType, { x: 0, y: 0 }, value));
+    const createAssetByType = (assetType: AssetType, value?: any) => () => props.addAsset(new CreateAssetPayload(assetType, { x: 0, y: 0 }, value));
     return (
         <Container {...divProps}>
             <Profile
@@ -56,7 +57,7 @@ const ShowController: React.FC<Props> = (props: Props) => {
                 <GradientButtonItem label="텍스트" onClick={createAssetByType(AssetType.Text, 'Welcome to CC-Show!')} />
                 <GradientButtonItem label="비디오" onClick={createAssetByType(AssetType.Video)} />
                 <GradientButtonItem label="이미지" onClick={createAssetByType(AssetType.Image, 'http://poooo.ml/data/editor/1810/aa7462a202b36ecf40db2f8e44d4f594_1539011087_018.gif')} />
-                <GradientButtonItem label="도형" onClick={createAssetByType(AssetType.Shape)} />
+                <GradientButtonItem label="도형" onClick={createAssetByType(AssetType.Shape, ShapeArrow1)} />
                 <GradientButtonItem label="기타" onClick={props.toggleAssetManager} />
             </ButtonGroup>
             <SplitBar />

@@ -33,10 +33,10 @@ const BasicContainer: React.FC<Props> = ({ width, height, x, y, angle, style, on
             </ControllerWrapper>
             <ControllerWrapper title="모양">
                 <ControlGroup>
-                    <ControlItem label={<img src={colorIcon} />}>
+                    <ControlItem label={<img src={colorIcon} alt="color" />}>
                         <div><ColorPicker color={style.backgroundColor || '#fff'} onColorChange={colorHandler.bind(null, 'backgroundColor')} /></div>
                     </ControlItem>
-                    <ControlItem label={<img src={lineIcon} />}>
+                    <ControlItem label={<img src={lineIcon} alt="border" />}>
                         <div>
                             <ColorPicker color={style.borderColor || '#000'} onColorChange={colorHandler.bind(null, 'borderColor')} />
                             <TextInput style={{ width: "60%" }} type="text" value={borderWidth} onValueChange={onChangeBorderWidth} />

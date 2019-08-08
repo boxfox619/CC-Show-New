@@ -27,6 +27,7 @@ export { default as arrowDownIcon } from './ic_arrow_down.png';
 export { default as arrowLeftIcon } from './ic_arrow_left.png';
 export { default as ellipseGrayIcon } from './ic_ellipse_gray.png';
 export { default as ellipseWhiteIcon } from './ic_ellipse_white.png';
+export { default as previewPlayIcon } from './ic_play_circle_outline_white.png';
 
 
 export { default as activeBackground } from './bg_active.png';
