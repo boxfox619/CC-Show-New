@@ -1,4 +1,4 @@
-import { Action } from 'redux';
+import { Action, AnyAction } from 'redux';
 import { Observable, of, concat, from } from 'rxjs';
 import { concatMap, map, catchError, throttleTime, timeout } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
@@ -7,17 +7,19 @@ import {
     , CHECK_LOGINED, CHECK_LOGINED_SUCCESSED, CHECK_LOGINED_FAILED,
     LOGOUT_STARTED, LOGOUT_SUCCESSED, LOGOUT_FAILED, CHECK_LOGINED_STARTED
 } from '../reducers/auth';
-import { login, register, checkLogined, logout } from '../api/AuthApi';
+import { PayloadAction, RegisterPayload } from '../models/payload';
+import { LoginPayload } from '../models/payload/LoginPayload';
+import { login, logout, register, checkLogined } from '../api/AuthApi';
 
 const loginEpic = (
-    action: Observable<Action>
+    action: Observable<PayloadAction<LoginPayload>>
 ): Observable<any> => {
     const observable = action.pipe(
         ofType(LOGIN),
         throttleTime(3000),
-        concatMap(($action: any) => concat(
+        concatMap(($action: PayloadAction<LoginPayload>) => concat(
             of({ type: LOGIN_STARTED }),
-            from(login($action.email, $action.password)).pipe(
+            from(login($action.payload.email, $action.payload.password)).pipe(
                 timeout(15000),
                 map((result: any) => ({ type: LOGIN_SUCCESSED, ...result })),
                 catchError(error => of({ type: LOGIN_FAILED, error: error.message }))
@@ -46,14 +48,14 @@ const logoutEpic = (
 };
 
 const registerEpic = (
-    action: Observable<Action>
+    action: Observable<PayloadAction<RegisterPayload>>
 ): Observable<any> => {
     const observable = action.pipe(
         ofType(REGISTER),
         throttleTime(3000),
-        concatMap(($action: any) => concat(
+        concatMap(($action: PayloadAction<RegisterPayload>) => concat(
             of({ type: REGISTER_STARTED }),
-            from(register($action.email, $action.nickname, $action.password)).pipe(
+            from(register($action.payload.email, $action.payload.nickname, $action.payload.password)).pipe(
                 timeout(15000),
                 map((result: boolean) => ({ type: REGISTER_SUCCESSED })),
                 catchError(error => of({ type: REGISTER_FAILED, error: error.message }))

@@ -8,7 +8,7 @@ import AccountStore from '../models/AccountStore';
 // ------------------------------------
 export const LOGIN = 'AUTH.LOGIN';
 export const LOGOUT = 'AUTH.LOGOUT';
-export const REGISTER = 'AUTH.REGISTER'
+export const REGISTER = 'AUTH.REGISTER';
 export const LOGIN_STARTED = 'AUTH.LOGIN_STARTED';
 export const LOGOUT_STARTED = 'AUTH.LOGOUT_STARTED';
 export const LOGIN_SUCCESSED = 'AUTH.LOGIN_SUCCESSED';
