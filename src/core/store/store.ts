@@ -1,8 +1,10 @@
-import { Action, applyMiddleware, compose, createStore, Store } from 'redux';
+import { Action, applyMiddleware, compose, createStore, Store, AnyAction } from 'redux';
 import { ActionsObservable, combineEpics, createEpicMiddleware, StateObservable, Epic } from "redux-observable";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import makeRootReducer from './reducer';
+import { UseCases } from '../domain/index';
+import StoreModel from '../../routes/EditorPage/models/StoreModel';
 
 interface AsyncStore extends Store {
     epic$: any;
@@ -10,7 +12,7 @@ interface AsyncStore extends Store {
 }
 
 export const createReduxStore = (initialState = {}) => {
-    const epicMiddleware = createEpicMiddleware();
+    const epicMiddleware = createEpicMiddleware<AnyAction, AnyAction, StoreModel, UseCases>();
     const middleware: any[] = [epicMiddleware];
 
     const enhancers: any[] = [];
