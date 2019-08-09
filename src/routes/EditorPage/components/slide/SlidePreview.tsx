@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import styled from 'styled-components';
-import SlideModel from '../../models/Slide';
+import { Slide } from '../../../../models/Slide';
 import IconButton from './IconButton';
 import { shareWhiteIcon, copyWhiteIcon, deleteWhiteIcon } from '../../assets';
 
@@ -85,7 +85,7 @@ const Actions = styled.div`
 
 interface Props {
     idx: number,
-    slide: SlideModel,
+    slide: Slide,
     onClick: (id: number) => void,
     active: boolean,
     onShare: (id: number) => void,
