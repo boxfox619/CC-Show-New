@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { COLOR } from '../../../core/util/Constraint';
 
 const ProfileContainer = styled.div`
     display: flex;
@@ -26,7 +27,7 @@ const Thumbnail = styled.div`
 const Name = styled.div`
     font-size: 1.2em;
     font-weight: bold;
-    background: linear-gradient(to right, #fc00ff, #00dbde);
+    background: linear-gradient(to right, #fc00ff, ${COLOR.AQUA_BLUE});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 `
