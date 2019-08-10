@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AuthUseCase } from '../core/domain';
+import { AuthUseCase } from '@/core/domain';
 import { LoginPayload } from '../models/payload/LoginPayload';
 import { RegisterPayload } from '../models/payload/RegisterPayload';
 

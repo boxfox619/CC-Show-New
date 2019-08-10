@@ -5,6 +5,7 @@ import { mergeMap } from 'rxjs/operators';
 import makeRootReducer from './reducer';
 import { UseCases } from '../domain/index';
 import StoreModel from '../../routes/EditorPage/models/StoreModel';
+import { apis } from '@/api';
 
 interface AsyncStore extends Store {
     epic$: any;
@@ -12,7 +13,9 @@ interface AsyncStore extends Store {
 }
 
 export const createReduxStore = (initialState = {}) => {
-    const epicMiddleware = createEpicMiddleware<AnyAction, AnyAction, StoreModel, UseCases>();
+    const epicMiddleware = createEpicMiddleware<AnyAction, AnyAction, StoreModel, UseCases>({
+        dependencies: apis
+    });
     const middleware: any[] = [epicMiddleware];
 
     const enhancers: any[] = [];
@@ -35,6 +38,6 @@ export const createReduxStore = (initialState = {}) => {
     }
     epicMiddleware.run(rootEpic);
     store.epic$ = epic$;
-    
+
     return store
 };
