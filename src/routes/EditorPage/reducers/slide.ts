@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { MoveSlidePayload } from '../models/payload';
 import EditorStore from '../models/EditorStore';
-import Slide from '../models/Slide';
+import { Slide } from '../../../models';
 
 export const MOVE_SLIDE = 'SLIDE.MOVE_SLIDE';
 export const COPY_SLIDE = 'SLIDE.COPY_SLIDE';

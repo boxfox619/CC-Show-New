@@ -2,8 +2,7 @@ import * as SlideActions from '../slide';
 import { MoveSlidePayload } from '../../models/payload';
 import EditorStore from '../../models/EditorStore';
 import { handleActions } from '../../../../core/store';
-import Slide from '../../models/Slide';
-import { moveSlide } from '../slide';
+import { Slide } from '@/models/Slide';
 
 describe('slide', () => {
     describe('actions', () => {

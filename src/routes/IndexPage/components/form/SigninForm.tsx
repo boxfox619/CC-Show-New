@@ -2,14 +2,14 @@ import * as React from 'react';
 import { FormProps } from './index';
 import getFormData from '../../../../core/util/FormUtil';
 import FormInput from './FormInput';
-import { SigninPayload } from '../../models';
 import SubmitButton from './SubmitButton';
 import ErrorLabel from './ErrorLabel';
 import FormContainer from './FormContainer';
 import SubLabel from './SubLabel';
+import { LoginPayload } from '../../../../models/payload';
 
-export const SigninForm: React.FC<FormProps<SigninPayload>> = ({ data = {} as SigninPayload, onSubmit, error, onChangeMode }) => {
-    const handleSubmit = React.useCallback((event: React.FormEvent) => onSubmit(getFormData<SigninPayload>(event)), [onSubmit]);
+export const SigninForm: React.FC<FormProps<LoginPayload>> = ({ data = {} as LoginPayload, onSubmit, error, onChangeMode }) => {
+    const handleSubmit = React.useCallback((event: React.FormEvent) => onSubmit(getFormData<LoginPayload>(event)), [onSubmit]);
     return (
         <FormContainer onSubmit={handleSubmit}>
             <ErrorLabel>{error}</ErrorLabel>

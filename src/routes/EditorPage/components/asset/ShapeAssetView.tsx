@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ShapeProps } from '../../../../assets/ShapeAsset';
+import { ShapeProps } from '../../../../core/assets/ShapeAsset';
 import { ShapeAsset } from '../../../../models';
 
 

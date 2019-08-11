@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { ellipseGrayIcon, arrowLeftIcon } from '../assets';
 import DraggableSlideList from '../components/slide/DraggableSlideList';
-import SlideModel from '../models/Slide';
+import { Slide } from '../../../models';
 
 const Container = styled.div`
     position: absolute;
@@ -58,7 +58,7 @@ interface OwnProps {
     visible: boolean,
     toggleSlideManager: () => void,
     selectedSlideId: number,
-    slides: SlideModel[],
+    slides: Slide[],
     moveSlide: (payload: { from: number, to: number }) => void,
     selectSlide: (id: number) => void,
     copySlide: (id: number) => void,

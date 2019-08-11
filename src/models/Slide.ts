@@ -1,6 +1,6 @@
-import { AnyAsset } from '../../../models';
+import { AnyAsset } from '.';
 
-export default class Slide {
+export class Slide {
     constructor(
         public id: number = 0,
         public name: string = '',

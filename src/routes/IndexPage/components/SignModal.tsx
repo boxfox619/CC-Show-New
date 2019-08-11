@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as Form from './form';
 import styled from 'styled-components';
 import { optional } from './../../../core/hoc/OptionalComponent';
-import { SigninPayload } from '../models/SigninPayload';
-import { SignupPayload } from '../models/SignupPayload';
 import loginBackground from '../assets/bg_login_img.jpg';
+import { RegisterPayload } from '../../../models/payload/RegisterPayload';
+import { LoginPayload } from '../../../models/payload';
 
 const ModalShadow = styled.div`
     width: 100vw;
@@ -68,11 +68,13 @@ const Tags = styled.div`
 
 const SigninForm = optional(Form.SigninForm);
 const SignupForm = optional(Form.SignupForm);
+interface Props {
+    onSignin: (data: LoginPayload) => void
+    onSignup: (data: RegisterPayload) => void
+}
 
-const SignModal: React.FC = () => {
+const SignModal: React.FC<Props> = ({ onSignin, onSignup}) => {
     const [signup, setSignup] = React.useState(false);
-    const handleSignin = React.useCallback((data: SigninPayload) => { }, []);
-    const handleSignup = React.useCallback((data: SignupPayload) => { }, []);
     const handleChangeMode = React.useCallback(() => setSignup(!signup), [signup, setSignup]);
     return (
         <ModalShadow>
@@ -84,11 +86,11 @@ const SignModal: React.FC = () => {
                         <div>#화려하게  #빠르게</div>
                     </Tags>
                 </LeftContainer>
-                <SigninForm visible={!signup} onSubmit={handleSignin} onChangeMode={handleChangeMode} />
-                <SignupForm visible={signup} onSubmit={handleSignup} onChangeMode={handleChangeMode} />
+                <SigninForm visible={!signup} onSubmit={onSignin} onChangeMode={handleChangeMode} />
+                <SignupForm visible={signup} onSubmit={onSignup} onChangeMode={handleChangeMode} />
             </Content>
         </ModalShadow>
     )
 }
 
-export default SignModal;
+export default optional(SignModal);
