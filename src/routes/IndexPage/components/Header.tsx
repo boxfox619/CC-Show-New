@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import logoIcon from '../assets/ic_cc_show.png';
+import * as logoIcon from '../assets/ic_cc_show.png';
 
 const Header = styled.header`
     z-index: 100;

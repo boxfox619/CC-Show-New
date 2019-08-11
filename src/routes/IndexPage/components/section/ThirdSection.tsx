@@ -1,13 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import bgIcon from '../../assets/bg_intro.jpg';
 import { Section } from '../page';
-import ShoppingIcon from '../../assets/ic_shopping.png';
-import BuildIcon from '../../assets/ic_build.png';
-import HtmlIcon from '../../assets/ic_html.png';
-import CartIcon from '../../assets/ic_cart.png';
-import PdfIcon from '../../assets/ic_pdf.png';
-import ShareIcon from '../../assets/ic_share.png';
+import * as bgIcon from '../../assets/bg_intro.jpg';
+import * as ShoppingIcon from '../../assets/ic_shopping.png';
+import * as BuildIcon from '../../assets/ic_build.png';
+import * as HtmlIcon from '../../assets/ic_html.png';
+import * as CartIcon from '../../assets/ic_cart.png';
+import * as PdfIcon from '../../assets/ic_pdf.png';
+import * as ShareIcon from '../../assets/ic_share.png';
 
 const Container = styled(Section)`
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgIcon});

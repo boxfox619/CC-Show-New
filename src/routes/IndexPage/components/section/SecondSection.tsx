@@ -1,5 +1,5 @@
 import * as React from 'react';
-import bgIcon from '../../assets/bg_intro.jpg';
+import * as bgIcon from '../../assets/bg_intro.jpg';
 import { Section } from '../page';
 import styled from 'styled-components';
 

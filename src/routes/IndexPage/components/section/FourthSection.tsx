@@ -1,8 +1,8 @@
 import * as React from 'react';
-import bgIcon from '../../assets/bg_intro.jpg';
-import WhiteLogoIcon from '../../assets/ic_bottom_bar_cc_show.png';
-import FacebookIcon from '../../assets/ic_facebook.png';
-import GithubIcon from '../../assets/ic_github.png';
+import * as bgIcon from '../../assets/bg_intro.jpg';
+import * as WhiteLogoIcon from '../../assets/ic_bottom_bar_cc_show.png';
+import * as FacebookIcon from '../../assets/ic_facebook.png';
+import * as GithubIcon from '../../assets/ic_github.png';
 import { Section } from '../page';
 import styled from 'styled-components';
 

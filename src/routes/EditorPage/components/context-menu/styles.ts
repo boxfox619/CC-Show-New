@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as rightArrowIcon from '../../assets/ic_right_arrow_black.png';
 
 export const MenuContainer = styled.div`
     position: fixed;
@@ -24,7 +25,7 @@ export const ShortCut = styled.div`
 `
 
 export const Submenu = styled.div`
-    background-image: url('/images/ic_right_arrow_black.png');
+    background-image: url(${rightArrowIcon});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
