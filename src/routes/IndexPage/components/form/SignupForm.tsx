@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { FormProps } from './index';
-import { SignupPayload } from '../../models/SignupPayload';
 import getFormData from '../../../../core/util/FormUtil';
 import FormInput from './FormInput';
 import SubmitButton from './SubmitButton';
 import ErrorLabel from './ErrorLabel';
 import FormContainer from './FormContainer';
 import SubLabel from './SubLabel';
+import { RegisterPayload } from '../../../../models/payload/RegisterPayload';
 
-interface SignupFormModel extends SignupPayload {
+interface SignupFormModel extends RegisterPayload {
     passwordConfirm: string
 }
 
-export const SignupForm: React.FC<FormProps<SignupPayload>> = ({ data = {} as SignupPayload, onSubmit, error, onChangeMode }) => {
+export const SignupForm: React.FC<FormProps<RegisterPayload>> = ({ data = {} as RegisterPayload, onSubmit, error, onChangeMode }) => {
     const [localError, setError] = React.useState('');
     const handleSubmit = React.useCallback((event: React.FormEvent) => {
         const payload = getFormData<SignupFormModel>(event);

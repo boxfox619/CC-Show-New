@@ -1,12 +1,12 @@
 import * as React from 'react';
-import SlideModel from '../../models/Slide';
+import { Slide } from '../../../../models';
 import SlidePreview from './SlidePreview';
 import SlideCreateCard from './SlideCreateCard';
 
 interface Props {
-    slides: SlideModel[],
+    slides: Slide[],
     selectedSlideId: number,
-    moveSlide: (payload: {from: number, to: number}) => void,
+    moveSlide: (payload: { from: number, to: number }) => void,
     shareSlide: (id: number) => void,
     copySlide: (id: number) => void,
     deleteSlide: (id: number) => void,
@@ -23,7 +23,7 @@ export default class DraggableSlideList extends React.Component<Props> {
     nodePlacement?: any = undefined;
 
     public render() {
-        const renderSlidePreviews = (slides: SlideModel[]) => {
+        const renderSlidePreviews = (slides: Slide[]) => {
             return slides.map((slide, idx) => {
                 return (
                     <li data-id={idx}
@@ -49,7 +49,7 @@ export default class DraggableSlideList extends React.Component<Props> {
                 <ul onDragOver={this.dragOver}>
                     {renderSlidePreviews(this.props.slides)}
                 </ul>
-                <SlideCreateCard onClick={this.props.createSlide}/>
+                <SlideCreateCard onClick={this.props.createSlide} />
             </>
         )
     }
@@ -103,7 +103,7 @@ export default class DraggableSlideList extends React.Component<Props> {
         if (this.nodePlacement === "after") {
             to++
         };
-        this.props.moveSlide({from, to});
+        this.props.moveSlide({ from, to });
     }
 
     dragStart = (e: React.DragEvent<HTMLElement>) => {

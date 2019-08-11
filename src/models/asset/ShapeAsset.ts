@@ -1,7 +1,7 @@
 import AssetType from '../AssetType';
 import { Asset, Point } from '..';
 import { CSSProperties } from 'react';
-import { ShapeProps } from '../../assets/ShapeAsset';
+import { ShapeProps } from '../../core/assets/ShapeAsset';
 
 
 export default class ShapeAsset implements Asset<React.ComponentType<ShapeProps>, any> {

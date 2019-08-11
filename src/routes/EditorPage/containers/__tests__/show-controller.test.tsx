@@ -5,11 +5,12 @@ import ShowController from '../ShowController';
 describe('<ShowController />', () => {
     const mockFn = jest.fn();
     it('should match snapshot', () => {
-        const wrapper = Enzyme.shallow(<ShowController
+        const wrapper = Enzyme.shallow(
+        <ShowController
             name="홍길동"
             email="치킨비어"
             thumbnail=""
-            visiableSlideManager={false}
+            visibleSlideManager={false}
             addAsset={new mockFn()}
             toggleAssetManager={new mockFn()}
             toggleSlideManager={new mockFn()}

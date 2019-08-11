@@ -1,5 +1,5 @@
 import * as React from 'react';
-import bgIcon from '../../assets/bg_intro.jpg';
+import * as bgIcon from '../../assets/bg_intro.jpg';
 import { Section } from '../page';
 import styled from 'styled-components';
 
@@ -32,10 +32,10 @@ export const SecondSection: React.FC = () => {
                     <span className="tag">#빠르게</span>
                 </div>
             </Tags>
-            <p>파워포인트를 사용해 발표자료를 만들며</p>
-            <p>'더 화려하고 자유롭게 발표자료를 만들 수 없을까?' 라는 생각을 하게 되었습니다.</p>
-            <p>'HTML/CSS/JavaSript 로 발표자료를 만든다면 가능하지 않을까?'라는 생각을 계기로</p>
-            <p>CC Show 프로젝트를 시작하게 되었습니다.</p>
+                <p>파워포인트를 사용해 발표자료를 만들며</p>
+                <p>'더 화려하고 자유롭게 발표자료를 만들 수 없을까?' 라는 생각을 하게 되었습니다.</p>
+                <p>'HTML/CSS/JavaSript 로 발표자료를 만든다면 가능하지 않을까?'라는 생각을 계기로</p>
+                <p>CC Show 프로젝트를 시작하게 되었습니다.</p>
         </Container>
     )
 }
