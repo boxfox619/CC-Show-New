@@ -11,6 +11,7 @@ const ModalShadow = styled.div`
     height: 100vh;
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
 `
 
 const Content = styled.div`
