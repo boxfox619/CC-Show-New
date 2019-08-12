@@ -1,5 +1,5 @@
 import EditorStore from '../models/EditorStore';
-import { handleActions } from '../../../core/store';
+import { handleActions } from '@/core/store';
 import { ACTION_HANDLERS as ASSET_ACTION_HANDLER } from './asset';
 import { ACTION_HANDLERS as SLIDE_ACTION_HANDLER } from './slide';
 

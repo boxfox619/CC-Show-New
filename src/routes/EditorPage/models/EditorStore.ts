@@ -1,5 +1,4 @@
-import { AnyAsset, Show } from '../../../models';
-import { Slide } from '../../../models/Slide';
+import { AnyAsset, Show, Slide } from '@/models';
 
 export default class EditorStore extends Show{
     constructor(
