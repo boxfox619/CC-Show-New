@@ -5,28 +5,7 @@ import { optional } from './../../../core/hoc/OptionalComponent';
 import loginBackground from '../assets/bg_login_img.jpg';
 import { RegisterPayload } from '../../../models/payload/RegisterPayload';
 import { LoginPayload } from '../../../models/payload';
-
-const ModalShadow = styled.div`
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.5);
-`
-
-const Content = styled.div`
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 500px;
-    z-index: 21;
-    background-color: white;
-    display: flex;
-    & > * {
-        flex: 1;
-    }
-`
+import { Modal } from '../../../components/Modal';
 
 const LeftContainer = styled.div`
     background: url(${loginBackground});
@@ -73,23 +52,21 @@ interface Props {
     onSignup: (data: RegisterPayload) => void
 }
 
-const SignModal: React.FC<Props> = ({ onSignin, onSignup}) => {
+const SignModal: React.FC<Props> = ({ onSignin, onSignup }) => {
     const [signup, setSignup] = React.useState(false);
     const handleChangeMode = React.useCallback(() => setSignup(!signup), [signup, setSignup]);
     return (
-        <ModalShadow>
-            <Content>
-                <LeftContainer>
-                    <Logo>CC SHOW</Logo>
-                    <Tags>
-                        <div>#쉽게  #편리하게</div>
-                        <div>#화려하게  #빠르게</div>
-                    </Tags>
-                </LeftContainer>
-                <SigninForm visible={!signup} onSubmit={onSignin} onChangeMode={handleChangeMode} />
-                <SignupForm visible={signup} onSubmit={onSignup} onChangeMode={handleChangeMode} />
-            </Content>
-        </ModalShadow>
+        <Modal>
+            <LeftContainer>
+                <Logo>CC SHOW</Logo>
+                <Tags>
+                    <div>#쉽게  #편리하게</div>
+                    <div>#화려하게  #빠르게</div>
+                </Tags>
+            </LeftContainer>
+            <SigninForm visible={!signup} onSubmit={onSignin} onChangeMode={handleChangeMode} />
+            <SignupForm visible={signup} onSubmit={onSignup} onChangeMode={handleChangeMode} />
+        </Modal>
     )
 }
 
