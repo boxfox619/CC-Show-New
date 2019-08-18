@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DATASET_TYPE_ASSET, DATASET_TYPE_SELECTOR_LINE, DATASET_TYPE_SELECTOR_DOT, RESIZE_TYPE_TOP, RESIZE_TYPE_LEFT_TOP, RESIZE_TYPE_RIGHT_TOP, RESIZE_TYPE_LEFT_BOTTOM, RESIZE_TYPE_RIGHT_BOTTOM, RESIZE_TYPE_RIGHT, RESIZE_TYPE_LEFT, RESIZE_TYPE_BOTTOM } from '../../modules/asset.service';
-import { AnyAsset } from '../../../../models';
+import { DATASET_TYPE_ASSET, DATASET_TYPE_SELECTOR_LINE, DATASET_TYPE_SELECTOR_DOT, RESIZE_TYPE_TOP, RESIZE_TYPE_LEFT_TOP, RESIZE_TYPE_RIGHT_TOP, RESIZE_TYPE_LEFT_BOTTOM, RESIZE_TYPE_RIGHT_BOTTOM, RESIZE_TYPE_RIGHT, RESIZE_TYPE_LEFT, RESIZE_TYPE_BOTTOM } from '../../routes/EditorPage/modules/asset.service';
+import { AnyAsset } from '../../models';
 import { AssetContext } from './AssetContext';
-import { THEME_COLOR } from '../../../../util/constant';
+import { THEME_COLOR } from '../../util/constant';
 
 const AssetContainer = styled.div`
     position: absolute !important;

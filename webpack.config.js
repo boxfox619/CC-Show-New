@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const port = process.env.PORT || 8080;
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -36,7 +37,8 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                include: path.resolve(__dirname, './src'),
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.(ico|png|jpg|jpeg|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -55,7 +57,8 @@ module.exports = {
         }),
         new CopyPlugin([
             'public'
-        ])
+        ]),
+        new MonacoWebpackPlugin()
     ],
     devtool: 'inline-source-map',
     devServer: {

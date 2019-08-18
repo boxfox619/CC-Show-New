@@ -40,7 +40,6 @@ describe('asset', () => {
             AssetActions.moveAsset(new MoveAssetPayload(1, { x: 2, y: 2 })),
             AssetActions.copyAsset(1),
             AssetActions.pasteAsset(),
-            AssetActions.selectAsset(1),
             AssetActions.resizeAsset(new ResizeAssetPayload(1, { x: 1, y: 1 }, 30, 30)),
             AssetActions.updateAssetValue(new UpdateAssetValuePayload(1, 30)),
             AssetActions.sortAsset(new SortAssetPayload(1, 30, true)),
@@ -94,10 +93,6 @@ describe('asset', () => {
             state = reducer(state, AssetActions.deleteAsset(1));
             const assets = state.slides[0].assets;
             expect(assets.length).toBe(1);
-        });
-        it('should select asset well', () => {
-            state = reducer(state, AssetActions.selectAsset(0));
-            expect(state.slides[0].selectedAssetId).toBe(0);
         });
         it('should resize asset well', () => {
             state = reducer(state, AssetActions.resizeAsset(new ResizeAssetPayload(0, { x: 1, y: 1 }, 30, 30)));

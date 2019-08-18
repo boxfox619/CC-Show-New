@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Form from './form';
 import styled from 'styled-components';
 import { optional } from './../../../core/hoc/OptionalComponent';
-import loginBackground from '../assets/bg_login_img.jpg';
+import * as loginBackground from '../assets/bg_login_img.jpg';
 import { RegisterPayload } from '../../../models/payload/RegisterPayload';
 import { LoginPayload } from '../../../models/payload';
 

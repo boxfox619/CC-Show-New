@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
-import GuidelineModel from '../../../models/Guideline';
+import GuidelineModel from '../../../models/asset/Guideline';
 import { Guideline } from '../Guideline';
 
 describe('<Guideline />', () => {

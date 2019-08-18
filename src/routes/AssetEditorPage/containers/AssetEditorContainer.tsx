@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import * as SaveDarkIcon from '../assets/ic_check_circle_dark.png';
 import * as SaveLightIcon from '../assets/ic_check_circle_light.png';
 import { TextInput } from '@/components';
+import { EditorDock } from '../components/EditorDock';
+import AssetCanvas from '@/components/asset-canvas';
+
+const Container = styled.div`
+  height: 100%;
+`
 
 const Header = styled.div`
   padding: 5px 20px;
@@ -26,17 +32,21 @@ const SaveButton = styled.div`
 
 
 const AssetEditorContainer: React.FC = ({ ...divProps }) => {
+  const [asset, setAsset] = React.useState();
+  const [value, setValue] = React.useState();
+  const modifyAsset = React.useCallback((id: number, x: number, y: number, width: number, height: number) => {
+
+  }, []);
   return (
-    <div {...divProps}>
+    <Container {...divProps}>
       <Header>
-        <h3 style={{flex: 1}}>ASSET EDITOR</h3>
+        <h3 style={{ flex: 1 }}>ASSET EDITOR</h3>
         <TextInput placeholder={"에셋의 이름을 정해주세요!"} type="text" />
         <SaveButton onClick={this.submit} />
       </Header>
-
-      <div>editor</div>
-      <div>preview</div>
-    </div>
+      <EditorDock style={{ height: '50%' }} />
+      <AssetCanvas assets={[]} onChangeValue={setValue} onModifyAsset={modifyAsset} />
+    </Container>
   )
 }
 
