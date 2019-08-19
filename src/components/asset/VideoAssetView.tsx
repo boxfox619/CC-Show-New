@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { VideoAssetData } from '@/models';
 
 interface Props {
-    visible: boolean
-    value: string
+    data: VideoAssetData
 }
 
 const VideoFrame = styled.iframe`
@@ -12,8 +12,8 @@ const VideoFrame = styled.iframe`
     border: 0;
 `
 
-export const VideoAssetView: React.FC<Props> = ({ value }) => {
-    const code = value.split("?v=")[1];
+export const VideoAssetView: React.FC<Props> = ({ data }) => {
+    const code = data.url.split("?v=")[1];
     return <VideoFrame src={`https://www.youtube.com/embed/${code}`} />
 }
 export default VideoAssetView;

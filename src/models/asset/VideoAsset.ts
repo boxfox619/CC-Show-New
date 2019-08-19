@@ -1,12 +1,13 @@
 import AssetType from '../AssetType';
-import { Asset, Point } from '..';
+import { Asset, Point, AssetAttribute } from '..';
 import { CSSProperties } from 'react';
 
-interface VideoAttribute {
+export interface VideoAssetData {
+    url: string
     preview: boolean
 }
 
-export default class VideoAsset implements Asset<string, VideoAttribute> {
+export class VideoAsset implements Asset<VideoAssetData> {
     public type: AssetType = AssetType.Video;
     public style: CSSProperties = { borderStyle: 'solid', borderWidth: 0 };
     constructor(
@@ -14,7 +15,10 @@ export default class VideoAsset implements Asset<string, VideoAttribute> {
         public width: number,
         public height: number,
         public position: Point,
-        public value: string = '',
-        public attribute: VideoAttribute = { preview: false },
+        public value: VideoAssetData = {
+            url: '',
+            preview: false
+        },
+        public attribute: AssetAttribute
     ) { }
 }

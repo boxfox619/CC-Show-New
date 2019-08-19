@@ -6,7 +6,8 @@ import ImageAssetView from './ImageAssetView';
 import AssetType from '../../models/AssetType';
 import VideoAssetView from './VideoAssetView';
 import ShapeAssetView from './ShapeAssetView';
-import { TextAsset, ImageAsset, VideoAsset, AnyAsset, ShapeAsset } from '../../models';
+import { TextAsset, ImageAsset, VideoAsset, AnyAsset, ShapeAsset, CustomAsset } from '@/models';
+import { CustomAssetView } from './CustomAssetView';
 
 const Container = styled.div`
     width: 100%;
@@ -38,10 +39,13 @@ const assetRenderer = (type: AssetType, props: AssetProps<any>) => {
             return (<ImageAssetView value={imageAsset.value} />)
         case AssetType.Video:
             const videoAsset = props.data as VideoAsset;
-            return (<VideoAssetView visible={videoAsset.attribute.preview} value={videoAsset.value} />)
+            return (<VideoAssetView data={videoAsset.value} />)
         case AssetType.Shape:
             const shapeAsset = props.data as ShapeAsset;
             return (<ShapeAssetView asset={props.data} Shape={shapeAsset.value} />)
+        case AssetType.Custom:
+            const customAsset = props.data as CustomAsset;
+            return (<CustomAssetView data={customAsset.value} />)
     }
 }
 
