@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as bgIcon from '../../assets/bg_intro.jpg';
 import { Section } from '../page';
 import styled from 'styled-components';
+import { MouseEventHandler } from 'react';
 
 const Container = styled(Section)`
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgIcon});
@@ -35,9 +36,11 @@ const WhiteButton = styled.a`
         cursor: pointer;
       }
 `
+interface Props {
+    onStart: MouseEventHandler
+}
 
-
-export const FirstSection: React.FC = () => {
+export const FirstSection: React.FC<Props> = ({ onStart }) => {
     return (
         <Container>
             <Tags>
@@ -53,7 +56,7 @@ export const FirstSection: React.FC = () => {
             <div>
                 <p>기존 파워포인트보다 더 쉽고 간편하게 HTML로 발표자료를 제작할 수 있습니다.</p>
                 <p>여러분의 아이디어, 창작물을 실현시켜드립니다.</p>
-                <WhiteButton>시작하기</WhiteButton>
+                <WhiteButton onClick={onStart}>시작하기</WhiteButton>
             </div>
         </Container>
     )

@@ -2,7 +2,8 @@ export enum AssetType {
     Text,
     Image,
     Video,
-    Shape
+    Shape,
+    Custom
 };
 
 export default AssetType;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import GuidelineModel from '../../models/Guideline';
+import GuidelineModel from '../../models/asset/Guideline';
 import styled from 'styled-components';
-import { THEME_COLOR } from '../../../../util/constant';
+import { THEME_COLOR } from '../../util/constant';
 
 const Line = styled.div`
     position: absolute;

@@ -1,14 +1,13 @@
 import * as React from 'react';
-import AssetCanvas from '../components/asset-canvas';
 import StoreModel from '../models/StoreModel';
 import { SortAssetPayload } from '../models/payload';
 import { connect } from 'react-redux';
 import { ContextMenu, Menu } from '../components/context-menu';
-import { selectAsset, resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset, sortAsset } from '../reducers/asset';
+import { resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset, sortAsset } from '../reducers/asset';
 import { Point } from '../../../models';
+import AssetCanvas from '@/components/asset-canvas';
 
 const mapDispatchToProps = {
-  selectAsset,
   updateAssetValue,
   resizeAsset,
   copyAsset,
@@ -32,18 +31,18 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
   const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
   const openContextMenu = (e: React.MouseEvent) => setMenuPosition({ x: e.pageX, y: e.pageY });
   const closeContextMenu = () => setMenuPosition({ x: 0, y: 0 });
-  const assetId = currentSlide.selectedAssetId as number;
-  const assetValid = assetId !== undefined;
+  const [selectedAssetId, setSelectedAssetId] = React.useState<number>(undefined);
+  const assetValid = selectedAssetId !== undefined;
   const menu = [
-    new Menu('복사', 'Ctrl + C', [props.copyAsset.bind(null, assetId), closeContextMenu], !assetValid),
+    new Menu('복사', 'Ctrl + C', [props.copyAsset.bind(null, selectedAssetId), closeContextMenu], !assetValid),
     new Menu('붙여넣기', 'Ctrl + V', [props.pasteAsset, closeContextMenu], !props.editor.copiedAsset),
-    new Menu('삭제', 'Ctrl + D', [props.deleteAsset.bind(null, assetId), closeContextMenu], !assetValid),
-    new Menu('잘라내기', 'Ctrl + X', [props.copyAsset.bind(null, assetId), props.deleteAsset.bind(null, assetId)], !assetValid),
+    new Menu('삭제', 'Ctrl + D', [props.deleteAsset.bind(null, selectedAssetId), closeContextMenu], !assetValid),
+    new Menu('잘라내기', 'Ctrl + X', [props.copyAsset.bind(null, selectedAssetId), props.deleteAsset.bind(null, selectedAssetId)], !assetValid),
     new Menu('정렬', '', [], false, [
-      new Menu('맨 앞으로 가져오기', 'SHIFT + CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(assetId, +1, true)), closeContextMenu]),
-      new Menu('앞으로 가져오기', 'CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(assetId, +1)), closeContextMenu]),
-      new Menu('뒤로 보내기', 'CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(assetId, -1)), closeContextMenu]),
-      new Menu('맨 뒤로 보내기', 'SHIFT + CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(assetId, -1, true)), closeContextMenu])
+      new Menu('맨 앞으로 가져오기', 'SHIFT + CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(selectedAssetId, +1, true)), closeContextMenu]),
+      new Menu('앞으로 가져오기', 'CTRL + ]', [props.sortAsset.bind(null, new SortAssetPayload(selectedAssetId, +1)), closeContextMenu]),
+      new Menu('뒤로 보내기', 'CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(selectedAssetId, -1)), closeContextMenu]),
+      new Menu('맨 뒤로 보내기', 'SHIFT + CTRL + [', [props.sortAsset.bind(null, new SortAssetPayload(selectedAssetId, -1, true)), closeContextMenu])
     ])
   ];
   return (
@@ -51,11 +50,9 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
       <AssetCanvas
         style={{ flex: 1 }}
         assets={currentSlide.assets}
-        selectedAssetId={assetId}
-        onSelectAsset={props.selectAsset}
-        modifyAsset={modifyAsset}
+        onSelectAsset={setSelectedAssetId}
+        onModifyAsset={modifyAsset}
         onChangeValue={props.updateAssetValue}
-        editable={true}
         onContextMenu={openContextMenu}
         onClick={closeContextMenu}
       />

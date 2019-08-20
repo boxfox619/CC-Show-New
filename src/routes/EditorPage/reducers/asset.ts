@@ -8,7 +8,6 @@ export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
 export const MOVE_ASSET = 'ASSET.MOVE_ASSET';
 export const COPY_ASSET = 'ASSET.COPY_ASSET';
 export const PASTE_ASSET = 'ASSET.PASTE_ASSET';
-export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 export const RESIZE_ASSET = 'ASSET.RESIZE_ASSET';
 export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 export const SORT_ASSET = 'ASSET.SORT_ASSET';
@@ -20,7 +19,6 @@ export const deleteAsset = createAction<number>(DELETE_ASSET);
 export const moveAsset = createAction<MoveAssetPayload>(MOVE_ASSET);
 export const copyAsset = createAction<number>(COPY_ASSET);
 export const pasteAsset = createAction(PASTE_ASSET);
-export const selectAsset = createAction<number | undefined>(SELECT_ASSET);
 export const resizeAsset = createAction<ResizeAssetPayload>(RESIZE_ASSET);
 export const updateAssetValue = createAction<UpdateAssetValuePayload>(UPDATE_ASSET_VALUE);
 export const sortAsset = createAction<SortAssetPayload>(SORT_ASSET);
@@ -75,18 +73,6 @@ export const ACTION_HANDLERS = {
                 }
             }
         };
-    },
-    [SELECT_ASSET]: (state: EditorStore, payload: number) => {
-        const idx = getCurrentSlideIdx(state);
-        return {
-            slides: {
-                [idx]: {
-                    selectedAssetId: {
-                        $set: payload
-                    }
-                }
-            }
-        }
     },
     [UPDATE_ASSET_VALUE]: (state: EditorStore, payload: UpdateAssetValuePayload) => {
         const idx = getCurrentSlideIdx(state);

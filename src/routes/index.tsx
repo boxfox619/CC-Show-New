@@ -4,12 +4,14 @@ import { Store } from "redux";
 import asyncComponent from '../core/hoc/AsyncComponent';
 import EditorPage from './EditorPage';
 import IndexPage from './IndexPage';
+import AssetEditorPage from './AssetEditorPage';
 
 export const createRoutes = (store: Store) => (
     <Router>
         <>
-            <Route path="/" component={asyncComponent(IndexPage(store))} />
+            <Route path="/" component={asyncComponent(IndexPage(store))} exact={true} />
             <Route path="/editor" component={asyncComponent(EditorPage(store))} />
+            <Route path="/asset" component={asyncComponent(AssetEditorPage(store))} />
         </>
     </Router>
 );

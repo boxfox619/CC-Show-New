@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { AssetType } from '../../../../models';
+import { AssetType, VideoAsset } from '../../models';
 import { AssetRenderer } from './AssetRenderer';
-import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../modules/asset.service';
-import { clearSelection } from '../../../../routes/EditorPage/modules/dom.service';
-import { UpdateAssetValuePayload } from '../../models/payload';
-import { AnyAsset } from '../../../../models/asset/Asset';
+import { isResizer, isSelector, resize, move, findAsset, getResizeTarget } from '../../routes/EditorPage/modules/asset.service';
+import { clearSelection } from '../../routes/EditorPage/modules/dom.service';
+import { UpdateAssetValuePayload } from '../../routes/EditorPage/models/payload';
+import { AnyAsset } from '../../models/asset/Asset';
 
 const ACTION_MOVE = 'move';
 const ACTION_RESIZE = 'resize';
@@ -13,28 +13,61 @@ const ACTION_NONE = 'none';
 
 interface OwnProps {
     assets: AnyAsset[],
-    selectedAssetId?: number,
-    editable: boolean,
-    onSelectAsset: (id?: number) => void,
-    onChangeValue: (payload: UpdateAssetValuePayload) => void,
-    modifyAsset: (id: number, x: number, y: number, width: number, height: number) => void,
+    editable?: boolean,
+    onSelectAsset?: (id?: number) => void,
+    onChangeValue?: (payload: UpdateAssetValuePayload) => void,
+    onModifyAsset?: (id: number, x: number, y: number, width: number, height: number) => void,
 }
 
 type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 
-export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable, onSelectAsset, onChangeValue, modifyAsset, ...divProps }) => {
+export const AssetCanvas: React.FC<Props> = ({ assets, editable = true, onSelectAsset, onChangeValue, onModifyAsset, ...divProps }) => {
     const [doubleClicked, setDoubleClicked] = useState(false);
     const [mouseAction, setMouseAction] = useState(ACTION_NONE);
     const [xInElement, setXInElement] = useState(0);
     const [yInElement, setYInElement] = useState(0);
     const [resizeTarget, setResizeTarget] = useState('');
+    const [selectedAssetId, setSelecteAssetId] = useState<number>(undefined);
+    const handleSelectAsset = React.useCallback((id?: number) => {
+        setSelecteAssetId(id);
+        onSelectAsset && onSelectAsset(id);
+    }, [setSelecteAssetId, onSelectAsset]);
+    const handleMove = (e: React.MouseEvent) => {
+        if (!onModifyAsset) {
+            return;
+        }
+        const selectedAsset = assets.find(a => a.id === selectedAssetId);
+        const otherAssets = assets.filter(a => a.id !== selectedAssetId);
+        if (selectedAssetId === undefined || !selectedAsset || !otherAssets) {
+            return;
+        }
+        const x = e.pageX;
+        const y = e.pageY;
+        move(xInElement, yInElement, x, y, selectedAsset, otherAssets, onModifyAsset);
+        setXInElement(x);
+        setYInElement(y);
+    };
+
+    const handleResize = (e: React.MouseEvent) => {
+        if (!onModifyAsset) {
+            return;
+        }
+        const selectedAsset = assets.find(a => a.id === selectedAssetId);
+        const otherAssets = assets.filter(a => a.id !== selectedAssetId);
+        if (selectedAssetId === undefined || !selectedAsset || !otherAssets) {
+            return;
+        }
+        resize(resizeTarget, xInElement, yInElement, e.pageX, e.pageY, selectedAsset, otherAssets, onModifyAsset);
+        setXInElement(e.pageX);
+        setYInElement(e.pageY);
+    };
 
     const handleMouseMove = (e: React.MouseEvent) => {
         const currentAsset = assets.find(a => a.id === selectedAssetId);
         if (!currentAsset || !mouseAction || mouseAction === ACTION_NONE) {
             return;
         }
-        if (currentAsset.type === AssetType.Video && currentAsset.attribute.preview) {
+        if (currentAsset.type === AssetType.Video && (currentAsset as VideoAsset).value.preview) {
             setMouseAction(ACTION_NONE);
             return;
         }
@@ -45,33 +78,9 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
         }
     };
 
-    const handleMove = (e: React.MouseEvent) => {
-        const selectedAsset = assets.find(a => a.id === selectedAssetId);
-        const otherAssets = assets.filter(a => a.id !== selectedAssetId);
-        if (selectedAssetId === undefined || !selectedAsset || !otherAssets) {
-            return;
-        }
-        const x = e.pageX;
-        const y = e.pageY;
-        move(xInElement, yInElement, x, y, selectedAsset, otherAssets, modifyAsset);
-        setXInElement(x);
-        setYInElement(y);
-    };
-
-    const handleResize = (e: React.MouseEvent) => {
-        const selectedAsset = assets.find(a => a.id === selectedAssetId);
-        const otherAssets = assets.filter(a => a.id !== selectedAssetId);
-        if (selectedAssetId === undefined || !selectedAsset || !otherAssets) {
-            return;
-        }
-        resize(resizeTarget, xInElement, yInElement, e.pageX, e.pageY, selectedAsset, otherAssets, modifyAsset);
-        setXInElement(e.pageX);
-        setYInElement(e.pageY);
-    };
-
     const handleDoubleClickItem = () => setDoubleClicked(true);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    const handleMouseDown = React.useCallback((e: React.MouseEvent) => {
         e.preventDefault();
         if (document.activeElement) {
             (document.activeElement as HTMLElement).blur();
@@ -80,7 +89,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
         const assetNode = findAsset(target);
         if (!assetNode) {
             setDoubleClicked(false);
-            onSelectAsset(undefined);
+            handleSelectAsset(undefined);
             clearSelection();
             return
         }
@@ -92,7 +101,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
             return;
         }
         setDoubleClicked(false);
-        onSelectAsset(currentAssetId);
+        handleSelectAsset(currentAssetId);
         if (isSelector(target)) {
             setMouseAction(ACTION_RESIZE);
             setResizeTarget(getResizeTarget(target));
@@ -101,7 +110,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, selectedAssetId, editable
         }
         setXInElement(e.pageX);
         setYInElement(e.pageY);
-    };
+    }, [onSelectAsset]);
 
     const handleMouseRelease = () => setMouseAction(ACTION_NONE);
 

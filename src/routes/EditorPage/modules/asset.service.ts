@@ -1,4 +1,4 @@
-import GuidelineModel from '../models/Guideline';
+import GuidelineModel from '@/models/asset/Guideline';
 import { AnyAsset } from '../../../models/asset/Asset';
 
 export const DATASET_TYPE_ASSET = 'asset';

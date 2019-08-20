@@ -1,4 +1,4 @@
-export default class Guideline {
+export class Guideline {
     constructor(
         public x: number,
         public y: number,
@@ -15,3 +15,5 @@ export default class Guideline {
         }
     }
 }
+
+export default Guideline;
