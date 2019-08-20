@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { AssetShopItem } from '../../models/asset/AssetShopItem';
 
 const Container = styled.div`
     display: inline-block;
@@ -96,28 +97,30 @@ const Star = styled.div`
 `
 
 interface Props {
-    thumbnail: string
-    onClick: React.MouseEventHandler
+    data: AssetShopItem
+    onClick: (id: number) => void,
+    onMark: (id: number) => void,
 }
 
-export const AssetItemCard: React.FC<Props> = ({ thumbnail, onClick }) => {
+export const AssetItemCard: React.FC<Props> = ({ data, onClick, onMark }) => {
+    const handleClick = React.useCallback(() => onClick(data.id), [data.id, onClick]);
+    const handleMark = React.useCallback(() => onMark(data.id), [data.id, onMark]);
     return (
         <Container>
-            <Thumbnail onClick={onClick} ><img src={thumbnail} /></Thumbnail>
+            <Thumbnail onClick={handleClick} ><img src={data.thumbnail} /></Thumbnail>
             <ButtonHeader />
-            {/* <div className={styles.inner} /> */}
-            <Bookmark onClick={this.props.deleteAsset} marked={false} />
+            <Bookmark onClick={handleMark} marked={data.marked} />
             <Footer>
                 <SubTitle>
-                    <Title>{this.props.title}</Title>
-                    <SubTitle>{this.props.subTitle}</SubTitle>
+                    <Title>{data.title}</Title>
+                    <SubTitle>{data.subTitle}</SubTitle>
                 </SubTitle>
                 <StarList>
-                    <Star active={this.props.star > 0} />
-                    <Star active={this.props.star > 1} />
-                    <Star active={this.props.star > 2} />
-                    <Star active={this.props.star > 3} />
-                    <Star active={this.props.star > 4} />
+                    <Star active={data.rate > 0} />
+                    <Star active={data.rate > 1} />
+                    <Star active={data.rate > 2} />
+                    <Star active={data.rate > 3} />
+                    <Star active={data.rate > 4} />
                 </StarList>
             </Footer>
         </Container>

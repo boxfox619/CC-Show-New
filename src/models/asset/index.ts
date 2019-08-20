@@ -4,13 +4,12 @@ import ImageAsset from './ImageAsset';
 import VideoAsset from './VideoAsset';
 import ShapeAsset from './ShapeAsset';
 
-
+export * from './AssetShopItem';
 export * from './Asset';
 export { default as ImageAsset } from './ImageAsset';
 export { default as VideoAsset } from './VideoAsset';
 export { default as TextAsset } from './TextAsset';
 export { default as ShapeAsset } from './ShapeAsset';
-
 
 export const createAsset = (type: AssetType, id: number, width: number, height: number, position: Point, value: any, attribute: any = {}) => {
     switch (type) {

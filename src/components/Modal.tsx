@@ -18,6 +18,7 @@ const Content = styled.div`
     z-index: 21;
     background-color: white;
     display: flex;
+    flex-flow: column;
     & > * {
         flex: 1;
     }

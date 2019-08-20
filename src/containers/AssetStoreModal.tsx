@@ -2,10 +2,12 @@ import * as React from 'react';
 import { Modal } from '@/components';
 import styled from 'styled-components';
 import { TabHolder, TabItem } from '@/components/TabHolder';
-import { AnyAsset } from '@/models';
+import { AssetItemCard } from '../components/card/AssetItemCard';
+import { AssetShopItem } from '../models/asset/AssetShopItem';
 
 const Header = styled.div`
-
+    display: flex;
+    padding: 10px;
 `
 const Content = styled.div`
 
@@ -19,31 +21,25 @@ const TAB_LIST: TabItem[] = [
 ];
 
 interface Props {
-    assets: AnyAsset[]
+    assets?: AssetShopItem[]
 }
 
-export const AssetStoreModal: React.FC<Props> = ({ assets }) => {
+export const AssetStoreModal: React.FC<Props> = ({ assets = [] }) => {
     const onSelectTab = React.useCallback((tabId: string) => { }, []);
     return (
         <Modal>
             <Header>
-                <h1>ASSET STORE</h1>
+                <h4 style={{ flex: 1 }}>ASSET STORE</h4>
                 <TabHolder tabList={TAB_LIST} onSelectTab={onSelectTab} />
             </Header>
             <Content>
-                <div style={{ 'padding': '20px 2.5%' }}>
-                    {
-                        assets.map((asset) => (
-                            <AssetItem key={asset.id}
-                                deleteAsset={() => this.deleteAsset(asset.id)}
-                                useAsset={() => this.useAsset(asset.id)}
-                                id={asset.id}
-                                title={asset.title}
-                                subTitle={asset.user}
-                                star={asset.star}
-                                thumbnail={asset.thumbnail} />))
-                    }
-                </div>
+                {assets.map((asset) => (
+                    <AssetItemCard
+                        key={asset.id}
+                        onMark={this.deleteAsset}
+                        onClick={this.useAsset}
+                        data={asset} />
+                ))}
             </Content>
         </Modal>
     )
