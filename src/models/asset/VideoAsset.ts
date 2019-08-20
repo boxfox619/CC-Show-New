@@ -19,6 +19,6 @@ export class VideoAsset implements Asset<VideoAssetData> {
             url: '',
             preview: false
         },
-        public attribute: AssetAttribute
+        public attribute: AssetAttribute = { angle: 0 }
     ) { }
 }

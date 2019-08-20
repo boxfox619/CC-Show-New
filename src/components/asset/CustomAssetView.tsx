@@ -8,7 +8,7 @@ interface Props {
 export const CustomAssetView: React.FC<Props> = ({ data }) => {
   const pureSource = React.useMemo(() => {
     return `
-      <html>${data.html}</html>
+      ${data.html}
       <style>${data.css}</style>
       <javascript>${data.javascript}</javascript>
     `

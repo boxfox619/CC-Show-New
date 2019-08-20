@@ -10,6 +10,6 @@ export default class TextAsset implements Asset<string> {
         public height: number,
         public position: Point,
         public value: string = '',
-        public attribute: AssetAttribute
+        public attribute: AssetAttribute = { angle: 0 }
     ) { }
 }

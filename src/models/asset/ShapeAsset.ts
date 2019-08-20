@@ -13,6 +13,6 @@ export default class ShapeAsset implements Asset<React.ComponentType<ShapeProps>
         public height: number,
         public position: Point,
         public value: React.ComponentType<ShapeProps>,
-        public attribute: AssetAttribute
+        public attribute: AssetAttribute = { angle: 0 }
     ) { }
 }

@@ -16,6 +16,6 @@ export class CustomAsset implements Asset<CustomAssetData> {
     public height: number,
     public position: Point,
     public value: CustomAssetData = { html: '', css: '', javascript: '' },
-    public attribute: AssetAttribute
+    public attribute: AssetAttribute = { angle: 0 }
   ) { }
 }

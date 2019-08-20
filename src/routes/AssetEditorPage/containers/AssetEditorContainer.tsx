@@ -5,9 +5,12 @@ import * as SaveLightIcon from '../assets/ic_check_circle_light.png';
 import { TextInput } from '@/components';
 import { EditorDock } from '../components/EditorDock';
 import AssetCanvas from '@/components/asset-canvas';
+import { CustomAssetData, CustomAsset } from '@/models';
 
 const Container = styled.div`
   height: 100%;
+  display: flex;
+  flex-flow: column;
 `
 
 const Header = styled.div`
@@ -32,11 +35,9 @@ const SaveButton = styled.div`
 
 
 const AssetEditorContainer: React.FC = ({ ...divProps }) => {
-  const [asset, setAsset] = React.useState();
-  const [value, setValue] = React.useState();
-  const modifyAsset = React.useCallback((id: number, x: number, y: number, width: number, height: number) => {
-
-  }, []);
+  const [asset, setAsset] = React.useState<CustomAsset>(new CustomAsset(0, 100, 100, { x: 0, y: 0 }, { html: '', css: '', javascript: '' }));
+  const handleData = React.useCallback((value: CustomAssetData) => setAsset({ ...asset, value }), [setAsset, asset]);
+  const modifyAsset = React.useCallback((id: number, x: number, y: number, width: number, height: number) => setAsset({...asset, position: {x, y}, width, height}), [asset]);
   return (
     <Container {...divProps}>
       <Header>
@@ -44,8 +45,8 @@ const AssetEditorContainer: React.FC = ({ ...divProps }) => {
         <TextInput placeholder={"에셋의 이름을 정해주세요!"} type="text" />
         <SaveButton onClick={this.submit} />
       </Header>
-      <EditorDock style={{ height: '50%' }} />
-      <AssetCanvas assets={[]} onChangeValue={setValue} onModifyAsset={modifyAsset} />
+      <EditorDock style={{ height: '50%' }} data={asset.value} onChangeData={handleData} />
+      <AssetCanvas style={{ flex: 1 }} assets={[asset]} onModifyAsset={modifyAsset} />
     </Container>
   )
 }

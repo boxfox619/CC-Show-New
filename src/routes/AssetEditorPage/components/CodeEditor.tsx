@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const CodeEditor: React.FC<Props> = ({ defaultValue, onChange }) => {
-  const handleChange = React.useCallback((e: React.ChangeEvent) => onChange(e.currentTarget.textContent), [onChange]);
+  const handleChange = React.useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.currentTarget.value), [onChange]);
   const options = {
     selectOnLineNumbers: true
   };
