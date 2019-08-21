@@ -1,4 +1,4 @@
-export default class AccountStore {
+export class AccountStore {
     constructor(
         public name: string = '',
         public email: string = '',

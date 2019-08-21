@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { AssetShopItem } from '../../models/asset/AssetShopItem';
+import { AssetShopItem } from '../../../models/asset/AssetShopItem';
 
 const Container = styled.div`
     display: inline-block;

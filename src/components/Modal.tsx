@@ -6,6 +6,7 @@ const ModalShadow = styled.div`
     height: 100vh;
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 20;
 `
 
 const Content = styled.div`
@@ -17,11 +18,6 @@ const Content = styled.div`
     height: 500px;
     z-index: 21;
     background-color: white;
-    display: flex;
-    flex-flow: column;
-    & > * {
-        flex: 1;
-    }
 `
 
 export const Modal: React.FC = ({ children }) => {

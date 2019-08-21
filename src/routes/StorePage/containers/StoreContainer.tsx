@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { Modal } from '@/components';
 import styled from 'styled-components';
-import { TabHolder, TabItem } from '@/components/TabHolder';
-import { AssetItemCard } from '../components/card/AssetItemCard';
-import { AssetShopItem } from '../models/asset/AssetShopItem';
+import { TabHolder, TabItem } from '../components/TabHolder';
+import { AssetItemCard } from '../components/AssetItemCard';
+import { AssetShopItem } from '../../../models/asset/AssetShopItem';
 
 const Header = styled.div`
     display: flex;
-    padding: 10px;
+    padding: 15px;
+    & > h4 {
+        flex: 1;
+        font-weight: bold;
+    }
 `
 const Content = styled.div`
 
@@ -24,12 +27,12 @@ interface Props {
     assets?: AssetShopItem[]
 }
 
-export const AssetStoreModal: React.FC<Props> = ({ assets = [] }) => {
+export const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
     const onSelectTab = React.useCallback((tabId: string) => { }, []);
     return (
-        <Modal>
+        <>
             <Header>
-                <h4 style={{ flex: 1 }}>ASSET STORE</h4>
+                <h4>ASSET STORE</h4>
                 <TabHolder tabList={TAB_LIST} onSelectTab={onSelectTab} />
             </Header>
             <Content>
@@ -41,6 +44,6 @@ export const AssetStoreModal: React.FC<Props> = ({ assets = [] }) => {
                         data={asset} />
                 ))}
             </Content>
-        </Modal>
+        </>
     )
 }

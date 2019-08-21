@@ -1,7 +1,7 @@
-import EditorStoreModel from "./EditorStore";
-import AccountStoreModel from '@/models/AccountStore';
+import EditorStoreModel from './EditorStore';
+import { AccountStore } from '@/models';
 
 export default interface StoreModel {
-    auth: AccountStoreModel,
+    auth: AccountStore,
     editor: EditorStoreModel
 }

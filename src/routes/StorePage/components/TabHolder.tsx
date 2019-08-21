@@ -14,21 +14,18 @@ const Tab = styled.div`
     font-weight: bold;
     font-size: 0.8em;
     line-height: 25px;
-    padding: 0 10px;
     color: #D1DBE1;
     ${(props: { active: boolean }) => props.active && `
         color: #12AAEB;
         &:after {
             content: '';
+            height: 0px;
+            left: 10px;
+            bottom: -10px;
             position: absolute;
             display: inline-block;
-            bottom: -10px;
-            left: 20px;
-            border-bottom-style: solid;
-            border-bottom-width: 3px;
-            border-color: #12AAEB;
-            width: calc( 100% - 40px );
-            height: 0px;
+            border-bottom: 3px solid #12AAEB;
+            width: calc(100% - 20px);
         }
     `}
     &:hover {
@@ -37,25 +34,21 @@ const Tab = styled.div`
     }
     &:hover:after {
         content: '';
+        height: 0px;
+        left: 10px;
+        bottom: -10px;
         position: absolute;
         display: inline-block;
-        bottom: -10px;
-        left: 20px;
-        border-bottom-style: solid;
-        border-bottom-width: 3px;
-        border-color: #12AAEB;
-        width: calc( 100% - 40px );
-        height: 0px;
+        border-bottom: 3px solid #12AAEB;
+        width: calc(100% - 20px);
     }
     &:before {
         content: '';
+        left: 0px;
+        height: 100%;
         position: absolute;
         display: inline-block;
-        left: 0px;
-        border-left-style: dashed;
-        border-left-width: 1px;
-        border-color: #D1DBE1;
-        height: 100%;
+        border-left: 1px dashed #D1DBE1;
     }
     &:first-child:before {
         display: none;
