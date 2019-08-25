@@ -29,15 +29,15 @@ export const EditorDock: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> 
     <Content {...divProps}>
       <div>
         <div>HTML</div>
-        <BlockCodeEditor defaultValue={data.html} onChange={handleHtml} />
+        <BlockCodeEditor defaultValue={data.html} onChange={handleHtml} language="html"/>
       </div>
       <div>
         <div>CSS</div>
-        <BlockCodeEditor defaultValue={data.css} onChange={handleCss} />
+        <BlockCodeEditor defaultValue={data.css} onChange={handleCss} language="css"/>
       </div>
       <div>
         <div>JAVASCRIPT</div>
-        <BlockCodeEditor defaultValue={data.javascript} onChange={handleJavascript} />
+        <BlockCodeEditor defaultValue={data.javascript} onChange={handleJavascript} language="javascript"/>
       </div>
     </Content>
   )

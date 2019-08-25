@@ -41,6 +41,11 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
+                test: /\.css$/,
+                include: path.resolve(__dirname, './node_modules/monaco-editor'),
+                use: ['style-loader', 'css-loader'],
+            },
+            {
                 test: /\.(ico|png|jpg|jpeg|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: 'url-loader',
                 options: {
@@ -58,7 +63,9 @@ module.exports = {
         new CopyPlugin([
             'public'
         ]),
-        new MonacoWebpackPlugin()
+        new MonacoWebpackPlugin({
+            languages: ['json']
+        })
     ],
     devtool: 'inline-source-map',
     devServer: {

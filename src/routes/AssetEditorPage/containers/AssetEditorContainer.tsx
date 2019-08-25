@@ -7,6 +7,7 @@ import { EditorDock } from '../components/EditorDock';
 import AssetCanvas from '@/components/asset-canvas';
 import { CustomAssetData, CustomAsset } from '@/models';
 
+
 const Container = styled.div`
   height: 100%;
   display: flex;
