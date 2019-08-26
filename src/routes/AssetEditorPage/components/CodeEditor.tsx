@@ -10,7 +10,8 @@ interface Props {
 export const CodeEditor: React.FC<Props> = ({ language, defaultValue, onChange }) => {
   const handleChange = React.useCallback((value: string) => onChange(value), [onChange]);
   const options = {
-    selectOnLineNumbers: true
+    selectOnLineNumbers: true,
+    language
   };
   return (
     <MonacoEditor

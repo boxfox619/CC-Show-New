@@ -49,7 +49,6 @@ const LeftContainer = styled.div`
 `
 
 const Logo = styled.div`
-    font-family: 'Sunflower';
     font-weight: 700;
     font-size: 1.5em;
     margin: 20px;

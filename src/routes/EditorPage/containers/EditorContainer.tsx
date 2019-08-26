@@ -11,6 +11,7 @@ import SlideListManager from './SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
 import AssetCanvasContainer from './AssetCanvasContainer';
 import AssetAttributeController from './AssetAttributeController';
+import './style.css';
 
 const Container = styled.div`
   position: relative;
