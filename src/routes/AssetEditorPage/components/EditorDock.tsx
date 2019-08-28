@@ -9,6 +9,7 @@ const Title = styled.div`
   font-size: 17px;
   color: rgb(123,123,123);
   padding: 10px;
+  border-bottom: #E9E9E9 1px solid;
 `
 
 const Content = styled.div`
