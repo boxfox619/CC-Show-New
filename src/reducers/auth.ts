@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { handleActions } from '../core/store';
 import { LoginSuccessPayload, LoginPayload, RegisterPayload, LoginResultPayload } from '../models/payload';
-import AccountStore from '../models/AccountStore';
+import { AccountStore } from '../models';
 
 // ------------------------------------
 // Constants
