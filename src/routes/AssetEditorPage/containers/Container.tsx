@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import * as NextIcon from '../assets/ic-right-arrow.png';
 import AssetEditorContainer from './AssetEditorContainer';
-import { DetailEditorContainer } from './DetailEditorContainer';
+import DetailEditorContainer from './DetailEditorContainer';
 
 const Container = styled.div`
   height: 100%;

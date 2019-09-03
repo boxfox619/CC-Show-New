@@ -1,6 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ThumbnailInput } from '../components/ThumbnailInput';
+import { StoreModel } from '../models';
+import { setThumbnail } from '../reducers';
+import { connect } from 'react-redux';
 
 const Container = styled.div`
   height: 100%;
@@ -40,10 +43,23 @@ const FormContainer = styled.div`
   }
 `
 
-export const DetailEditorContainer: React.FC = () => {
+const mapDispatchToProps = {
+  setThumbnail
+};
+
+const mapStateToProps = (state: StoreModel) => {
+  return {
+    auth: state.auth,
+    thumbnail: state.assetEditor.thumbnail
+  }
+};
+
+type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & React.HTMLAttributes<HTMLDivElement>;
+
+const DetailEditorContainer: React.FC<Props> = ({ setThumbnail, thumbnail, }) => {
   return (
     <Container>
-      <Thumbnail/>
+      <Thumbnail defaultThumbnail={thumbnail} onThumbnailChange={setThumbnail} />
       <FormContainer>
         <Title>타이틀</Title>
         <Input placeholder="텍스트를 입력하세요" />
@@ -54,3 +70,5 @@ export const DetailEditorContainer: React.FC = () => {
     </Container>
   )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailEditorContainer);
