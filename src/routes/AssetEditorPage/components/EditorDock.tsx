@@ -3,8 +3,18 @@ import styled from 'styled-components';
 import { CodeEditor } from './CodeEditor';
 import { CustomAssetData } from '@/models';
 
+const Title = styled.div`
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+  color: rgb(123,123,123);
+  padding: 10px;
+  border-bottom: #E9E9E9 1px solid;
+`
+
 const Content = styled.div`
   display: flex;
+  border-bottom: #E9E9E9 1px solid;
   & > * {
     flex: 1;
     display: flex;
@@ -28,16 +38,16 @@ export const EditorDock: React.FC<Props & React.HTMLAttributes<HTMLDivElement>> 
   return (
     <Content {...divProps}>
       <div>
-        <div>HTML</div>
-        <BlockCodeEditor defaultValue={data.html} onChange={handleHtml} />
+        <Title>HTML</Title>
+        <BlockCodeEditor defaultValue={data.html} onChange={handleHtml} language="html" />
       </div>
       <div>
-        <div>CSS</div>
-        <BlockCodeEditor defaultValue={data.css} onChange={handleCss} />
+        <Title>CSS</Title>
+        <BlockCodeEditor defaultValue={data.css} onChange={handleCss} language="css" />
       </div>
       <div>
-        <div>JAVASCRIPT</div>
-        <BlockCodeEditor defaultValue={data.javascript} onChange={handleJavascript} />
+        <Title>JAVASCRIPT</Title>
+        <BlockCodeEditor defaultValue={data.javascript} onChange={handleJavascript} language="javascript" />
       </div>
     </Content>
   )

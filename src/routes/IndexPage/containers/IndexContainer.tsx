@@ -10,8 +10,6 @@ import { FourthSection } from '../components/section/FourthSection';
 import { login, register } from '../../../reducers/auth';
 import StoreModel from '../../EditorPage/models/StoreModel';
 import { connect } from 'react-redux';
-import { LoginPayload } from '../../../models/payload/LoginPayload';
-import { RegisterPayload } from '../../../models/payload';
 
 const mapDispatchToProps = {
     login, register

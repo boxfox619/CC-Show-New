@@ -1,11 +1,13 @@
 import { Store } from "redux";
 import { injectReducer } from '../../core/store';
 
-const REDUCER_KEY = 'index';
+const REDUCER_KEY = 'assetEditor';
 
 export default (store: Store) => (
     async () => {
-        injectReducer(store, REDUCER_KEY);
+        const reducer = await import('./reducers');
+        //const epic = await import('./epics');
+        injectReducer(store, REDUCER_KEY, reducer.default);
         return await import("./containers/AssetEditorContainer");
     }
 )
