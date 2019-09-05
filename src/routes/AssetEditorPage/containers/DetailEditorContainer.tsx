@@ -16,6 +16,7 @@ const Container = styled.div`
   flex-flow: row;
   @media(max-width: 900px) {
     flex-flow: column;
+    overflow: auto;
   }
 `
 const Title = styled.p`
@@ -41,6 +42,9 @@ const Thumbnail = styled(ThumbnailInput)`
 const FormContainer = styled.div`
   flex: 1;
   position: relative;
+  @media(max-width: 900px) {
+    padding-bottom: 90px;
+  }
 `
 const SaveButton = styled(Button)`
   bottom: 20px;
