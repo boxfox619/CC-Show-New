@@ -22,8 +22,14 @@ const NextButton = styled.div`
   display: flex;
   padding: 10px 0;
   cursor: pointer;
+  align-items: flex-end;
   & > img {
     width: 20px;
+  }
+`
+const BackButton = styled(NextButton)`
+  & > img {
+    transform: rotate(180deg);
   }
 `
 
@@ -35,10 +41,19 @@ const MainContainer = () => {
     <Container>
       <Header>
         <h3 style={{ flex: 1 }}>ASSET EDITOR</h3>
-        <NextButton onClick={callback}>
-          Next
-          <img src={NextIcon} />
-        </NextButton>
+        {
+          !detailMode ? (
+            <NextButton onClick={callback}>
+              Next
+              <img src={NextIcon} />
+            </NextButton>
+          ) : (
+            <BackButton onClick={callback}>
+              <img src={NextIcon} />
+              Back
+            </BackButton>
+          )
+        }
       </Header>
       {
         !detailMode ? (<AssetEditorContainer />) : (<DetailEditorContainer />)

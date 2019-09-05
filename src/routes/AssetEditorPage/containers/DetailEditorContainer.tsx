@@ -2,18 +2,18 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { ThumbnailInput } from '../components/ThumbnailInput';
 import { StoreModel } from '../models';
-import { setThumbnail, setPublic } from '../reducers';
+import { setThumbnail, setPublic, save } from '../reducers';
 import { connect } from 'react-redux';
 import { ToggleInput } from '../components/ToggleInput';
+import { Button } from '../components/Button';
 
 const Container = styled.div`
-  height: 100%;
+  padding: 20px;
   display: flex;
   flex-flow: column;
   overflow: hidden;
   display: flex;
   flex-flow: row;
-  padding: 20px;
   @media(max-width: 900px) {
     flex-flow: column;
   }
@@ -40,11 +40,18 @@ const Thumbnail = styled(ThumbnailInput)`
 `
 const FormContainer = styled.div`
   flex: 1;
+  position: relative;
+`
+const SaveButton = styled(Button)`
+  bottom: 20px;
+  position: absolute;
+  width: calc(100% - 20px);
 `
 
 const mapDispatchToProps = {
   setThumbnail,
-  setPublic
+  setPublic,
+  save
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -56,7 +63,7 @@ const mapStateToProps = (state: StoreModel) => {
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & React.HTMLAttributes<HTMLDivElement>;
 
-const DetailEditorContainer: React.FC<Props> = ({ setThumbnail, setPublic, thumbnail, }) => {
+const DetailEditorContainer: React.FC<Props> = ({ setThumbnail, setPublic, save, thumbnail, }) => {
   const handlePublic = React.useCallback((mode: string) => setPublic(mode === '공개'), [setPublic]);
   return (
     <Container>
@@ -68,6 +75,7 @@ const DetailEditorContainer: React.FC<Props> = ({ setThumbnail, setPublic, thumb
         <Input placeholder="가격을 입력하세요" />
         <Title>스토어 공개범위</Title>
         <ToggleInput items={['공개', '비공개']} onChange={handlePublic} />
+        <SaveButton onClick={save}>저장</SaveButton>
       </FormContainer>
     </Container>
   )

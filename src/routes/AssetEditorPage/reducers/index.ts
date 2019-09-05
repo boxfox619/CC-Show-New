@@ -6,10 +6,12 @@ import { AssetEditorStore } from '../models';
 export const UPDATE_DATA = 'ASSET-EDITOR.UPDATE_DATA';
 export const CHANGE_THUMBNAIL = 'ASSET-EDITOR.CHANGE_THUMBNAIL';
 export const SET_PUBLIC = 'ASSET-EDITOR.SET_PUBLIC';
+export const SAVE = 'ASSET-EDITOR.SAVE';
 
 export const updateData = createAction<CustomAssetData>(UPDATE_DATA);
 export const setThumbnail = createAction<string>(CHANGE_THUMBNAIL);
 export const setPublic = createAction<boolean>(SET_PUBLIC);
+export const save = createAction(SAVE);
 
 export const ACTION_HANDLERS = {
     [UPDATE_DATA]: (state: AssetEditorStore, payload: CustomAssetData) => ({ data: { $set: payload } }),
