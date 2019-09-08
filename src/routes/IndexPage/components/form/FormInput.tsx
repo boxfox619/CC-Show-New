@@ -1,20 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { COLOR } from '../../../../core/util/Constraint';
+import { TextInput } from '@/components';
 
-const Input = styled.input`
-    height: 20px;
-    border: 0;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+const FormTextInput = styled(TextInput)`
     margin-top: 3px;
     margin-bottom: 30px;
-    padding-bottom: 5px;
-    font-size: 0.8em;
-    line-height: 1.2em;
-    &:focus {
-        outline: none;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.9);
-    }
 `
 
 const Label = styled.label`
@@ -33,7 +24,7 @@ const FormInput: React.FC<Props> = ({ label, ...inputProps }) => {
     return (
         <>
             <Label>{label}</Label>
-            <Input {...inputProps as React.HTMLAttributes<HTMLInputElement>} />
+            <FormTextInput {...inputProps as React.HTMLAttributes<HTMLInputElement>} />
         </>
     )
 };

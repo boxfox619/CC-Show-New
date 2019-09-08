@@ -2,10 +2,33 @@ import * as React from 'react';
 import * as Form from './form';
 import styled from 'styled-components';
 import { optional } from './../../../core/hoc/OptionalComponent';
-import loginBackground from '../assets/bg_login_img.jpg';
+import * as loginBackground from '../assets/bg_login_img.jpg';
 import { RegisterPayload } from '../../../models/payload/RegisterPayload';
 import { LoginPayload } from '../../../models/payload';
 import { Modal } from '../../../components/Modal';
+
+const ModalShadow = styled.div`
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+`
+
+const Content = styled.div`
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 500px;
+    z-index: 21;
+    background-color: white;
+    display: flex;
+    & > * {
+        flex: 1;
+    }
+`
 
 const LeftContainer = styled.div`
     background: url(${loginBackground});
@@ -27,7 +50,6 @@ const LeftContainer = styled.div`
 `
 
 const Logo = styled.div`
-    font-family: 'Sunflower';
     font-weight: 700;
     font-size: 1.5em;
     margin: 20px;

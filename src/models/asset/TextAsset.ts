@@ -1,7 +1,7 @@
 import AssetType from '../AssetType';
-import { Point, Asset } from '..';
+import { Point, Asset, AssetAttribute } from '..';
 
-export default class TextAsset implements Asset<string, any> {
+export default class TextAsset implements Asset<string> {
     public type = AssetType.Text;
     public style = { borderStyle: 'solid', borderWidth: 0 };
     constructor(
@@ -10,6 +10,6 @@ export default class TextAsset implements Asset<string, any> {
         public height: number,
         public position: Point,
         public value: string = '',
-        public attribute: any = {},
+        public attribute: AssetAttribute = { angle: 0 }
     ) { }
 }

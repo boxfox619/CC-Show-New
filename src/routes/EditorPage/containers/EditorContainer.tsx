@@ -11,7 +11,7 @@ import SlideListManager from './SlideListManager';
 import { moveSlide, selectSlide, copySlide, createSlide, shareSlide, deleteSlide } from '../reducers/slide';
 import AssetCanvasContainer from './AssetCanvasContainer';
 import AssetAttributeController from './AssetAttributeController';
-import { AssetStoreModal } from '@/containers';
+import './style.css';
 
 const Container = styled.div`
   position: relative;
@@ -82,7 +82,6 @@ const EditorContainer: React.FC<Props> = (props: Props) => {
       />
       <AssetCanvasContainer />
       <AssetAttributeController />
-      <AssetStoreModal />
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
 import { AssetView } from '../Asset';
-import TextAsset from '../../../../../models/asset/TextAsset';
+import TextAsset from '../../../models/asset/TextAsset';
 
 describe('<AssetView />', () => {
     const mockFn = jest.fn();
