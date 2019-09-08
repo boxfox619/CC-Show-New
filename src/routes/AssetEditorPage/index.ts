@@ -8,6 +8,6 @@ export default (store: Store) => (
         const reducer = await import('./reducers');
         //const epic = await import('./epics');
         injectReducer(store, REDUCER_KEY, reducer.default);
-        return await import("./containers/AssetEditorContainer");
+        return await import("./containers/Container");
     }
 )
