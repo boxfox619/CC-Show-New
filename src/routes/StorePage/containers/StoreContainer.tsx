@@ -27,7 +27,7 @@ interface Props {
     assets?: AssetShopItem[]
 }
 
-export const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
+const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
     const onSelectTab = React.useCallback((tabId: string) => { }, []);
     return (
         <>
@@ -47,3 +47,5 @@ export const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
         </>
     )
 }
+
+export default StoreContainer;

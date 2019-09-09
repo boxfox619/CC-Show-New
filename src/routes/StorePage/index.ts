@@ -1,11 +1,13 @@
 import { Store } from 'redux';
 import { injectReducer } from '../../core/store';
 
-const REDUCER_KEY = 'index';
+const REDUCER_KEY = 'store';
 
 export default (store: Store) => (
     async () => {
-        injectReducer(store, REDUCER_KEY);
+        const reducer = await import('./reducers');
+        const epic = await import('./epics');
+        injectReducer(store, REDUCER_KEY, reducer.default, epic.default);
         return await import('./containers/StoreContainer');
     }
 )

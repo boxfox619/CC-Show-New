@@ -5,6 +5,7 @@ import asyncComponent from '../core/hoc/AsyncComponent';
 import EditorPage from './EditorPage';
 import IndexPage from './IndexPage';
 import AssetEditorPage from './AssetEditorPage';
+import StorePage from './StorePage';
 
 export const createRoutes = (store: Store) => (
     <Router>
@@ -12,6 +13,7 @@ export const createRoutes = (store: Store) => (
             <Route path="/" component={asyncComponent(IndexPage(store))} exact={true} />
             <Route path="/editor" component={asyncComponent(EditorPage(store))} />
             <Route path="/asset" component={asyncComponent(AssetEditorPage(store))} />
+            <Route path="/store" component={asyncComponent(StorePage(store))} />
         </>
     </Router>
 );
