@@ -6,30 +6,30 @@ import { ActionHandlerMap } from '@/core/store/immutableReducer';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const LOAD = 'SHOP.LOAD';
-export const LOAD_START = 'SHOP.LOAD_START';
-export const LOAD_SUCCESS = 'SHOP.LOAD_SUCCESS';
-export const LOAD_FAIL = 'SHOP.LOAD_FAIL';
+export const SEARCH = 'SHOP.SEARCH';
+export const SEARCH_START = 'SHOP.SEARCH_START';
+export const SEARCH_SUCCESS = 'SHOP.SEARCH_SUCCESS';
+export const SEARCH_FAIL = 'SHOP.SEARCH_FAIL';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const load = createAction(LOAD);
-export const loadStart = createAction(LOAD_START);
-export const loadSuccess = createAction<AssetShopItem[]>(LOAD_SUCCESS);
-export const loadFail = createAction<Error>(LOAD_FAIL);
+export const search = createAction(SEARCH);
+export const searchStart = createAction(SEARCH_START);
+export const searchSuccess = createAction<AssetShopItem[]>(SEARCH_SUCCESS);
+export const searchFail = createAction<Error>(SEARCH_FAIL);
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 export const ACTION_HANDLERS: ActionHandlerMap<AssetShopStore> = {
-    [LOAD_START]: (store: AssetShopStore) => {
+    [SEARCH_START]: (store: AssetShopStore) => {
         return { loading: { $set: true }, error: { $set: undefined } };
     },
-    [LOAD_SUCCESS]: (store: AssetShopStore, assets: AssetShopItem[]) => {
-        return {loading: {$set: false}, assets: {$set: assets}}
+    [SEARCH_SUCCESS]: (store: AssetShopStore, assets: AssetShopItem[]) => {
+        return { loading: { $set: false }, assets: { $set: assets } }
     },
-    [LOAD_FAIL]: (store: AssetShopStore, error: Error) => {
-        return {loading: {$set: false}, error: {$set: error}}
+    [SEARCH_FAIL]: (store: AssetShopStore, error: Error) => {
+        return { loading: { $set: false }, error: { $set: error } }
     },
 };

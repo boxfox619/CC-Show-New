@@ -3,44 +3,32 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     text-align: right;
-    display: table;
-    table-layout: fixed;
-    height: 25px;
 `
 const Tab = styled.div`
-    display: table-cell;
     position: relative;
+    display: inline-block;
     text-align: center;
     font-weight: bold;
-    font-size: 0.8em;
+    font-size: 25px;
     line-height: 25px;
     color: #D1DBE1;
+    cursor: pointer;
+    padding: 0 10px;
     ${(props: { active: boolean }) => props.active && `
         color: #12AAEB;
         &:after {
             content: '';
             height: 0px;
-            left: 10px;
+            left: 15%;
             bottom: -10px;
             position: absolute;
             display: inline-block;
             border-bottom: 3px solid #12AAEB;
-            width: calc(100% - 20px);
+            width: 75%;
         }
     `}
     &:hover {
         color: #12AAEB;
-        cursor: pointer;
-    }
-    &:hover:after {
-        content: '';
-        height: 0px;
-        left: 10px;
-        bottom: -10px;
-        position: absolute;
-        display: inline-block;
-        border-bottom: 3px solid #12AAEB;
-        width: calc(100% - 20px);
     }
     &:before {
         content: '';
@@ -48,7 +36,7 @@ const Tab = styled.div`
         height: 100%;
         position: absolute;
         display: inline-block;
-        border-left: 1px dashed #D1DBE1;
+        border-left: 2px dashed #D1DBE1;
     }
     &:first-child:before {
         display: none;

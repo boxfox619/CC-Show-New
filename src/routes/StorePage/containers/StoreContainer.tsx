@@ -3,11 +3,18 @@ import styled from 'styled-components';
 import { TabHolder, TabItem } from '../components/TabHolder';
 import { AssetItemCard } from '../components/AssetItemCard';
 import { AssetShopItem } from '../../../models/asset/AssetShopItem';
+import { search } from '../reducers/shop';
+import { StoreModel } from '../models';
+import { connect } from 'react-redux';
+
+const Container = styled.div`
+    padding: 25px;    
+`
 
 const Header = styled.div`
     display: flex;
     padding: 15px;
-    & > h4 {
+    & > h1 {
         flex: 1;
         font-weight: bold;
     }
@@ -27,12 +34,23 @@ interface Props {
     assets?: AssetShopItem[]
 }
 
+
+const mapDispatchToProps = {
+    search
+};
+
+const mapStateToProps = (state: StoreModel) => {
+    return {
+        shop: state.shop
+    }
+};
+
 const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
     const onSelectTab = React.useCallback((tabId: string) => { }, []);
     return (
-        <>
+        <Container>
             <Header>
-                <h4>ASSET STORE</h4>
+                <h1>ASSET STORE</h1>
                 <TabHolder tabList={TAB_LIST} onSelectTab={onSelectTab} />
             </Header>
             <Content>
@@ -44,8 +62,8 @@ const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
                         data={asset} />
                 ))}
             </Content>
-        </>
+        </Container>
     )
 }
 
-export default StoreContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(StoreContainer);
