@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { TabHolder, TabItem } from '../components/TabHolder';
 import { AssetItemCard } from '../components/AssetItemCard';
-import { AssetShopItem } from '../../../models/asset/AssetShopItem';
 import { search } from '../reducers/shop';
 import { StoreModel } from '../models';
 import { connect } from 'react-redux';
@@ -30,23 +29,22 @@ const TAB_LIST: TabItem[] = [
     { name: '보관함', id: 'saved' }
 ];
 
-interface Props {
-    assets?: AssetShopItem[]
-}
-
-
 const mapDispatchToProps = {
     search
 };
 
 const mapStateToProps = (state: StoreModel) => {
     return {
-        shop: state.shop
+        loading: state.shop.loading,
+        assets: state.shop.assets
     }
 };
 
-const StoreContainer: React.FC<Props> = ({ assets = [] }) => {
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+const StoreContainer: React.FC<Props> = ({ search, assets = [] }) => {
     const onSelectTab = React.useCallback((tabId: string) => { }, []);
+    React.useEffect(() => { search('') }, []);
     return (
         <Container>
             <Header>

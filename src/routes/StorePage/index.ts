@@ -1,7 +1,7 @@
 import { Store } from 'redux';
 import { injectReducer } from '../../core/store';
 
-const REDUCER_KEY = 'store';
+const REDUCER_KEY = 'shop';
 
 export default (store: Store) => (
     async () => {

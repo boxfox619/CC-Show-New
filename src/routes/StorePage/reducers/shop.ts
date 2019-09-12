@@ -14,7 +14,7 @@ export const SEARCH_FAIL = 'SHOP.SEARCH_FAIL';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const search = createAction(SEARCH);
+export const search = createAction<string>(SEARCH);
 export const searchStart = createAction(SEARCH_START);
 export const searchSuccess = createAction<AssetShopItem[]>(SEARCH_SUCCESS);
 export const searchFail = createAction<Error>(SEARCH_FAIL);
