@@ -1,35 +1,52 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import * as BookmarkIcon from '../assets/ic_bookmark_red.png';
+import * as WhiteStarIcon from '../assets/ic_star_white.png';
+import * as YelloStarIcon from '../assets/ic_star_yellow.png';
 import { AssetShopItem } from '../../../models/asset/AssetShopItem';
 
 const Container = styled.div`
     display: inline-block;
     position: relative;
-    width: 31%;
-    height: 12em;
+    height: 200px;
     border-radius: 5px;
-    margin-left: 3.4%;
     margin-bottom: 2em;
     overflow: hidden;
     cursor: pointer;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
     box-shadow: 0 3px 20px 4px rgba(0, 0, 0, 0.26);
+    width: 23%;
+    margin-left: 2%;
+    @media(max-width: 1350px) {
+        width: 30%;
+        margin-left: 2%;
+    }
+    @media(max-width: 1050px) {
+        width: 45%;
+        margin-left: 3%;
+    }
+    @media(max-width: 700px) {
+        width: 400px;
+        margin: 0 calc(50% - 200px);
+    }
+    @media(max-width: 450px) {
+        width: 90%;
+        margin: 0 5%;
+        height: 150px;
+    }
 `
 const Thumbnail = styled.div`
-    width:100%;
+    width: 100%;
     height: 100%;
     background: white;
     position: relative;
     & > img {
-        max-width: 100%;
-        max-height: 100%;
         position: absolute;
+        min-width: 100%;
+        min-height: 100%;
+        max-width: 120%;
+        max-height: 120%;
         left: 50%;
-        top:50%;
+        top: 50%;
         transform: translate(-50%, -50%);
     }
 `
@@ -49,36 +66,39 @@ const Bookmark = styled.div`
   width: 20px;
   height: 24px;
   cursor: pointer;
-    background: url('/images/ic_bookmark_red.png');
+  background: url(${BookmarkIcon});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   ${(props: { marked: boolean }) => props.marked && `
-    background: url('/images/ic_bookmark_red.png');
+    background: url(${BookmarkIcon});
   `}
 `
 const Footer = styled.div`
     position: absolute;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    bottom: 0px;
     width: 100%;
     height: 25%;
+    bottom: 0px;
     background: rgba(0, 0, 0, 0.6);
     display: table;
+    & > * {
+        display: table-cell;
+        vertical-align: middle;
+    }
 `
 const Title = styled.div`
     color: #FFFFFF;
     font-size: 13px;
 `
-const SubTitle = styled.div`
+const TitleContent = styled.div`
     color: #9E9E9F;
     font-size: 9px;
+    padding-left: 17px;
 `
 const StarList = styled.div`
-    display: table-cell;
     width:40%;
-    vertical-align: middle;
     text-align: right;
     padding-right: 17px;
 `
@@ -86,13 +106,11 @@ const Star = styled.div`
     width: 20px;
     height: 18px;
     display: inline-block;
-    background: url('/images/ic_star_white.png');
+    background-image: url(${WhiteStarIcon});
     background-repeat: no-repeat;
     background-position: center;
     ${(props: { active: boolean }) => props.active && `
-        background: url('/images/ic_star_yellow.png');
-        background-repeat: no-repeat;
-        background-position: center;
+        background-image: url(${YelloStarIcon});
     `}
 `
 
@@ -111,10 +129,10 @@ export const AssetItemCard: React.FC<Props> = ({ data, onClick, onMark }) => {
             <ButtonHeader />
             <Bookmark onClick={handleMark} marked={data.marked} />
             <Footer>
-                <SubTitle>
+                <TitleContent>
                     <Title>{data.title}</Title>
-                    <SubTitle>{data.subTitle}</SubTitle>
-                </SubTitle>
+                    <div>{data.subTitle}</div>
+                </TitleContent>
                 <StarList>
                     <Star active={data.rate > 0} />
                     <Star active={data.rate > 1} />

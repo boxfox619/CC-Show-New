@@ -7,7 +7,9 @@ import { StoreModel } from '../models';
 import { connect } from 'react-redux';
 
 const Container = styled.div`
-    padding: 25px;    
+    max-width: 1450px;
+    padding: 25px;
+    margin: auto;
 `
 
 const Header = styled.div`
