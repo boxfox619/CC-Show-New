@@ -55,11 +55,11 @@ interface ContextProps {
 
 type Props = AssetProps<AnyAsset> & ContextProps;
 
-export const AssetContext: React.FC<Props> = ({ index, ...assetProps }) => {
+export const AssetContext: React.FC<Props> = React.memo(({ index, ...assetProps }) => {
     return (
         <Container style={{ zIndex: index, ...assetProps.data.style }}>
             {!assetProps.isDoubleClicked && <Cover />}
             {assetRenderer(assetProps.data.type, assetProps)}
         </Container>
     );
-};
+});

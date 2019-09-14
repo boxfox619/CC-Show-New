@@ -78,7 +78,7 @@ export const AssetCanvas: React.FC<Props> = ({ assets, editable = true, onSelect
         }
     };
 
-    const handleDoubleClickItem = () => setDoubleClicked(true);
+    const handleDoubleClickItem = () => selectedAssetId !== undefined && setDoubleClicked(true);
 
     const handleMouseDown = React.useCallback((e: React.MouseEvent) => {
         e.preventDefault();
