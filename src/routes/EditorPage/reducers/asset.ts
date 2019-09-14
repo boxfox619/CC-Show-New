@@ -1,7 +1,8 @@
 import { createAction } from 'redux-actions';
 import EditorStore from '../models/EditorStore';
 import { CreateAssetPayload, ResizeAssetPayload, UpdateAssetValuePayload, MoveAssetPayload, SortAssetPayload, ChangeStylePayload, UpdateAttrPayload } from '../models/payload';
-import { createAsset } from '../../../models/asset/index';
+import { createAsset } from '@/models/asset';
+import { ActionHandlerMap } from '@/core/store/immutableReducer';
 
 export const ADD_ASSET = 'ASSET.ADD_ASSET';
 export const DELETE_ASSET = 'ASSET.DELETE_ASSET';
@@ -25,10 +26,9 @@ export const sortAsset = createAction<SortAssetPayload>(SORT_ASSET);
 export const changeAssetStyle = createAction<ChangeStylePayload>(CHANGE_ASSET_STYLE);
 export const updateAssetAttr = createAction<UpdateAttrPayload>(UPDATE_ASSET_ATTR);
 
-
 const getCurrentSlideIdx = (state: EditorStore) => state.slides.findIndex(s => s.id === state.selectedSlideId);
 
-export const ACTION_HANDLERS = {
+export const ACTION_HANDLERS: ActionHandlerMap<EditorStore> = {
     [ADD_ASSET]: (state: EditorStore, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;

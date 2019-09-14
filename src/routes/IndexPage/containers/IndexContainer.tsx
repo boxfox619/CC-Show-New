@@ -23,7 +23,6 @@ const mapStateToProps = (state: StoreModel) => {
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
-
 const IndexContainer: React.FC<Props> = ({ login, register }) => {
     const [visibleModal, setVisibleModal] = React.useState(false);
     const toggleSignModal = React.useCallback(() => setVisibleModal(!visibleModal), [setVisibleModal, visibleModal]);

@@ -1,4 +1,4 @@
-import { AccountStore } from "./AccountStore";
+import { AccountStore } from "./store/AccountStore";
 
 export interface DefaultStore {
   auth: AccountStore

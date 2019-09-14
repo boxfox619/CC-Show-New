@@ -4,7 +4,7 @@ import update, { Spec, CustomCommands } from 'immutability-helper';
 type Reducer<State> = (state: State | undefined, action: Action<any>) => State;
 type ActionHandler<State> = (state: State, payload?: any) => Spec<State, CustomCommands<object>>;
 
-interface ActionHandlerMap<State> {
+export interface ActionHandlerMap<State> {
     [actionType: string]: ActionHandler<State>;
 }
 

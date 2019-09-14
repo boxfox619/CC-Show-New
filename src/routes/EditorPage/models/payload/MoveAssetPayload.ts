@@ -1,4 +1,4 @@
-import { Point } from '../../../../models';
+import { Point } from '@/models';
 export class MoveAssetPayload {
     constructor(
         public assetId: number,

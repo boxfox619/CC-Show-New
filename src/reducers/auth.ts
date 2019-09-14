@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { handleActions } from '../core/store';
 import { LoginSuccessPayload, LoginPayload, RegisterPayload, LoginResultPayload } from '../models/payload';
-import { AccountStore } from '../models';
+import { AccountStore } from '@/models';
 
 // ------------------------------------
 // Constants
@@ -30,7 +30,6 @@ export const login = createAction<LoginPayload>(LOGIN);
 export const logout = createAction(LOGOUT);
 export const register = createAction<RegisterPayload>(REGISTER);
 export const checkLogined = createAction(CHECK_LOGINED);
-
 
 // ------------------------------------
 // Action Handlers
