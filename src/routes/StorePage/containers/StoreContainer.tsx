@@ -45,7 +45,7 @@ const mapStateToProps = (state: StoreModel) => {
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const StoreContainer: React.FC<Props> = ({ search, assets = [] }) => {
-    const onSelectTab = React.useCallback((tabId: string) => { }, []);
+    const onSelectTab = React.useCallback((tabId: string) => { search(tabId) }, [search]);
     React.useEffect(() => { search('') }, []);
     return (
         <Container>

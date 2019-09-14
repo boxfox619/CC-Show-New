@@ -28,8 +28,10 @@ interface Props {
 }
 
 const TextController: React.FC<Props> = ({ fonts, style, onChangeStyle }) => {
-    const fontHandler = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => onChangeStyle({ ...style, fontFamily: e.target.value }), [style, onChangeStyle]);
-    const numberHandler = React.useCallback((attribute: string, e: React.ChangeEvent<HTMLInputElement>) => onChangeStyle({ ...style, [attribute]: parseInt(e.target.value || '0', 10) }), [style, onChangeStyle])
+    const fontHandler = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => onChangeStyle({ ...style, fontFamily: e.currentTarget.value }), [style, onChangeStyle]);
+    const numberHandler = React.useCallback((attribute: string, value: string) => {
+        onChangeStyle({ ...style, [attribute]: parseInt(value || '0', 10) + 'px' });
+    }, [style, onChangeStyle])
     const colorHandler = React.useCallback((color: string) => onChangeStyle({ ...style, color }), [style, onChangeStyle]);
     const attrHandler = React.useCallback((attribute: string, value: string) => onChangeStyle({ ...style, [attribute]: value }), [style, onChangeStyle]);
     return (
@@ -43,7 +45,7 @@ const TextController: React.FC<Props> = ({ fonts, style, onChangeStyle }) => {
                 <TextControlItem label="weight" type="number" onValueChange={numberHandler.bind(null, 'fontFamily')} />
             </ControlGroup>
             <ControlGroup>
-                <TextControlItem label="size" type="number" onValueChange={numberHandler.bind(null, 'size')} />
+                <TextControlItem label="font-size" type="number" onValueChange={numberHandler.bind(null, 'fontSize')} />
                 <TextControlItem label="weight" type="number" onValueChange={numberHandler.bind(null, 'lineHeight')} />
             </ControlGroup>
             <ControlGroup>

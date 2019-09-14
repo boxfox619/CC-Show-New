@@ -14,7 +14,9 @@ export const UPDATE_ASSET_VALUE = 'ASSET.UPDATE_VALUE';
 export const SORT_ASSET = 'ASSET.SORT_ASSET';
 export const CHANGE_ASSET_STYLE = 'ASSET.CHANGE_ASSET_STYLE';
 export const UPDATE_ASSET_ATTR = 'ASSET.UPDATE_ASSET_ATTR';
+export const SELECT_ASSET = 'ASSET.SELECT_ASSET';
 
+export const selectAsset = createAction<number>(SELECT_ASSET);
 export const addAsset = createAction<CreateAssetPayload>(ADD_ASSET);
 export const deleteAsset = createAction<number>(DELETE_ASSET);
 export const moveAsset = createAction<MoveAssetPayload>(MOVE_ASSET);
@@ -29,6 +31,16 @@ export const updateAssetAttr = createAction<UpdateAttrPayload>(UPDATE_ASSET_ATTR
 const getCurrentSlideIdx = (state: EditorStore) => state.slides.findIndex(s => s.id === state.selectedSlideId);
 
 export const ACTION_HANDLERS: ActionHandlerMap<EditorStore> = {
+    [SELECT_ASSET]: (state: EditorStore, payload?: number) => {
+        const idx = getCurrentSlideIdx(state);
+        return {
+            slides: {
+                [idx]: {
+                    selectedAssetId: { $set: payload }
+                }
+            }
+        }
+    },
     [ADD_ASSET]: (state: EditorStore, payload: CreateAssetPayload) => {
         const idx = getCurrentSlideIdx(state);
         const lastAssetId = state.slides[idx].lastAssetId;

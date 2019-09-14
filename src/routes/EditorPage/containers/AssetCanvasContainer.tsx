@@ -3,7 +3,7 @@ import StoreModel from '../models/StoreModel';
 import { SortAssetPayload } from '../models/payload';
 import { connect } from 'react-redux';
 import { ContextMenu, Menu } from '../components/context-menu';
-import { resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset, sortAsset } from '../reducers/asset';
+import { selectAsset, resizeAsset, updateAssetValue, copyAsset, pasteAsset, deleteAsset, sortAsset } from '../reducers/asset';
 import { Point } from '../../../models';
 import AssetCanvas from '@/components/asset-canvas';
 
@@ -13,7 +13,8 @@ const mapDispatchToProps = {
   copyAsset,
   pasteAsset,
   deleteAsset,
-  sortAsset
+  sortAsset,
+  selectAsset
 };
 
 const mapStateToProps = (state: StoreModel) => {
@@ -28,10 +29,10 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
   const [menuPosition, setMenuPosition] = React.useState<Point>({ x: 0, y: 0 });
   const currentSlide = props.editor.slides.find(s => s.id === props.editor.selectedSlideId);
   if (!currentSlide) { return (<></>); }
+  const selectedAssetId = currentSlide.selectedAssetId;
   const modifyAsset = (id: number, x: number, y: number, width: number, height: number) => props.resizeAsset({ id, position: { x, y }, width, height });
   const openContextMenu = (e: React.MouseEvent) => setMenuPosition({ x: e.pageX, y: e.pageY });
   const closeContextMenu = () => setMenuPosition({ x: 0, y: 0 });
-  const [selectedAssetId, setSelectedAssetId] = React.useState<number>(undefined);
   const assetValid = selectedAssetId !== undefined;
   const menu = [
     new Menu('복사', 'Ctrl + C', [props.copyAsset.bind(null, selectedAssetId), closeContextMenu], !assetValid),
@@ -50,7 +51,7 @@ const AssetCanvasContainer: React.FC<Props> = (props: Props) => {
       <AssetCanvas
         style={{ flex: 1 }}
         assets={currentSlide.assets}
-        onSelectAsset={setSelectedAssetId}
+        onSelectAsset={props.selectAsset}
         onModifyAsset={modifyAsset}
         onChangeValue={props.updateAssetValue}
         onContextMenu={openContextMenu}
