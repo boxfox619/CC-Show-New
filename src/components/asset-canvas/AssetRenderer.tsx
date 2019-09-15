@@ -42,14 +42,14 @@ export const AssetRenderer: React.FC<Props> = ({ assets, selectedAssetId, editab
             />
         )
     }), [assets, hoveredAssetIdx, selectedAssetId, doubleClicked, editable, onChangeValue]);
-    const renderGuideLine = useCallback((assetList: AnyAsset[]) => {
+    const guidelines = React.useMemo(() => {
         if (hoveredAssetIdx < 0) { return; }
-        return calGuideLine(assetList, hoveredAssetIdx).map((guideline, idx) => <Guideline key={idx} attr={guideline} />);
-    }, [hoveredAssetIdx]);
+        return calGuideLine(assets, hoveredAssetIdx).map((guideline, idx) => <Guideline key={idx} attr={guideline} />);
+    }, [hoveredAssetIdx, assets]);
     return (
         <Container {...divProps}>
             {assetViews}
-            {hoveredAssetIdx >= 0 && renderGuideLine(assets)}
+            {guidelines}
         </Container>
     );
 }

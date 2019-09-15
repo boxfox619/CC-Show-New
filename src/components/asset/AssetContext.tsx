@@ -8,6 +8,7 @@ import VideoAssetView from './VideoAssetView';
 import ShapeAssetView from './ShapeAssetView';
 import { TextAsset, ImageAsset, VideoAsset, AnyAsset, ShapeAsset, CustomAsset } from '@/models';
 import { CustomAssetView } from './CustomAssetView';
+import { optional } from '@/core/hoc';
 
 const Container = styled.div`
     width: 100%;
@@ -15,13 +16,14 @@ const Container = styled.div`
     position: relative;
 `
 
-const Cover = styled.div`
+const CoverDiv = styled.div`
     width: 100%;
     height: 100%;
     cursor: move !important;
     position: absolute;
     z-index: 3;
 `
+const Cover = optional(CoverDiv);
 
 const assetRenderer = (type: AssetType, props: AssetProps<any>) => {
     switch (type) {
@@ -58,7 +60,7 @@ type Props = AssetProps<AnyAsset> & ContextProps;
 export const AssetContext: React.FC<Props> = React.memo(({ index, ...assetProps }) => {
     return (
         <Container style={{ zIndex: index, ...assetProps.data.style }}>
-            {!assetProps.isDoubleClicked && <Cover />}
+            <Cover visible={!assetProps.isDoubleClicked} />
             {assetRenderer(assetProps.data.type, assetProps)}
         </Container>
     );
