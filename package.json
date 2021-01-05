@@ -15,7 +15,7 @@
     "@types/react-router-dom": "^4.3.4",
     "@types/redux-actions": "^2.6.1",
     "@types/styled-components": "^4.1.18",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "immutability-helper": "^3.0.1",
     "monaco-editor": "^0.17.1",
     "react": "^16.8.6",
